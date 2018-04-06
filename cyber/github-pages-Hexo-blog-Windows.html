@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+    <!-- Head -->
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="voezy">
+    <meta name="description" itemprop="description" content="">
+    <meta name="keywords" content="wind,lonezj,github pages,Hexo,notes">
+
+    <!-- Page Title -->
+    
+        <title>利用github pages 和Hexo搭建博客（Windows环境） | Voezy</title>
+    
+    <link rel="icon" href="/img/avatar.png">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    
+    <script src="//cdn.bootcss.com/prettify/r298/prettify.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/css/google-prettify-monokai.css" type="text/css">
+    
+    <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    
+             <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115976686-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-115976686-1');
+    </script>
+
+    
+    <style>
+        .deactiveColor{
+            color: #37474f;
+        }
+        .activeColor{
+            color: #006064;
+        }
+        a:hover{
+            color: #006064;
+        }
+        .header-btn{
+            color: #37474f;
+        }
+        
+        .post-content img{
+            margin: 50px auto;
+        }
+        
+    </style>
+</head>
+    <body>
+        <div class="container">
+
+            <!-- Top Anchor -->
+            <div id="top"></div>
+
+            <!-- Header -->
+            <header class="header-wrapper">
+    <div class="header-title-wrapper">
+        <!-- Page Title -->
+        <p class="header-title">
+             
+                
+                    利用github pages 和Hexo搭建博客（Windows环境）
+                
+            
+        </p>  
+    </div>    
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+    
+    <div class="header-detail">
+        <!-- Header Button -->
+        <div class="header-btn-wrapper">
+            
+                <span>
+                    <a class="home-btn header-btn" href="/" title="Homepage"><i class="fa fa-home"></i></a>
+                </span>
+
+                
+                    <span>
+                        <a class="catalog-btn header-btn" title="Catalog"><i class="fa fa-list-ul"></i></a>
+                    </span>
+                
+            
+        </div>
+    </div>
+</header>
+
+            <!-- Main -->
+            <main>
+                <article class="post-wrapper">
+    
+
+    
+        <!-- Article Catalog -->
+        <div class="catalog-dropdown col-xs-12 col-sm-12">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#主要步骤"><span class="toc-number">1.</span> <span class="toc-text">主要步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#软件安装部分："><span class="toc-number">2.</span> <span class="toc-text">软件安装部分：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nodejs"><span class="toc-number">2.1.</span> <span class="toc-text">nodejs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git"><span class="toc-number">2.2.</span> <span class="toc-text">git</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo"><span class="toc-number">2.3.</span> <span class="toc-text">Hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Hexo的安装"><span class="toc-number">2.3.1.</span> <span class="toc-text">Hexo的安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hexo的初始化"><span class="toc-number">2.3.2.</span> <span class="toc-text">hexo的初始化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建github仓库"><span class="toc-number">3.</span> <span class="toc-text">创建github仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生成、配置ssh-key"><span class="toc-number">4.</span> <span class="toc-text">生成、配置ssh key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置deployer（编辑站点配置文件）"><span class="toc-number">5.</span> <span class="toc-text">配置deployer（编辑站点配置文件）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将本地hexo项目托管到github"><span class="toc-number">6.</span> <span class="toc-text">将本地hexo项目托管到github</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#绑定域名"><span class="toc-number">7.</span> <span class="toc-text">绑定域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建完成"><span class="toc-number">8.</span> <span class="toc-text">搭建完成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考链接"><span class="toc-number">9.</span> <span class="toc-text">参考链接</span></a></li></ol>
+        </div>
+    
+
+    
+        <!--For now, Lightbox Only Show in Post Layout -->
+        
+
+        
+        
+    
+
+    
+
+    <!-- Article Content -->
+    <div class="post-content">
+        <h2 id="主要步骤"><a href="#主要步骤" class="headerlink" title="主要步骤"></a>主要步骤</h2><ol>
+<li>软件安装</li>
+<li>创建github仓库</li>
+<li>生成、配置ssh key</li>
+<li>配置deployer</li>
+<li>将本地hexo项目托管到github</li>
+<li>绑定域名（可选）</li>
+</ol>
+<h2 id="软件安装部分："><a href="#软件安装部分：" class="headerlink" title="软件安装部分："></a>软件安装部分：</h2><h3 id="nodejs"><a href="#nodejs" class="headerlink" title="nodejs"></a>nodejs</h3><p>链接：<a href="https://nodejs.org/en/" target="_blank" rel="noopener">nodejs官网</a><br>安装过程，一路next。<br>安装完成后，控制台输入：<br><code>node -v</code><br>显示nodejs版本号则nodejs安装成功。  </p>
+<h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><p>链接：<a href="https://git-scm.com/" target="_blank" rel="noopener">git官网</a><br>再次一路next。安装完成后，关闭控制台后再重新打开，然后输入<br><code>git --version</code><br>若输出git版本号，则安装成功。  </p>
+<h3 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h3><h4 id="Hexo的安装"><a href="#Hexo的安装" class="headerlink" title="Hexo的安装"></a>Hexo的安装</h4><p> 在你的硬盘里找一个合适的地方，创建一个文件夹（可命名为blog），如我的blog文件夹路径为D:\developer\blog。接下来将会安装Hexo，将Hexo初始化后的文件安排在这个blog文件夹里，以后整个博客的资源都在这里。<br>进入blog文件夹，在空白处打开右键菜单，选择Git Bash here，  </p>
+<p>在Git Bash中输入命令：<br><code>npm install -g hexo-cli</code>    </p>
+<p>开始安装Hexo。安装完成后，继续输入<code>hexo</code>，按下回车，若输出提示信息，则安装成功。  </p>
+<h4 id="hexo的初始化"><a href="#hexo的初始化" class="headerlink" title="hexo的初始化"></a>hexo的初始化</h4><p>1.若能看到上述的提示信息，则紧接着就输入  <code>hexo init hexo</code><br>来对Hexo进行初始化。初始化所产生的文件都会在当前的目录blog之下。 初始化成功会显示Start blogging with Hexo!  然后在blog文件夹下会看到产生了一个hexo文件夹，这个就是初始化Hexo之后产生的。  （若你是直接打开Git Bash，此时git的工作目录将是/c/Users/你的用户名/。然后如果你这时输入命令对Hexo进行安装和初始化，就会把Hexo初始化到/c/Users/你的用户名/之下。为了便于管理，还是建议建立一个专门的文件夹，在这个文件夹对Hexo进行初始化。）<br>输入<code>cd hexo</code>命令进入到blog下的hexo目录中，<br>然后输入<code>npm install</code>安装依赖文件。<br>输入<code>hexo generate</code>(或简化的命令hexo g)，生成博客网页资源文件。<br>2.测试<br>输入<code>hexo server</code>，在本地对形成的博客静态页面进行调试。此时显示Hexo is running at <a href="http://localhost:4000/，打开浏览器，输入地址localhost:4000会打开本地的博客预览页面。" target="_blank" rel="noopener">http://localhost:4000/，打开浏览器，输入地址localhost:4000会打开本地的博客预览页面。</a><br>如果能看到默认的博客页面，说明软件都正确安装好了。</p>
+<h2 id="创建github仓库"><a href="#创建github仓库" class="headerlink" title="创建github仓库"></a>创建github仓库</h2><ul>
+<li>注册、登陆github账号</li>
+<li>创建github pages：<br>点击右上角加号，New repository。<br>Repository name请务必填写你的用户名。</li>
+</ul>
+<p>然后点击Create repository就行了。</p>
+<h2 id="生成、配置ssh-key"><a href="#生成、配置ssh-key" class="headerlink" title="生成、配置ssh key"></a>生成、配置ssh key</h2><p>1.检查是否有“C:\Users\你的用户名.ssh”目录。<br>若你的C:\Users\你的用户名\下没有.ssh文件夹，那是因为你第一次使用git，之前没有留下ssh key。  </p>
+<p>2.在git bash中输入:<br><code>ssh-keygen -t rsa -C &quot;你的github注册邮箱&quot;</code>  （有英文引号）<br>中间会让你填写key文件名，可以不用填，直接回车得到默认文件名的key，建议默认名即可。中途还会让你输入一个密码，这个是以后在本机部署文件到github时用到的，不是github登陆密码，可填可不填。<br>之后会在上述.ssh文件夹中产生两个文件，“id_rsa” 以及“id_rsa.pub”。</p>
+<p>3.用文本编辑器打开id_rsa.pub，全选复制到剪贴板，然后点击github右上方头像打开设置面板，在settings里面的SSH and GPG  keys 选项卡里，点击new SSH key，title自定义，key栏中就把刚才复制的内容粘贴上去。然后点击下面的按钮，add SSH key，密码确认就行了。</p>
+<h2 id="配置deployer（编辑站点配置文件）"><a href="#配置deployer（编辑站点配置文件）" class="headerlink" title="配置deployer（编辑站点配置文件）"></a>配置deployer（编辑站点配置文件）</h2><p>1.打开blog\hexo目录，用文本编辑器打开_config.yml文件。在最后的<code>##deployment</code>一段中作如下修改和添加：        </p>
+<pre><code>deploy:  
+  type: git  
+  repository: git@github.com:你的github用户名/你的github用户.github.io.git  
+  branch: master
+</code></pre><p>注意站点配置文件和主题配置文件中每个变量的冒号后都有一个空格，同级变量的缩进量要相等。（hexo文件夹下的_config.yml和hexo\themes\主题名称\中的_config.yml分别成为站点配置文件和主题配置文件<br>2.安装hexo-deployer-git插件：<br>git bash中，输入命令<br><code>npm install hexo-deployer-git --save</code><br>3.为自己配置身份信息：打开cmd命令行，然后输入：<br><code>git config --global user.name &quot;yourname&quot;</code><br><code>git config --global user.email &quot;youremail&quot;</code></p>
+<h2 id="将本地hexo项目托管到github"><a href="#将本地hexo项目托管到github" class="headerlink" title="将本地hexo项目托管到github"></a>将本地hexo项目托管到github</h2><p>按顺序执行命令如下：<br><code>hexo clean #每次更换主题后亦需要使用此命令，简写是hexo cl</code><br><code>hexo generator #简写是hexo g</code><br>（然后此时可以先执行hexo s –debug，打开浏览器，在本地查看过效果，确定满意之后，再用以下这一条命令来将本地博客项目部署到github<br><code>hexo deploy     #简写是hexo d</code><br>完成之后，稍等一下，在浏览器打开“你的用户名.github.io”应该就能够看到由hexo生成的博客了。</p>
+<h2 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h2><p>此项作为附加设置，也可以选择用github pages的默认域名，不用再去进行注册、解析、绑定域名的操作。<br>域名解析：<br>1.在github page项目内建立文本文件CNAME（没有后缀名），内容是所注册的域名。<br>建议在Hexo\source文件夹内建立这样的一个文件，以后部署不需要再重新创建CNAME文件。<br>2.在域名服务商控制面板对域名添加解析，记录类型为CNAME,主机记录为www(若写blog，则blog.你注册的域名.后缀是你的博客地址)， 记录值为github page分配的默认域名。 </p>
+<p>绑定域名方面，有多种方法，主要可参考以下链接：  </p>
+<ul>
+<li><a href="https://help.github.com/articles/about-supported-custom-domains/" target="_blank" rel="noopener">github pages官方介绍</a>  </li>
+<li><a href="https://www.zhihu.com/question/31377141" target="_blank" rel="noopener">github怎么绑定自己的域名？ - 知乎</a></li>
+</ul>
+<h2 id="搭建完成"><a href="#搭建完成" class="headerlink" title="搭建完成"></a>搭建完成</h2><p>利用github pages和Hexo搭建静态页面博客过程到此结束。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>整个过程中我参考了很多文章，以下提供一些我个人认为比较有参考价值的文章链接：  </p>
+<ol>
+<li>文中提到了Hexo各目录存放的资源及作用，还提供了seo优化、部分插件的安装以及国内外分节点等干货：<a href="http://www.alonemonkey.com/2016/05/20/blog-by-jekyll-hexo/?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="noopener">使用jekyll和hexo搭建免费博客</a>  </li>
+<li>作者列了一些他碰到的坑，也许你碰到的坑就在里面：<a href="http://www.jianshu.com/p/a2fe56d11c4f" target="_blank" rel="noopener">搭建Hexo博客中碰到的坑</a>  </li>
+<li>hexo官网，查看文档是一种很棒的学习方法：<a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo</a>  </li>
+</ol>
+  
+    </div> 
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+
+    <div class="post-info-wrapper">
+            
+                    <!-- Post Info -->
+                    <p class="post-date">2017-02-08</p>
+                    
+                    
+                        <p class="post-info-categories">
+                            <a class="post-category-link" href="/categories/cyber/">赛博朋克</a>
+                        </p>
+                    
+
+                    
+            
+    </div>
+</article>
+
+
+    
+    <!-- Comments -->
+    <div class="post-comment-wrapper">
+        
+    <!-- Livere -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjA4Mi84NjQ2">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+    
+           if (typeof LivereTower === 'function') { return; }
+    
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+    
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+    </div>
+    
+
+            </main>
+
+            <!-- 'To Top' Btn-->
+            
+                <div id="to-top">
+    <a href="#top" class="toTop">
+        <i class="fa fa-pagelines"></i>
+    </a>
+</div>
+            
+
+            <!-- Footer -->
+            
+                <footer class="footer-wrapper col-xs-12 col-sm-12">
+    <div class="footer-banner-wrapper">
+        <p class="footer-banner">Powered by <a href="https://hexo.io/" title="Hexo">Hexo</a></p>
+        <P class="footer-banner">Theme <a href="https://github.com/Lonezj/hexo-theme-wind" title="Wind">wind</a></P>
+    </div>
+</footer>
+            
+        </div>
+    </body>
+</html>

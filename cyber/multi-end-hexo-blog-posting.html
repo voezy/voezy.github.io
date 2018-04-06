@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+    <!-- Head -->
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="voezy">
+    <meta name="description" itemprop="description" content="事前准备：一台已经配置好Hexo的电脑A、等待同步的电脑B、一个git代码托管网站的账号（github、coding等等）。windows环境下的Hexo安装步骤可参考:利用github pages 和Hexo搭建博客（Windows环境)。">
+    <meta name="keywords" content="wind,lonezj,Hexo,blog">
+
+    <!-- Page Title -->
+    
+        <title>Hexo多终端(系统)同步撰写博客——从windows到linux | Voezy</title>
+    
+    <link rel="icon" href="/img/avatar.png">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    
+    <script src="//cdn.bootcss.com/prettify/r298/prettify.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/css/google-prettify-monokai.css" type="text/css">
+    
+    <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    
+             <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115976686-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-115976686-1');
+    </script>
+
+    
+    <style>
+        .deactiveColor{
+            color: #37474f;
+        }
+        .activeColor{
+            color: #006064;
+        }
+        a:hover{
+            color: #006064;
+        }
+        .header-btn{
+            color: #37474f;
+        }
+        
+        .post-content img{
+            margin: 50px auto;
+        }
+        
+    </style>
+</head>
+    <body>
+        <div class="container">
+
+            <!-- Top Anchor -->
+            <div id="top"></div>
+
+            <!-- Header -->
+            <header class="header-wrapper">
+    <div class="header-title-wrapper">
+        <!-- Page Title -->
+        <p class="header-title">
+             
+                
+                    Hexo多终端(系统)同步撰写博客——从windows到linux
+                
+            
+        </p>  
+    </div>    
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+    
+    <div class="header-detail">
+        <!-- Header Button -->
+        <div class="header-btn-wrapper">
+            
+                <span>
+                    <a class="home-btn header-btn" href="/" title="Homepage"><i class="fa fa-home"></i></a>
+                </span>
+
+                
+                    <span>
+                        <a class="catalog-btn header-btn" title="Catalog"><i class="fa fa-list-ul"></i></a>
+                    </span>
+                
+            
+        </div>
+    </div>
+</header>
+
+            <!-- Main -->
+            <main>
+                <article class="post-wrapper">
+    
+
+    
+        <!-- Article Catalog -->
+        <div class="catalog-dropdown col-xs-12 col-sm-12">
+            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#事前准备："><span class="toc-number">1.</span> <span class="toc-text">事前准备：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#了解git的基本操作。"><span class="toc-number">2.</span> <span class="toc-text">了解git的基本操作。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#新终端安装node和hexo。"><span class="toc-number">3.</span> <span class="toc-text">新终端安装node和hexo。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#开始同步源码。"><span class="toc-number">4.</span> <span class="toc-text">开始同步源码。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#问题总结"><span class="toc-number">5.</span> <span class="toc-text">问题总结</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#node和hexo配置问题"><span class="toc-number">5.1.</span> <span class="toc-text">node和hexo配置问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#git推送问题"><span class="toc-number">5.2.</span> <span class="toc-text">git推送问题</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参考链接"><span class="toc-number">6.</span> <span class="toc-text">参考链接</span></a></li></ol>
+        </div>
+    
+
+    
+        <!--For now, Lightbox Only Show in Post Layout -->
+        
+
+        
+        
+    
+
+    
+
+    <!-- Article Content -->
+    <div class="post-content">
+        <h4 id="事前准备："><a href="#事前准备：" class="headerlink" title="事前准备："></a>事前准备：</h4><p>一台已经配置好Hexo的电脑A、等待同步的电脑B、一个git代码托管网站的账号（github、coding等等）。windows环境下的Hexo安装步骤可参考:<a href="https://www.mrdays.tech/Tech/github-pages-Hexo-blog-Windows.html" target="_blank" rel="noopener">利用github pages 和Hexo搭建博客（Windows环境)</a>。<br><a id="more"></a><br>目前我已在一台windows环境的电脑（称之A电脑）中配置好hexo，我的另一终端系统环境是deepin linux15.03（称之B电脑），目标是把A电脑中的博客源码同步到git远程仓库中，然后在B电脑中拉取git远程仓库的博客源码，完成博客配置，并且在每次发布新文章后把新文件同步到git远程仓库，达到多终端同步撰写博客的目的。  </p>
+<h4 id="了解git的基本操作。"><a href="#了解git的基本操作。" class="headerlink" title="了解git的基本操作。"></a>了解git的基本操作。</h4><p><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">史上最浅显易懂的Git教程</a><br>这个作者的Git教程还是可以的，读一下就可以理解操作过程的原理，不用担心操作出错又不懂怎么解决。</p>
+<h4 id="新终端安装node和hexo。"><a href="#新终端安装node和hexo。" class="headerlink" title="新终端安装node和hexo。"></a>新终端安装node和hexo。</h4><p>node:<a href="http://www.cnblogs.com/dubaokun/p/3558848.html" target="_blank" rel="noopener">linux 下部署nodejs（两种方式）</a><br>hexo:<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">hexo官网</a><br>安装好就行了，不用在博客目录运行hexo init来初始化博客。<br>如果已经初始化好了一个博客目录，进入目录把目录清空即可，等下就用这个目录同步git远程仓库的文件。</p>
+<h4 id="开始同步源码。"><a href="#开始同步源码。" class="headerlink" title="开始同步源码。"></a>开始同步源码。</h4><p>参考：<a href="https://segmentfault.com/a/1190000003710980" target="_blank" rel="noopener">利用git解决hexo博客多PC间同步问题</a><br>A电脑(windows)的站点配置文件和主题配置文件都被我加到.gitignore文件里面了，如果这两个文件含有敏感信息，还是可以忽略掉的。<br>对于B电脑(deepin)，因为博客是在原先的A电脑中已经配置好的，现在只需要按步骤三把git远程仓库的文件pull到博客目录，把没有同步到git远程仓库的站点配置文件和主题配置文件_config.yml复制到本地博客目录，就可以在这个B电脑写文章发表了。</p>
+<h4 id="问题总结"><a href="#问题总结" class="headerlink" title="问题总结"></a>问题总结</h4><h5 id="node和hexo配置问题"><a href="#node和hexo配置问题" class="headerlink" title="node和hexo配置问题"></a>node和hexo配置问题</h5><p>一开始配置node时我是用软连接的方式把node和npm链接到/usr/local/bin下，但是捣鼓了一下，重启过后又失效了。然后，配置hexo过程中出现的问题是终端提示“bash：hexo: 未找到命令 ”。<br>经过多番搜索、设置，发现解决方法是要在用户主目录下的.bashrc文件中把node、hexo所在目录添加到系统PATH路径才能够正常允许运行(大概Linux入门书籍都会讲解类似问题和原因)。<br>我的node所在目录是<code>/home/mrrobot/software/node-v7.6.0-linux-x64/bin</code> ，hexo所在目录是<code>/home/mrrobot/software/node-v7.6.0-linux-x64/lib/node_modules/hexo-cli/bin</code><br>所以我在终端用以下命令打开gedit编辑.bashrc文件：<br><code>sudo gedit ~/.bashrc</code><br>打开.bashrc文件后，如果本来末尾就有<code>export PATH=”$PATH:/usr/local/bin/</code>这样的字段，那么我就直接把  </p>
+<blockquote>
+<p><code>:/home/mrrobot/software/node-v7.6.0-linux-x64/bin:/home/mrrobot/software/node-v7.6.0-linux-x64/lib/node_modules/hexo-cli/bin</code>  </p>
+</blockquote>
+<p>插入到<code>/usr/local/bin/</code>后面就行。要注意每个路径之间的冒号分隔。<br>如果没有，就在末尾添加  </p>
+<blockquote>
+<p><code>export PATH=”$PATH:/usr/local/bin/:/home/mrrobot/software/node-v7.6.0-linux-x64/bin:/home/mrrobot/software/node-v7.6.0-linux-x64/lib/node_modules/hexo-cli/bin”</code>  </p>
+</blockquote>
+<p>然后注销，重新登陆，应该就可以正常运行node、npm和hexo了。在终端依次输入node -v、npm -v、hexo -v试试。能输出版本号就没问题了。  </p>
+<h5 id="git推送问题"><a href="#git推送问题" class="headerlink" title="git推送问题"></a>git推送问题</h5><p>另外，按照上述链接的配置，在B电脑第一次执行git push时，出现：  </p>
+<blockquote>
+<p>mrrobot@mrrobotsmachine:~/workplace/blog/hexo$ git push<br>fatal: 当前分支 master 没有对应的上游分支。<br>为推送当前分支并建立与远程上游的跟踪，使用<br>git push –set-upstream origin master</p>
+</blockquote>
+<p>于是我输入<br><code>git push --set-upstream origin master</code><br>才能正常推送到远程仓库。</p>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p>关于linux的环境变量详细的设置讲解：<a href="https://my.oschina.net/qinlinwang/blog/30471" target="_blank" rel="noopener">Ubuntu Linux 环境变量PATH设置</a></p>
+  
+    </div> 
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+
+    <div class="post-info-wrapper">
+            
+                    <!-- Post Info -->
+                    <p class="post-date">2017-02-25</p>
+                    
+                    
+                        <p class="post-info-categories">
+                            <a class="post-category-link" href="/categories/cyber/">赛博朋克</a>
+                        </p>
+                    
+
+                    
+            
+    </div>
+</article>
+
+
+    
+    <!-- Comments -->
+    <div class="post-comment-wrapper">
+        
+    <!-- Livere -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjA4Mi84NjQ2">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+    
+           if (typeof LivereTower === 'function') { return; }
+    
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+    
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+    </div>
+    
+
+            </main>
+
+            <!-- 'To Top' Btn-->
+            
+                <div id="to-top">
+    <a href="#top" class="toTop">
+        <i class="fa fa-pagelines"></i>
+    </a>
+</div>
+            
+
+            <!-- Footer -->
+            
+                <footer class="footer-wrapper col-xs-12 col-sm-12">
+    <div class="footer-banner-wrapper">
+        <p class="footer-banner">Powered by <a href="https://hexo.io/" title="Hexo">Hexo</a></p>
+        <P class="footer-banner">Theme <a href="https://github.com/Lonezj/hexo-theme-wind" title="Wind">wind</a></P>
+    </div>
+</footer>
+            
+        </div>
+    </body>
+</html>

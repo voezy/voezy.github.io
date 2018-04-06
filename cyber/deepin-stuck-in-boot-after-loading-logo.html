@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+    <!-- Head -->
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="voezy">
+    <meta name="description" itemprop="description" content="上次15.5的beta版出来的时候，直接系统更新就gg过一次。到社区上发问，就没有几个真正知道原因的人出来解答。只好重装。    ">
+    <meta name="keywords" content="wind,lonezj">
+
+    <!-- Page Title -->
+    
+        <title>关于deepin15.5的更新无法自动进入图形界面的问题 | Voezy</title>
+    
+    <link rel="icon" href="/img/avatar.png">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    
+    <script src="//cdn.bootcss.com/prettify/r298/prettify.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/css/google-prettify-monokai.css" type="text/css">
+    
+    <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    
+             <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115976686-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-115976686-1');
+    </script>
+
+    
+    <style>
+        .deactiveColor{
+            color: #37474f;
+        }
+        .activeColor{
+            color: #006064;
+        }
+        a:hover{
+            color: #006064;
+        }
+        .header-btn{
+            color: #37474f;
+        }
+        
+        .post-content img{
+            margin: 50px auto;
+        }
+        
+    </style>
+</head>
+    <body>
+        <div class="container">
+
+            <!-- Top Anchor -->
+            <div id="top"></div>
+
+            <!-- Header -->
+            <header class="header-wrapper">
+    <div class="header-title-wrapper">
+        <!-- Page Title -->
+        <p class="header-title">
+             
+                
+                    关于deepin15.5的更新无法自动进入图形界面的问题
+                
+            
+        </p>  
+    </div>    
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+    
+    <div class="header-detail">
+        <!-- Header Button -->
+        <div class="header-btn-wrapper">
+            
+                <span>
+                    <a class="home-btn header-btn" href="/" title="Homepage"><i class="fa fa-home"></i></a>
+                </span>
+
+                
+                    <span>
+                        <a class="catalog-btn header-btn" title="Catalog"><i class="fa fa-list-ul"></i></a>
+                    </span>
+                
+            
+        </div>
+    </div>
+</header>
+
+            <!-- Main -->
+            <main>
+                <article class="post-wrapper">
+    
+
+    
+        <!-- Article Catalog -->
+        <div class="catalog-dropdown col-xs-12 col-sm-12">
+            
+        </div>
+    
+
+    
+        <!--For now, Lightbox Only Show in Post Layout -->
+        
+
+        
+        
+    
+
+    
+
+    <!-- Article Content -->
+    <div class="post-content">
+        <p>上次15.5的beta版出来的时候，直接系统更新就gg过一次。到社区上发问，就没有几个真正知道原因的人出来解答。只好重装。    </p>
+<a id="more"></a>
+<p>昨天我又作死试了一下，从15.4的控制中心下载更新包升级到15.5，按提示重启之后，卡在logo过后的黑屏处，只有左上角光标闪烁，打开终端登录之后，startx可以进图形界面，但系统语言不是我本来设置的中文简体而是英文。    </p>
+<p>到这里老实如我都还是有点觉得是我的更新没下载完全的问题。只好重装。    </p>
+<p>于是又从阿里云镜像源下了15.5的完整镜像，制作了安装u盘，重装了一遍，结果还是那样，开机logo过后，又是一片漆黑，就一光标在那晃来晃去。再次startx进去，连上网，一顿sudo apt-get update，sudo apt-get full-upgrade，之后，重启居然就正常了。哭笑不得。    </p>
+<p>再后来，逛论坛的时候，看到有人升级依赖包遇到类似的问题，id为zhangshuang的用户提出了一个方法是 <code>sudo apt-get -f install &amp;&amp; sudo apt-get dist-upgrade &amp;&amp; sudo apt-get install dde</code>，<a href="https://bbs.deepin.org/forum.php?mod=viewthread&amp;tid=150000&amp;extra=page%3D1" target="_blank" rel="noopener">deepin 15.5 升级依赖包后启动黑屏</a>，但已经弄好了，没法再试一次，所以下次再这样类似地挂掉时再试试吧。<span class="github-emoji" title="joy" data-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f602.png?v8">&#x1f602;</span>    </p>
+<p>还有的不能进入系统的情况据说与更换了闭源显卡驱动有关，和我所遇到的安装&amp;升级启动不能进入系统不一样，当然不能进入系统的原因实在太多了，解决方法也不同，就不多说了。    </p>
+<p>之所以选择deepin，是因为它有着设计感算是不错的用户界面，还有最让deepin团队引以为豪的各种国内流行软件适配。比如qq和搜狗。虽然在用其他发行版时也曾自己装过，也都有一些相应的替代品，但是总觉得哪里不对。不是说做不了，而是有限的精力应该放在需要的地方。系统配置和基础软件这些东西，如果有更加便利的解决办法，那应该是要支持的。况且，这些软件后续的更新等情况，都有deepin在搞，大概也能省一点精力吧。现在的想法是这样的。</p>
+<p>但是，如果一个系统连安装、更新和启动的过程都控制不好，情况就有点尴尬了。    </p>
+<p>昨晚翻deepin用户社区还看到了一个挺有意思的讨论，题主大概的意思是（国际上的）用户该如何去信任一个来自中国的linux发行版，连带着丢出来的是一个quora的问题链接，不得不说那边的看法也值得思考。    </p>
+<p>但是，总之，deepin用户享受着deepin的种种便利性，但也不要认为这一切都是理所当然，更希望deepin能够走在正确的道路上。</p>
+  
+    </div> 
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+
+    <div class="post-info-wrapper">
+            
+                    <!-- Post Info -->
+                    <p class="post-date">2017-12-12</p>
+                    
+                    
+                        <p class="post-info-categories">
+                            <a class="post-category-link" href="/categories/cyber/">赛博朋克</a>
+                        </p>
+                    
+
+                    
+            
+    </div>
+</article>
+
+
+    
+    <!-- Comments -->
+    <div class="post-comment-wrapper">
+        
+    <!-- Livere -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjA4Mi84NjQ2">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+    
+           if (typeof LivereTower === 'function') { return; }
+    
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+    
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+    </div>
+    
+
+            </main>
+
+            <!-- 'To Top' Btn-->
+            
+                <div id="to-top">
+    <a href="#top" class="toTop">
+        <i class="fa fa-pagelines"></i>
+    </a>
+</div>
+            
+
+            <!-- Footer -->
+            
+                <footer class="footer-wrapper col-xs-12 col-sm-12">
+    <div class="footer-banner-wrapper">
+        <p class="footer-banner">Powered by <a href="https://hexo.io/" title="Hexo">Hexo</a></p>
+        <P class="footer-banner">Theme <a href="https://github.com/Lonezj/hexo-theme-wind" title="Wind">wind</a></P>
+    </div>
+</footer>
+            
+        </div>
+    </body>
+</html>

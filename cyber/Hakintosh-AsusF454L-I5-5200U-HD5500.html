@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+    <!-- Head -->
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="voezy">
+    <meta name="description" itemprop="description" content="">
+    <meta name="keywords" content="wind,lonezj,Hackintosh">
+
+    <!-- Page Title -->
+    
+        <title>华硕F454L安装黑苹果简单记录(硬件参考：i5-5200u，hd5500) | Voezy</title>
+    
+    <link rel="icon" href="/img/avatar.png">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    
+    <script src="//cdn.bootcss.com/prettify/r298/prettify.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/css/google-prettify-monokai.css" type="text/css">
+    
+    <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    
+             <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115976686-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-115976686-1');
+    </script>
+
+    
+    <style>
+        .deactiveColor{
+            color: #37474f;
+        }
+        .activeColor{
+            color: #006064;
+        }
+        a:hover{
+            color: #006064;
+        }
+        .header-btn{
+            color: #37474f;
+        }
+        
+        .post-content img{
+            margin: 50px auto;
+        }
+        
+    </style>
+</head>
+    <body>
+        <div class="container">
+
+            <!-- Top Anchor -->
+            <div id="top"></div>
+
+            <!-- Header -->
+            <header class="header-wrapper">
+    <div class="header-title-wrapper">
+        <!-- Page Title -->
+        <p class="header-title">
+             
+                
+                    华硕F454L安装黑苹果简单记录(硬件参考：i5-5200u，hd5500)
+                
+            
+        </p>  
+    </div>    
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+    
+    <div class="header-detail">
+        <!-- Header Button -->
+        <div class="header-btn-wrapper">
+            
+                <span>
+                    <a class="home-btn header-btn" href="/" title="Homepage"><i class="fa fa-home"></i></a>
+                </span>
+
+                
+                    <span>
+                        <a class="catalog-btn header-btn" title="Catalog"><i class="fa fa-list-ul"></i></a>
+                    </span>
+                
+            
+        </div>
+    </div>
+</header>
+
+            <!-- Main -->
+            <main>
+                <article class="post-wrapper">
+    
+
+    
+        <!-- Article Catalog -->
+        <div class="catalog-dropdown col-xs-12 col-sm-12">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#分区"><span class="toc-number">1.</span> <span class="toc-text">分区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#制作安装盘"><span class="toc-number">2.</span> <span class="toc-text">制作安装盘</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#装clover"><span class="toc-number">3.</span> <span class="toc-text">装clover</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">4.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#驱动安装及部分问题的修复"><span class="toc-number">5.</span> <span class="toc-text">驱动安装及部分问题的修复</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#声卡"><span class="toc-number">5.1.</span> <span class="toc-text">声卡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NTFS盘读写"><span class="toc-number">5.2.</span> <span class="toc-text">NTFS盘读写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络："><span class="toc-number">5.3.</span> <span class="toc-text">网络：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#触摸板"><span class="toc-number">5.4.</span> <span class="toc-text">触摸板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决开机进度条第二阶段花屏"><span class="toc-number">5.5.</span> <span class="toc-text">解决开机进度条第二阶段花屏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dsdt纠错以及显示电量"><span class="toc-number">5.6.</span> <span class="toc-text">dsdt纠错以及显示电量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#屏蔽独显"><span class="toc-number">5.7.</span> <span class="toc-text">屏蔽独显</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修复系统偏好设置-显示器选项不能载入的问题"><span class="toc-number">5.8.</span> <span class="toc-text">修复系统偏好设置-显示器选项不能载入的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#亮度不能保存问题-更新系统后再次失效，待解决"><span class="toc-number">5.9.</span> <span class="toc-text">亮度不能保存问题(更新系统后再次失效，待解决)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#亮度"><span class="toc-number">5.10.</span> <span class="toc-text">亮度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#亮度调节快捷键消失"><span class="toc-number">5.11.</span> <span class="toc-text">亮度调节快捷键消失</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#icloud的登录问题"><span class="toc-number">5.12.</span> <span class="toc-text">icloud的登录问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#附加内容"><span class="toc-number">5.13.</span> <span class="toc-text">附加内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用命令"><span class="toc-number">5.14.</span> <span class="toc-text">常用命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附件"><span class="toc-number">6.</span> <span class="toc-text">附件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#尚未完成"><span class="toc-number">7.</span> <span class="toc-text">尚未完成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考链接"><span class="toc-number">8.</span> <span class="toc-text">参考链接</span></a></li></ol>
+        </div>
+    
+
+    
+        <!--For now, Lightbox Only Show in Post Layout -->
+        
+
+        
+        
+    
+
+    
+
+    <!-- Article Content -->
+    <div class="post-content">
+        <p>最近在隔壁小哥的怂恿下，尝试了一下在自己的华硕F454L上安装Mac OS，感觉，算能用吧。以下为大概过程，记录一下，以免以后忘记，也许会有人需要。至于镜像，就要自己到网上找了，很多，大概也差不多(懒人版稍微简单直接一点)。</p>
+<ul>
+<li>硬件信息参考：<br>电脑型号：    华硕 X455LJ 笔记本电脑  (扫描时间：2017年03月19日)<br>操作系统：    Windows 10 64位 ( DirectX 12 )<br>处理器：    英特尔 Core i5-5200U @ 2.20GHz 双核<br>主板：    华硕 X455LJ ( 英特尔 Broadwell-U - 5th Generation Intel Core Premium SKU - 9CC3 笔记本芯片组 )<br>内存：    3902 MB<br>主硬盘：    希捷 ST500LT012-1DG142 ( 500 GB / 5400 转/分 )<br>显卡：    Nvidia GeForce 920M ( 2 GB / 华硕 )<br>显示器：    奇美 CMN1480 ( 14 英寸  )<br>光驱：    松下 DVD-RAM UJ8HC DVD刻录机<br>声卡：    Conexant SmartAudio HD @ 英特尔 High Definition Audio Controller<br>网卡：    瑞昱 RTL8168/8111/8112 Gigabit Ethernet Controller / 华硕<br>我用的镜像是Mac OS 10.12.3 Sierra。  </li>
+</ul>
+<h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h2><p>我分了一个60g的分区用来装mac os，另外有一个win10系统盘，两个资料盘。 efi分区400m左右。   </p>
+<h2 id="制作安装盘"><a href="#制作安装盘" class="headerlink" title="制作安装盘"></a>制作安装盘</h2><p>用transMac把16g的u盘格式化成Mac格式，然后选择用镜像制作Mac安装盘，选择下载好的懒人版Mac os10.12，等待完成。   </p>
+<h2 id="装clover"><a href="#装clover" class="headerlink" title="装clover"></a>装clover</h2><p>用U盘进入pe系统，挂载efi分区(用分区助手等指定盘符)，把clover文件夹（附件中的CLOVER压缩包，解压）放到efi分区下的EFI目录内。把对应的驱动添加或替换到驱动所在文件夹，把用相应的配置文件替换clover的默认配置文件（华硕f454l的驱动基本放好了，其他型号的要自行替换否则可能开不了机）。在BIOS设置里把clover设为第一启动项，并且把显存改为128m（进入BIOS设置，切换到advanced页面，找到graphics configuration进行修改）。  </p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>开机就会引导到clover，选择install mac os from …，然后走第一条加载进度条，之后如果出现英文的安装界面，并且有Back和Continue按钮，那么第一步大概要成功了。按Back，选择简体中文，然后在上方菜单栏的实用工具中打开磁盘工具，把刚才的60g盘抹掉，变成Mac os journal格式，可以给它命名为Mac，然后可以下一步安装到这个Mac盘里。  </p>
+<h2 id="驱动安装及部分问题的修复"><a href="#驱动安装及部分问题的修复" class="headerlink" title="驱动安装及部分问题的修复"></a>驱动安装及部分问题的修复</h2><p>装完后如无意外应该可以正常开机，特效应该也正常。  </p>
+<h3 id="声卡"><a href="#声卡" class="headerlink" title="声卡"></a>声卡</h3><ul>
+<li>万能声卡voodooHDA  </li>
+<li>仿冒声卡：<br>对于已经装过万能声卡驱动的要先完全卸载。<br>2.1在win下打开设备管理器，查看声卡（音频）属性-硬件ID，记录其中信息。对于cx卡，根据VEN和DEV这两段信息（codec），后面有方法推断出声卡型号。而对于realtek,alc这些卡，据说DEV后面的就是型号的一段。<br>2.2安装新版applehda patcher。<br>2.3可以看到可选台式或者笔记本声卡型号。对于F454L这款机子，由于不清楚具体声卡型号，只知道是cx卡，所以要逐个尝试列表内的cx各型号，界面会输出这个型号的codec，测试到cx20752时，发现codec和刚才在设备管理器看到的声卡属性信息一致，所以可以认定声卡型号为cx20752。<br>2.4把苹果系统自带的applehda拖进去软件内。在笔记本列表选择型号cx20752，点击patch，会在桌面生成一个文件夹。<br>2.5注入声卡的方式有很多，详情可以看文件夹内的readme.pdf。这里的方式是打dsdt补丁。<br>2.6首先用驱动安装器安装制作好的applehda到sle，清缓存修权限。（用kext wizard，别用KCPM Utility Pro，我失败多次的原因在于这个软件不知道为啥抽风，每次搞完驱动重启就卡进度条，搞得我以为驱动有问题，结果后来用kext wizard就可以了）。<br>2.7然后用maciasl打开能用的dsdt.dsl，把生成的文件夹里面的两个补丁打进去。这个机子的dsdt，HDED内原本已经存在一个_DSM方法，所以编译会有一个这样的错误。把原来的删去即可编译通过。<br>2.8这里IRQ FIX有点重要。因为有的教程可能没有提到这个，但其实F454L必须要打这个补丁才能驱动。<br>2.9编译好的DSDT.aml放在相应文件夹。重启，声卡可以了。不过麦克风似乎不正常。 <h3 id="NTFS盘读写"><a href="#NTFS盘读写" class="headerlink" title="NTFS盘读写"></a>NTFS盘读写</h3></li>
+<li>NTFS for Mac OS X。似乎只能试用十天。  </li>
+<li>系统原生读写<br>（1）终端输入命令diskutil list查看硬盘分区的TYPE NAME，也就是分区名称，现在我要挂载的一个分区名字是Develop，那么看到某一行显示“4:       Microsoft Basic Data Develop                 153.3 GB   disk0s4”。其中Develop便是所需信息。<br>（2）终端用vi编辑fstab文件：sudo vi /etc/fstab，填入LABEL=Develop none ntfs rw,auto,nobrowse。重启。<br>（3）发现在finder侧边栏中Develop分区不见了，其实现在可以在/Volumes文件夹找到这个挂载的分区，查看简介发现权限已经变为自定权限，也就是可读写了。可以将这个分区链接到某个容易到达的文件夹。<br>比如，在桌面创建文件夹Develop，在终端输入：mkdir ~/Desktop/Develop，然后：ln -s /Volumes/Develop ~/Desktop/Develop。于是便可以在桌面的Develop文件夹打开Develop分区。另外，里面的快捷方式也可以移动到Finder侧栏中的我的收藏中。<br>Ps: 上面的LABEL可用设备的UUID代替。终端输入：diskutil info /Volumes/Develop | grep UUID，得到：Volume UUID:              CD5406CA-D362-4CF3-B3C0-524911CA3A5F，UUID这一截代替fstab中LABEL那一段即可。<br>参考：<a href="http://www.jianshu.com/p/08abdd95b989" target="_blank" rel="noopener">http://www.jianshu.com/p/08abdd95b989</a>  <h3 id="网络："><a href="#网络：" class="headerlink" title="网络："></a>网络：</h3></li>
+<li>换网卡  </li>
+<li>无线网卡  </li>
+<li>360随身wifi（或小米wifi）充当无线网卡：<br>mtk英文官网下载驱动MT7612_7610U，安装，看看在/System/Library/Extensions/有没有RT2870USBWirelessDriver.kext，如果没有用kext wizard安装RT2870USBWirelessDriver.kext，再用kext wizard修复权限，清空缓存。屏幕顶部工具栏出现了一个挫挫的三条黄色竖线，没错这货就是wireless utility的图标。。。此时应该可以打开wireless utility并且链接wifi了。不得不说真有点难看。<h3 id="触摸板"><a href="#触摸板" class="headerlink" title="触摸板"></a>触摸板</h3>如果有问题，装个smart touchpad驱动就好。<h3 id="解决开机进度条第二阶段花屏"><a href="#解决开机进度条第二阶段花屏" class="headerlink" title="解决开机进度条第二阶段花屏"></a>解决开机进度条第二阶段花屏</h3>以下针对10.12 sierra。其他版本的系统代码不一样。<br>在KextsTopatches字段中加入 </li>
+</ul>
+<pre><code>        &lt;dict&gt;
+                &lt;key&gt;Comment&lt;/key&gt;
+                &lt;string&gt;Boot graphics glitch, 10.12.dp1 (credit denskop)&lt;/string&gt;
+                &lt;key&gt;MatchOS&lt;/key&gt;
+                &lt;string&gt;10.12.x&lt;/string&gt;
+                &lt;key&gt;Find&lt;/key&gt;
+                &lt;data&gt;AQAAdSU=&lt;/data&gt;
+                &lt;key&gt;Name&lt;/key&gt;
+                &lt;string&gt;com.apple.iokit.IOGraphicsFamily&lt;/string&gt;
+                &lt;key&gt;Replace&lt;/key&gt;
+                &lt;data&gt;AQAA6yU=&lt;/data&gt;
+        &lt;/dict&gt;
+</code></pre><p>要与其他<code>&lt;dict&gt;</code>字段平行。  </p>
+<h3 id="dsdt纠错以及显示电量"><a href="#dsdt纠错以及显示电量" class="headerlink" title="dsdt纠错以及显示电量"></a>dsdt纠错以及显示电量</h3><p>1.在linux下提取所有aml（或者用clover），放在同一个文件夹（特别是用linux提取的aml，dynamics文件夹里面的也要拿出来和其他的放一起）。在mac的终端进入这个放aml件的文件夹，输入命令iasl -da -dl DSDT.aml SSDT*.aml，在这个文件夹内会生成很多dsl文件，用maciasl打开dsdt.dsl，compile后可以发现只有两个错误。<br>2.在patch框输入   </p>
+<pre><code>into_all all code_regex (\s+Zero){2,} removeall_matched;
+into_all all code_regex (\s+Zero){2,} removeall_matched;
+into method label ADBG replace_content begin Return(0) end;
+</code></pre><p>此时如果编译，会发现已经没有错误，只有警告。也就是说已经可以保存为一个无错的dsdt文件了，以后可用于打dsdt补丁，驱动某些硬件。<br>（或者，这一步，不用上面的代码补丁，直接在patch里面先后用RehabMan的”Fix PARSEOP_ZERO Error” 和”Fix ADBG Error”这两个patch效果是一样的。第一个patch要去掉最后两行的注释号。)<br>要显示电量，接下来：<br>3.在maciasl加入RehabMan的asus的n55sl电池补丁，应用， 再次compile，没有错误。另存为aml文件，放到efi/clover/acpi/patched。<br>4.把ACPIBatteryManager.kext放到efi/clover/kexts/10.12中。<br>此时，要保证bios设置里面，高级设置，图形设置里面是64或128m，不然开机会卡在进度条。（如果设为32m，会在开机logo处花屏卡死，如果设为256、512等，进度条会停滞）<br>重启，没有异常。电量正常。  </p>
+<h3 id="屏蔽独显"><a href="#屏蔽独显" class="headerlink" title="屏蔽独显"></a>屏蔽独显</h3><p>1.终端进入存放所有dsl文件的目录，输入：<code>grep -l Method.*_OFF *.dsl</code>或者<code>grep -l Method.*_ON *.dsl</code><br>得到结果：  </p>
+<pre><code>SSDT-11.dsl
+SSDT-12.dsl
+SSDT-13.dsl
+SSDT-2.dsl
+</code></pre><p>2.经过比对，确定在SSDT-12中的_OFF函数中调用的<em>SB</em>.PCI0.RP05.PEGP.SGOF是关闭独显的函数。<br>所以在dsdt中的_INI和_WAK方法中调用这个函数来关闭独显。<br>首先在dsdt开头的  </p>
+<blockquote>
+<p>DefinitionBlock (“”, “DSDT”, 2, “<em>ASUS</em>“, “Notebook”, 0x01072009)<br>{<br>    ……<br>}  </p>
+</blockquote>
+<p>代码块中第一行加入声明：<code>External (_SB_.PCI0.RP05.PEGP.SGOF, MethodObj)</code><br>然后搜索定位到_INI函数（_INI会有很多个，注意是SB.PCI0._INI）<br>首行加入：<code>\_SB.PCI0.RP05.PEGP.SGOF ()</code><br>搜索定位到_WAK函数，同样首行加入：<code>\_SB.PCI0.RP05.PEGP.SGOF ()</code><br>3.最后保存为DSDT.aml，放到patched文件夹。<br>参考：<br><a href="https://imac.hk/dsdt-masking-of-hackintosh.html" target="_blank" rel="noopener">https://imac.hk/dsdt-masking-of-hackintosh.html</a><br><a href="http://www.haolie.net/thread-658.htm" target="_blank" rel="noopener">http://www.haolie.net/thread-658.htm</a><br><a href="http://bbs.pcbeta.com/viewthread-1450829-1-1.html" target="_blank" rel="noopener">http://bbs.pcbeta.com/viewthread-1450829-1-1.html</a>  </p>
+<h3 id="修复系统偏好设置-显示器选项不能载入的问题"><a href="#修复系统偏好设置-显示器选项不能载入的问题" class="headerlink" title="修复系统偏好设置-显示器选项不能载入的问题"></a>修复系统偏好设置-显示器选项不能载入的问题</h3><p>问题表现为点击系统偏好设置-显示器选项，系统提示“未能载入偏好设置-显示器”。<br>原因：asus f454l这个本子用的是hd5500这个核显，仿冒的是mbp retina 13-inch，但是其本身的显示器是14寸的，与mbp显示器不同，于是有冲突。<br>解决思路：用clover configurator注入EDID，仿冒13寸的mbp显示器。<br>过程：<br>用clover configurator打开config.plist。<br>用DarwinDumper提取EDID，打开提取文件夹，打开EDID.txt，将basic params 的第二个数改为1d, 第三个数改为10，将checksum改为40，将所有十六进制数（不包括任何其他字符）复制到clover configurator内，graphics选项卡的custom edid框，勾选inject edid。保存放到efi-clover文件夹。<br>完整十六进制字符如下：  </p>
+<blockquote>
+<p>00ffffffffffff000dae8014000000001e160103801d10780acb45965755912827505400000001010101010101010101010101010101da1d56e250002030442d470035ae10000018000000fe004e3134304247452d4c32330a20000000fe00434d4e0a202020202020202020000000fe004e3134304247452d4c32330a200040  </p>
+</blockquote>
+<p>参考链接：<a href="http://blog.csdn.net/wr132/article/details/54836994" target="_blank" rel="noopener">http://blog.csdn.net/wr132/article/details/54836994</a><br><a href="http://www.yekki.me/fix-sysprefs-display-fail-with-an-error-on-t440p-issue-on-sierra/" target="_blank" rel="noopener">http://www.yekki.me/fix-sysprefs-display-fail-with-an-error-on-t440p-issue-on-sierra/</a>  </p>
+<h3 id="亮度不能保存问题-更新系统后再次失效，待解决"><a href="#亮度不能保存问题-更新系统后再次失效，待解决" class="headerlink" title="亮度不能保存问题(更新系统后再次失效，待解决)"></a>亮度不能保存问题(更新系统后再次失效，待解决)</h3><p>1.首先，在/etc/下面创建一个rc.shutdown.local文件，内容如下：  </p>
+<pre><code> #!/bin/sh
+# (c) Slice 2010
+nvram -x -p &gt;nvram.plist
+</code></pre><p>2.然后，在/Library/LaunchDaemons/下面创建一个com.delta.nvram.set.plist文件<br>内容如下：  </p>
+<pre><code>&lt;?xml version=”1.0″ encoding=”UTF-8″?&gt;
+&lt;!DOCTYPE plist PUBLIC “-//Apple//DTD PLIST 1.0//EN” “http://www.apple.com/DTDs/PropertyList-1.0.dtd”&gt;
+&lt;plist version=”1.0″&gt;
+&lt;dict&gt;
+&lt;key&gt;Label&lt;/key&gt;
+&lt;string&gt;com.delta.nvram.set&lt;/string&gt;
+&lt;key&gt;ProgramArguments&lt;/key&gt;
+&lt;array&gt;
+&lt;string&gt;nvram&lt;/string&gt;
+&lt;string&gt;-xf&lt;/string&gt;
+&lt;string&gt;/nvram.plist&lt;/string&gt;
+&lt;/array&gt;
+&lt;key&gt;RunAtLoad&lt;/key&gt;
+&lt;true/&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+</code></pre><p>3.最后修复权限： <code>sudo chown 0:0 /Library/LaunchDaemons/com.delta.nvram.set.plist</code><br>4.在终端中输入<code>sudo nano /etc/save.nvram</code>，创建一个空的文件save.nvram在/ect下面。<br>在Nano编辑器中输入下面的命令  </p>
+<pre><code>#!/bin/bash
+
+nvram -x -p &gt; &quot;/nvram.plist&quot;
+
+if [[ -f &quot;/nvram.plist&quot; ]]; then
+   chflags hidden &quot;/nvram.plist&quot;
+fi
+</code></pre><p>Ctrl+X保存文件，然后按Enter或Return键确认文件名<br>在终端中输入<code>sudo chmod +x /etc/save.nvram</code>使之成为可执行文件。<br>继续在终端输入<code>sudo defaults write com.apple.loginwindow LogoutHook /etc/save.nvram</code>，这会将刚才新建的命令行文件写入登陆窗口的 LogoutHook中。这意味着我们的脚本会在每次注销系统时执行，所以nvram.plist会在登出、重启和关机时生成。<br>Clover会在开机的时候自动加载nvram.plist，并且使用保存的nvram值。<br>参考链接：<br><a href="http://bbs.pcbeta.com/viewthread-1538926-1-1.html" target="_blank" rel="noopener">http://bbs.pcbeta.com/viewthread-1538926-1-1.html</a><br><a href="http://bbs.pcbeta.com/viewthread-1182812-1-1.html" target="_blank" rel="noopener">http://bbs.pcbeta.com/viewthread-1182812-1-1.html</a></p>
+<h3 id="亮度"><a href="#亮度" class="headerlink" title="亮度"></a>亮度</h3><p>安装intelbacklights.kext，dsdt打fix brightness补丁。<br>参考链接：<a href="https://www.douban.com/note/526541270/?type=rec" target="_blank" rel="noopener">https://www.douban.com/note/526541270/?type=rec</a></p>
+<h3 id="亮度调节快捷键消失"><a href="#亮度调节快捷键消失" class="headerlink" title="亮度调节快捷键消失"></a>亮度调节快捷键消失</h3><p>再次重装，发现偏好设置-快捷键已经没有显示器选项卡，不能自己设定亮度调节快捷键，代替：Karabiner-Elements。<br><a href="https://github.com/tekezo/Karabiner-Elements/blob/master/usage/README.md#installation" target="_blank" rel="noopener">https://github.com/tekezo/Karabiner-Elements/blob/master/usage/README.md#installation</a></p>
+<h3 id="icloud的登录问题"><a href="#icloud的登录问题" class="headerlink" title="icloud的登录问题"></a>icloud的登录问题</h3><p>装完直接在偏好设置打开icloud用apple id进行登录，出现类似“帐号已达限制”的提示，无法登录进行设置。估计苹果根据序列号来判断一个apple id在一台mac上能否登录。因此尝试一下方法：<br>用clover更改序列号，改为其他未绑定apple id的mac产品序列号。<br>具体序列号怎么获得，就要靠自己了。其实这样不太好，对于那些被盗用序列号的mac用户来说，如果他们还没有在mac上激活并设置icloud的话，这台mac的序列号被别人用来激活icloud之后，他们的apple id也许就没有机会在自己的mac上使用icloud了。<br>似乎有人随便编一个序列号也达到了同样效果（如果这样可行的话，感觉更人畜无害一点？）：<br><a href="http://bbs.pcbeta.com/forum.php?mod=viewthread&amp;tid=1464733" target="_blank" rel="noopener">http://bbs.pcbeta.com/forum.php?mod=viewthread&amp;tid=1464733</a><br>如果有其他顾虑，就别用这方法。</p>
+<h3 id="附加内容"><a href="#附加内容" class="headerlink" title="附加内容"></a>附加内容</h3><ul>
+<li>开启HiDPI(非高分屏没什么意义，会降低桌面的可用空间)<br>1.安装Retina display Menu(RDM)<br>2.下载、执行脚本<br>打开终端，输入<code>curl -o ~/enable-HiDPI.sh https://raw.githubusercontent.com/syscl/Enable-HiDPI-OSX/master/enable-HiDPI.sh</code><br>来获得enable-HiDPI.sh脚本。<br>执行<code>chmod +x ~/enable-HiDPI.sh</code>加入执行权限。<br>输入./enable-HiDPI.sh运行脚本，输入想要的分辨率，回车后输入0，再输入密码，重启生效，打开RDM在菜单栏选择输出模式。<br>参考链接：<a href="https://imac.hk/os-x-10-11-how-to-open-hi-dpi-1080p.html" target="_blank" rel="noopener">https://imac.hk/os-x-10-11-how-to-open-hi-dpi-1080p.html</a><h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3>1.安装商店外软件免警告：sudo spctl –master-disable<br>2.显示隐藏文件：defaults write com.apple.finder AppleShowAllFiles -boolean true ; killall Finder。（或者在finder中用快捷键command+shift+ .）<br>3.finder显示完整路径：<br>解决上部显示完整路径的方法：  <code>defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES</code>  。重启finder，用快捷键command+option+esc，在弹出的窗口中找到finder并选中，然后点击“重新启动”按钮。</li>
+</ul>
+<h2 id="附件"><a href="#附件" class="headerlink" title="附件"></a>附件</h2><p>百度网盘链接: <a href="https://pan.baidu.com/s/1nuVe5gH" target="_blank" rel="noopener">https://pan.baidu.com/s/1nuVe5gH</a> 密码: ifyc。<br>里面都是我用到的软件工具。HWMonitor.app是硬件监控；Clover Configurator.app是Mac OS下修改Clover配置文件的；睿频脚本用来搞cpu多档变频；RehabMan-FakeSMC-2017-0117.zip是I5-5200U的kext驱动；OS-X-Clover-Laptop-Config-master.zip是各种显卡的Clover配置文件的集合；HoRNDIS-rel8（安卓usb网络分享）是使Mac OS能够支持安卓的usb网络共享的软件，让Mac OS临时连上网。CLOVER.zip是我efi分区内CLOVER文件夹的压缩包。</p>
+<h2 id="尚未完成"><a href="#尚未完成" class="headerlink" title="尚未完成"></a>尚未完成</h2><p>目前大问题基本解决，可以正常使用。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li>各种显卡的clover配置文件：<br><a href="https://github.com/RehabMan/OS-X-Clover-Laptop-Config" target="_blank" rel="noopener">https://github.com/RehabMan/OS-X-Clover-Laptop-Config</a>  </li>
+<li>I5-5200U的驱动：<br><a href="https://bitbucket.org/RehabMan/os-x-fakesmc-kozlek/downloads/" target="_blank" rel="noopener">https://bitbucket.org/RehabMan/os-x-fakesmc-kozlek/downloads/</a></li>
+<li>同款U的参考：<br><a href="http://mac.8miu.com/thread-1162336-1-1.html" target="_blank" rel="noopener">http://mac.8miu.com/thread-1162336-1-1.html</a>  </li>
+<li>睿频参考：<br><a href="https://github.com/RehabMan/ssdtPRGen.sh" target="_blank" rel="noopener">https://github.com/RehabMan/ssdtPRGen.sh</a>  </li>
+<li>Intel HD Graphics 5500 on OS X Yosemite 10.10.3<br><a href="https://www.tonymacx86.com/threads/guide-intel-hd-graphics-5500-on-os-x-yosemite-10-10-3.162062/" target="_blank" rel="noopener">https://www.tonymacx86.com/threads/guide-intel-hd-graphics-5500-on-os-x-yosemite-10-10-3.162062/</a></li>
+<li>Config.plist参数架构讲解合集及.efi Drivers解释<br><a href="http://bbs.pcbeta.com/forum.php?mod=viewthread&amp;tid=1551482" target="_blank" rel="noopener">http://bbs.pcbeta.com/forum.php?mod=viewthread&amp;tid=1551482</a></li>
+<li>随身wifi支援黑苹果<br><a href="https://becoder.org/yosemite-xiaomi-wifi/" target="_blank" rel="noopener">https://becoder.org/yosemite-xiaomi-wifi/</a></li>
+<li>MTK英文网站（随身wifi驱动下载）<br><a href="http://topics.mediatek.com/en/downloads1/downloads/mt7610u/" target="_blank" rel="noopener">http://topics.mediatek.com/en/downloads1/downloads/mt7610u/</a></li>
+</ul>
+  
+    </div> 
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+
+    <div class="post-info-wrapper">
+            
+                    <!-- Post Info -->
+                    <p class="post-date">2017-03-28</p>
+                    
+                    
+                        <p class="post-info-categories">
+                            <a class="post-category-link" href="/categories/cyber/">赛博朋克</a>
+                        </p>
+                    
+
+                    
+            
+    </div>
+</article>
+
+
+    
+    <!-- Comments -->
+    <div class="post-comment-wrapper">
+        
+    <!-- Livere -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjA4Mi84NjQ2">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+    
+           if (typeof LivereTower === 'function') { return; }
+    
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+    
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+    </div>
+    
+
+            </main>
+
+            <!-- 'To Top' Btn-->
+            
+                <div id="to-top">
+    <a href="#top" class="toTop">
+        <i class="fa fa-pagelines"></i>
+    </a>
+</div>
+            
+
+            <!-- Footer -->
+            
+                <footer class="footer-wrapper col-xs-12 col-sm-12">
+    <div class="footer-banner-wrapper">
+        <p class="footer-banner">Powered by <a href="https://hexo.io/" title="Hexo">Hexo</a></p>
+        <P class="footer-banner">Theme <a href="https://github.com/Lonezj/hexo-theme-wind" title="Wind">wind</a></P>
+    </div>
+</footer>
+            
+        </div>
+    </body>
+</html>
