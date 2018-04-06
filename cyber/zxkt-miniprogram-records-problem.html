@@ -223,9 +223,7 @@
   &lt;view data-id=&quot;{{ article.id }}&quot; bindtap=&#39;toDetailPage&#39;&gt;{{ article.title }}|{{ article.isReaded?'cliked':'uncliked' }}&lt;/view&gt;
   // ...
 </code></pre><p>不考虑美观的前提下可以确认已读状态是否生效。点击过的会显示cliked，没有的显示uncliked。    </p>
-<ul>
-<li>emmm，然后还没完，就是分享按钮的设置<br>分享按钮是指文章页的分享按钮，因此是在<code>pages/detail/index.wxml</code>中修改（其实直接在pages目录右键新建page生成的是<code>pages/detail/detail.wxml</code>）<br>这句<code>&lt;button open-type=&quot;share&quot;&gt;分享&lt;button/&gt;</code>在教程中说改成<code>&lt;button plain=&quot;true&quot; open-type=&quot;share&quot; /&gt;</code>，<br>然后就开始给<code>article-share-btn</code>这个类加样式，然而按钮的类还没有加上去。把<code>class=&#39;article-share-btn&#39;</code>给加上去就可以了。<br>也就是变成<code>&lt;button class=&#39;article-share-btn&#39; plain=&quot;true&quot; open-type=&quot;share&quot; /&gt;</code></li>
-</ul>
+<p>5.emmm…然后还没完，就是分享按钮的设置<br>分享按钮是指文章页的分享按钮，因此是在<code>pages/detail/index.wxml</code>中修改（其实直接在pages目录右键新建page生成的是<code>pages/detail/detail.wxml</code>）<br>这句<code>&lt;button open-type=&quot;share&quot;&gt;分享&lt;button/&gt;</code>在教程中说改成<code>&lt;button plain=&quot;true&quot; open-type=&quot;share&quot; /&gt;</code>，<br>然后就开始给<code>article-share-btn</code>这个类加样式，然而按钮的类还没有加上去。把<code>class=&#39;article-share-btn&#39;</code>给加上去就可以了。<br>也就是变成<code>&lt;button class=&#39;article-share-btn&#39; plain=&quot;true&quot; open-type=&quot;share&quot; /&gt;</code></p>
 <h3 id="第七章"><a href="#第七章" class="headerlink" title="第七章"></a>第七章</h3><p>完整的app.json：</p>
 <pre><code>{
   &quot;pages&quot;: [
