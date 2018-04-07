@@ -120,7 +120,7 @@
 
     <!-- Article Content -->
     <div class="post-content">
-        <p>这篇文章是最近看知晓课堂时尝试做小程序而get到的一些不系统的知识，以及遇到的部分问题或者教程中比较奇怪的地方和解决方法的汇总，比较散乱。遇到的问题和解决方案直接戳 <a href="#遇到一些问题">问题</a>里面找。</p>
+        <p>这篇文章是最近看知晓课堂时尝试做小程序而get到的一些不系统的知识，以及遇到的部分问题或者教程中比较奇怪的地方和解决方法的汇总，比较散乱。遇到的问题和解决方案直接戳 <a href="#遇到一些问题">问题</a>里面找。demo源码：<a href="https://github.com/voezy/zxkt" target="_blank" rel="noopener">voezy/zxkt</a></p>
 <h2 id="部分知识要点"><a href="#部分知识要点" class="headerlink" title="部分知识要点"></a>部分知识要点</h2><h3 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h3><p>利用前端技术栈，WXML 与 WXSS（与 html 和 css 同源）与 js。<br>与普通的 App 不同的是，小程序的语言使用网页前端的技术栈，并且使用 JavaScript 运行环境，相当于是一个浏览器。<br>但是，小程序也并非是单纯的 HTML5。与普通的 HTML5 不同的是，小程序具 有高级的硬件处理接口(例如蓝牙、重力感应等)，同时运行环境也更接近原生 应用，效率更高。<br>已经绑定其他的公众号、小程序、个人号的邮箱，不能重新注册新的小程序。也就是说，在微信里与微信号绑定的邮箱，或是在公众平台注册公众号所用过的邮箱，是不能用于注册小程序的。</p>
 <h3 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h3><p>app.json记录小程序的基础配置，如:</p>
 <ul>
@@ -262,20 +262,17 @@
 <p>就是要利用定位出来的经纬度，确定所在地的城市名，用这个城市名在心知天气获取当地天气。<br>所以来到腾讯地图的官网，<code>http://lbs.qq.com/</code> ，注册登录，然后是建立一个开发者秘钥。<br>并没有像知晓程序的教程说的那样简单直接，我是没有那么简单就获取到城市。他说的好像是腾讯地图的web开发-URI API-逆地址解析？大概弄了一下，发现没能获取到城市信息。然后转移目标。<br>然后看到顶部导航栏-开发-微信小程序开发-微信小程序JavaScript SDK，试试吧。。    </p>
 <p>点击这个微信小程序JavaScriptSDK，然后按照它所说，下载微信小程序<code>JavaScriptSDK v1.0</code>，解压后有<code>qqmap-wx-jssdk.min.js</code>和<code>qqmap-wx-jssdk.js</code>，随便选一个，就选压缩过的min版吧，把<code>qqmap-wx-jssdk.min.js</code>放到小程序项目的<code>page/index</code>目录下，然后，在<code>index.js</code>开头加上<code>var QQMapWX = require(&#39;./qqmap-wx-jssdk.min&#39;)</code>。<br>然后就是大概这样的操作</p>
 <pre><code>  let demo = new QQMapWX({
-      key: &#39;********************&#39; // 必填
-    });
+    key: &#39;********************&#39; // 必填
+  });
 
   demo.reverseGeocoder({
     location: that.data.location,
     success: function (res) {
-
     },
     fail: function (res) {
-
     },
     complete: function (res) {
-
-    }
+    },
   });
 </code></pre><p><code>location</code>就是之前用<code>wx.getLocation</code>获取到的经纬度数据，这样子成功调用之后的<code>res.result.address_component.city</code>便是城市名称了，可以把它赋给这个页面的<code>data</code>中的<code>city</code>。    </p>
 <p>再然后，因为我比较懒心知天气的api再小程序里操作起来也有一点麻烦，就直接用它的测试api了（毕竟教程基本上也只是在玩具式编程），测试api见<code>https://www.seniverse.com/doc#now-get</code>。<br>只要用<code>wx.request</code>去获取<code>https://api.seniverse.com/v3/weather/now.json?key=你的key&amp;location=beijing&amp;language=zh-Hans&amp;unit=c</code>返回的数据就可以得到参数location市的天气数据了。上面再腾讯地图拿到的城市名就是这么用的，但其实不用城市名，只用经纬度也可以获取天气。。。而且这样的天气可能更细致精确？但是城市名还是要的，因为要在天气详情页显示出来。因为这是个测试api，所以以后某个时间有可能是会失效的，这个要注意。    </p>
@@ -330,7 +327,8 @@
 <pre><code>  &lt;view wx:else&gt;
   ...
   &lt;/view&gt;
-</code></pre><p>正确的位置应该是在<code>pages/index/index.wxml</code>。</p>
+</code></pre><p>正确的位置应该是在<code>pages/index/index.wxml</code>。    </p>
+<p>上面部分描述只是个大概思路，详情可以到源码中查看: demo源码：<a href="https://github.com/voezy/zxkt" target="_blank" rel="noopener">voezy/zxkt</a></p>
   
     </div> 
 
