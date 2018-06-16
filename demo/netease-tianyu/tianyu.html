@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>网易天谕图片轮播</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/tinayu.css">
+</head>
+
+<body>
+    <div class="carousel-wrapper">
+        <div class="carousel-container">
+            <div class="carousel-i-container"></div>
+        </div>
+        <div class="carousel-indicator"></div>
+    </div>
+
+    <script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+
+    <script id="carousel-tpl" type="text/x-handlebars-template">
+        {{#each carouselImgs}}
+        <img class="carousel-img" src="{{src}}"> {{/each}}
+    </script>
+
+    <script id="indic-tpl" type="text/x-handlebars-template">
+        {{#each indic}}
+        <div class="indicator-container">
+            <div class="indicator" style="background-image: url({{src}})"></div>
+            <div class="indicator-prc-container" style="background-color: {{indicPrcBg}}">
+                <div class="indicator-prc-i" style="background-color: {{indicPrc}}"></div>
+            </div>
+        </div>
+        {{/each}}
+    </script>
+
+    <script type="text/javascript" src="assets/js/tianyu.js"></script>
+</body>
+
+</html>

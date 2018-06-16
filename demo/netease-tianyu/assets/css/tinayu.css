@@ -1,0 +1,88 @@
+body {
+    margin: 0;
+}
+
+/* 轮播图外层包装 */
+.carousel-wrapper {
+    position: absolute;
+    width: 1224px;
+    height: 630px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+/* 轮播大图容器 */
+.carousel-container {
+    position: relative;
+    width: 1224px;
+    height: 500px;
+    overflow: hidden;
+}
+
+/* 轮播图内层容器 */
+.carousel-i-container {
+    position: absolute;
+    left: 0;
+    width: 7344px;  /* 4*1224 */
+    height: 500px; 
+
+}
+
+/* 轮播图大图 */
+.carousel-img {
+    width: 1224px;
+    height: 500px;
+    float: left;
+}
+
+/* 轮播图指示器外层容器 */
+.carousel-indicator {
+    position: absolute;
+    bottom: 0;
+    width: 1224px;
+    height: 167px;
+}
+
+/* 轮播图指示器容器 */
+.indicator-container {
+    width: 204px;
+    height: 167px;
+    float: left;
+    margin: 0;
+    cursor: pointer;
+}
+
+/* 轮播图指示器 */
+.indicator {
+    width: 204px;
+    height: 162px;
+    background-position: right center;
+}
+
+/* 指示器进度条容器 */
+.indicator-prc-container {
+    width: 204px;
+    height: 5px;
+}
+
+/* 指示器进度条 */
+.indicator-prc-i {
+    width: 0;
+    height: 5px;
+}
+
+@keyframes playing {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 204px;
+    }
+}
+
+.play {
+    animation: playing 5s linear;
+}
