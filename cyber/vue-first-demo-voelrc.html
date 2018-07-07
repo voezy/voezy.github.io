@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+    <!-- Head -->
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="voezy">
+    <meta name="description" itemprop="description" content="">
+    <meta name="keywords" content="wind,lonezj,voelrc">
+
+    <!-- Page Title -->
+    
+        <title>第一个vue demo的问题与记录 | Voezy</title>
+    
+    <link rel="icon" href="/img/avatar.png">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    
+    <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    
+        <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-115976686-1', 'auto');ga('send', 'pageview');
+</script>
+    
+    <style>
+        .deactiveColor{
+            color: #37474f;
+        }
+        .activeColor{
+            color: #006064;
+        }
+        a:hover{
+            color: #006064;
+        }
+        .header-btn{
+            color: #37474f;
+        }
+        
+        .post-content img{
+            margin: 50px auto;
+        }
+        
+    </style>
+</head>
+    <body>
+        <div class="container">
+
+            <!-- Top Anchor -->
+            <div id="top"></div>
+
+            <!-- Header -->
+            <header class="header-wrapper">
+    <div class="header-title-wrapper">
+        <!-- Page Title -->
+        <p class="header-title">
+             
+                
+                    第一个vue demo的问题与记录
+                
+            
+        </p>  
+    </div>    
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+    
+    <div class="header-detail">
+        <!-- Header Button -->
+        <div class="header-btn-wrapper">
+            
+                <span>
+                    <a class="home-btn header-btn" href="/" title="homepage"><i class="fa fa-home"></i></a>
+                </span>
+
+                
+                    <span>
+                        <a class="catalog-btn header-btn"><i class="fa fa-list-ul"></i></a>
+                    </span>
+                
+            
+        </div>
+    </div>
+</header>
+
+            <!-- Main -->
+            <main>
+                <article class="post-wrapper">
+    
+
+    
+        <!-- Article Catalog -->
+        <div class="catalog-dropdown col-xs-12 col-sm-12">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#原生事件绑定-native"><span class="toc-number">1.</span> <span class="toc-text">原生事件绑定(.native)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组件定位"><span class="toc-number">2.</span> <span class="toc-text">组件定位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第三方组件的定位控制"><span class="toc-number">3.</span> <span class="toc-text">第三方组件的定位控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组件间数据传递"><span class="toc-number">4.</span> <span class="toc-text">组件间数据传递</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组件里-props-和-model"><span class="toc-number">5.</span> <span class="toc-text">组件里 props 和 model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#隔着一个组件往上传数据，为什么要用计算属性"><span class="toc-number">6.</span> <span class="toc-text">隔着一个组件往上传数据，为什么要用计算属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组件的数据验证"><span class="toc-number">7.</span> <span class="toc-text">组件的数据验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vue-APlayer-的更新问题（版本：1-6-1）"><span class="toc-number">8.</span> <span class="toc-text">vue-APlayer 的更新问题（版本：1.6.1）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#跨域问题"><span class="toc-number">9.</span> <span class="toc-text">跨域问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网易云链接的正则"><span class="toc-number">10.</span> <span class="toc-text">网易云链接的正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#按键事件"><span class="toc-number">11.</span> <span class="toc-text">按键事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ref-的使用"><span class="toc-number">12.</span> <span class="toc-text">ref 的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#input的控制问题"><span class="toc-number">13.</span> <span class="toc-text">input的控制问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编辑框要确定当前编辑行，是用点击事件获取，还是通过计算属性获取"><span class="toc-number">14.</span> <span class="toc-text">编辑框要确定当前编辑行，是用点击事件获取，还是通过计算属性获取?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#写好基础代码-自用库-的注释"><span class="toc-number">15.</span> <span class="toc-text">写好基础代码(自用库)的注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组件更新"><span class="toc-number">16.</span> <span class="toc-text">组件更新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#querySelector-的使用"><span class="toc-number">17.</span> <span class="toc-text">querySelector 的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动保存编辑中的歌词"><span class="toc-number">18.</span> <span class="toc-text">自动保存编辑中的歌词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#无版权音乐get"><span class="toc-number">19.</span> <span class="toc-text">无版权音乐get</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移动端滚动问题、光标问题"><span class="toc-number">20.</span> <span class="toc-text">移动端滚动问题、光标问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生成文件下载"><span class="toc-number">21.</span> <span class="toc-text">生成文件下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#读取本地音乐"><span class="toc-number">22.</span> <span class="toc-text">读取本地音乐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#禁止表单post-仅需本地读取歌曲而已"><span class="toc-number">23.</span> <span class="toc-text">禁止表单post(仅需本地读取歌曲而已)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对于歌词编辑框的数据更新问题-input输入框对象的新value更新到data"><span class="toc-number">24.</span> <span class="toc-text">对于歌词编辑框的数据更新问题(input输入框对象的新value更新到data)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网易云音乐几种不同的分享链接"><span class="toc-number">25.</span> <span class="toc-text">网易云音乐几种不同的分享链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#响应式布局"><span class="toc-number">26.</span> <span class="toc-text">响应式布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#阿里字体图标的使用"><span class="toc-number">27.</span> <span class="toc-text">阿里字体图标的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#减小打包体积"><span class="toc-number">28.</span> <span class="toc-text">减小打包体积</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#路由的使用，当前路由地址"><span class="toc-number">29.</span> <span class="toc-text">路由的使用，当前路由地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部署"><span class="toc-number">30.</span> <span class="toc-text">部署</span></a></li></ol>
+        </div>
+    
+
+    
+        <!--For now, Lightbox Only Show in Post Layout -->
+        
+
+        
+        
+    
+
+    
+
+    <!-- Article Content -->
+    <div class="post-content">
+        <h3 id="原生事件绑定-native"><a href="#原生事件绑定-native" class="headerlink" title="原生事件绑定(.native)"></a>原生事件绑定(.native)</h3><p>如果想给vue组件绑定原生事件处理，要在事件名之后加上 <code>.native</code>。比如 <code>element-ui</code> 的输入框组件的点击事件和表单组件的数据提交。</p>
+<h3 id="组件定位"><a href="#组件定位" class="headerlink" title="组件定位"></a>组件定位</h3><p>响应式，解决组件尺寸问题，可以酌情考虑的单位：<code>vw</code> 和 <code>vh</code>（IE8以下有兼容性问题），当然还有<code>rem</code>。</p>
+<h3 id="第三方组件的定位控制"><a href="#第三方组件的定位控制" class="headerlink" title="第三方组件的定位控制"></a>第三方组件的定位控制</h3><p><code>el-form</code> 表单内每一项之间的外边距不好控制。</p>
+<h3 id="组件间数据传递"><a href="#组件间数据传递" class="headerlink" title="组件间数据传递"></a>组件间数据传递</h3><ul>
+<li><p>父到子<br>父组件：<code>:sonData=&quot;parentData&quot;</code><br>子组件：<code>props: [&#39;sonData&#39;]</code></p>
+</li>
+<li><p>子到父<br>子组件：<code>$emit(&#39;event-name&#39;, data)</code>，<br>父组件：<code>@event-name=&quot;handler(data)&quot;</code></p>
+</li>
+</ul>
+<p>注意事件名应该是短横线命名法。事件名没有大小写转换，但 <code>v-on</code> 事件监听器会被转换为全小写，所以事件名应该使用短横线命名法。</p>
+<h3 id="组件里-props-和-model"><a href="#组件里-props-和-model" class="headerlink" title="组件里 props 和 model"></a>组件里 <code>props</code> 和 <code>model</code></h3><p><code>props</code> 用于创建组件时传入一次数据，而 <code>v-model</code> 可以使组件与子组件的数据双向绑定。</p>
+<h3 id="隔着一个组件往上传数据，为什么要用计算属性"><a href="#隔着一个组件往上传数据，为什么要用计算属性" class="headerlink" title="隔着一个组件往上传数据，为什么要用计算属性"></a>隔着一个组件往上传数据，为什么要用计算属性</h3><p><del>就是文件链接设置歌曲这个组件，传数据给main组件，如果在按键绑定的点击事件往上传data中的数据，那么往后这个组件里只要数据有更新，不用点按键，data 里要传的更新过的数据就已经传给 main 组件了。如果用计算属性，则不会有这种情况。即 @click=”$emit(‘update-linkfile, newLinkFileInfo)”, 参数是一个另外重新根据新数据进行赋值的计算属性。</del></p>
+<p>好了，没事了。bug不见了…但是为什么？</p>
+<h3 id="组件的数据验证"><a href="#组件的数据验证" class="headerlink" title="组件的数据验证"></a>组件的数据验证</h3><p>某些组件对 <code>props</code> 会有验证，比如 APlayer 如果接收到的 music 这个 props 对象中某个必需键的值为空字符，那么控制台将会显示<br><code>[Vue warn]: Invalid prop: custom validator check failed for prop …</code></p>
+<p>所以使用组件时要注意组件的 prop。</p>
+<h3 id="vue-APlayer-的更新问题（版本：1-6-1）"><a href="#vue-APlayer-的更新问题（版本：1-6-1）" class="headerlink" title="vue-APlayer 的更新问题（版本：1.6.1）"></a>vue-APlayer 的更新问题（版本：1.6.1）</h3><p>第一次通过props创建(渲染) vue-APlayer 之后，就不能在父组件中对其进行修改歌曲、播放列表等操作了。想要再次更改播放器的信息(例如利用ajax获取歌曲信息去更新)，就要用另一种方法。</p>
+<p>解决方案，<br>父组件设置一个 <code>showPlayer</code> 属性，然后通过 <code>v-if</code> 来控制 APlayer 的创建和销毁</p>
+<p><code>&lt;aplayer  v-if=&quot;showPlayer&quot; :music=&quot;music&quot; :showLrc=&quot;true”&gt;</code></p>
+<p>定义一个设置 <code>music</code> 的方法，方法运行最初将 <code>showPlayer</code> 设为 <code>false</code>，就将上次创建的 <code>APlayer</code> 销毁了，然后在其中调用获取歌曲信息的方法(比如ajax)，获取完之后(ajax的成功回调)，设置 <code>music</code> 和 <code>showPlayer</code>，这样，将利用新的 <code>music</code> 数据去创建一个 <code>APlayer</code> ，就达到了目的。</p>
+<h3 id="跨域问题"><a href="#跨域问题" class="headerlink" title="跨域问题"></a>跨域问题</h3><p>参考了：<a href="https://www.jianshu.com/p/3bdff821f859" target="_blank" rel="noopener">Webpack dev server使用http-proxy解决跨域问题</a><br>页面资源由 <code>webpack-dev-server</code> 提供，地址是 <code>http://localhost:8080</code>，<br>然后获取歌曲信息的API地址是 <code>http://localhost:3000</code>。</p>
+<p>其实我是在安卓 chrome 上调试页面时发现这个问题的，<br>如下：</p>
+<pre><code>Failed to load http://192.168.1.138:3000/song/detail?ids=28739330: The &#39;Access-Control-Allow-Origin&#39; header has a value &#39;http://0.0.0.0:8080&#39; that is not equal to the supplied origin. Origin &#39;http://192.168.1.138:8080&#39; is therefore not allowed access.
+</code></pre><p>如果我要在手机上访问 <code>webpack-dev-server</code> 提供的页面，<code>webpack-dev-server</code> 要设置 <code>host</code> 为 <code>0.0.0.0</code>，手机要访问 我的电脑在局域网中的地址:端口号，这里是 <code>http://192.168.1.138:8080</code>。</p>
+<p>然而获取歌曲信息的地址被写死了，<code>localhost:3000</code>，到了手机上就是 <code>手机的局域网地址:3000</code>，与网页不同源了，因而出现上述跨域问题。</p>
+<p>解决：<br>1)、首先改变获取歌曲信息的API地址为：<code>http://192.168.1.138:8080/api</code>，这样api地址和页面地址就是同源的了。<br>但是 <code>http://192.168.1.138:8080/api</code> 并没有真正提供API，所以需要在服务器端做一个转发，将API请求转发到真正的API地址。    </p>
+<p>2)、在 webpack 配置文件中修改 <code>webpack-dev-server</code> 的配置，主要是增加代理</p>
+<pre><code>    proxy: {
+      &#39;/api/*&#39;: {
+        target: &#39;http://localhost:3000/&#39;,
+        pathRewrite: {&#39;^/api&#39;: &#39;&#39;},
+        changeOrigin: true,
+        secure: false
+      }
+    }
+</code></pre><p>将 <code>http://192.168.1.138:8080/api</code> 的请求都转发到 <code>localhost:3000/</code>。</p>
+<p><code>pathRewrite</code> 项是将API信息地址的路径部分的 <code>api</code> 去掉，因为本来API的地址是直接访问根路径的，<code>localhost:3000</code>。</p>
+<p>重启 <code>webpack-dev-server</code>。</p>
+<p>现在手机电脑访问都ok了。</p>
+<h3 id="网易云链接的正则"><a href="#网易云链接的正则" class="headerlink" title="网易云链接的正则"></a>网易云链接的正则</h3><p>先提取链接，然后从链接里提取歌曲ID</p>
+<h3 id="按键事件"><a href="#按键事件" class="headerlink" title="按键事件"></a>按键事件</h3><p>组件上响应按键释放事件，这个比较简单，类似于 <code>@keyup.enter.native=&quot;...&quot;</code>，还可以给按键设置别名，组合多个按键等。</p>
+<h3 id="ref-的使用"><a href="#ref-的使用" class="headerlink" title="ref 的使用"></a><code>ref</code> 的使用</h3><blockquote>
+<p><code>ref</code> 被用来给元素或子组件注册引用信息。引用信息将会注册在父组件的 <code>$refs</code> 对象上。    </p>
+</blockquote>
+<p>对vue-APlayer组件增加了 <code>ref=&quot;aplayer&quot;</code>，方便获取当前播放歌曲的已播放时长。</p>
+<h3 id="input的控制问题"><a href="#input的控制问题" class="headerlink" title="input的控制问题"></a><code>input</code>的控制问题</h3><p>可以粗浅分为值控制和行为控制吧。</p>
+<p>可以通过数据绑定、对数据属性进行修改，以控制输入框的值。<br>控制输入框行为，就是控制光标、内容滚动等。如果是原生的元素，可以直接通过ref获取元素，然后用原生方法来对其进行控制。但如果是组件中的输入框(比如 <code>element-ui</code> 中的 <code>el-input</code>)，我感觉就只能通过js的dom元素查找和操作方法来进行控制了。</p>
+<p>让我绕了一圈的一个小坑，就是每次给输入框赋新值后，光标其实都会移动到末尾，而不是停留在之前的位置。</p>
+<p>其实仅仅处理行前后的话，不要按照字符在整体中的位置处理，从行数出发可能会更易于理解和处理。</p>
+<h3 id="编辑框要确定当前编辑行，是用点击事件获取，还是通过计算属性获取"><a href="#编辑框要确定当前编辑行，是用点击事件获取，还是通过计算属性获取" class="headerlink" title="编辑框要确定当前编辑行，是用点击事件获取，还是通过计算属性获取?"></a>编辑框要确定当前编辑行，是用点击事件获取，还是通过计算属性获取?</h3><p>肯定是要绑定编辑框的点击事件的，毕竟每次输入框值更新后，光标都会移动到末尾。本来打算设置计算属性直接获取光标位置，完全不行。</p>
+<p>所以，点击哪行，就是要给哪行加时间标签。加完标签后，当前行++。</p>
+<h3 id="写好基础代码-自用库-的注释"><a href="#写好基础代码-自用库-的注释" class="headerlink" title="写好基础代码(自用库)的注释"></a>写好基础代码(自用库)的注释</h3><p><code>vs code</code> 的函数提示真的不错。</p>
+<h3 id="组件更新"><a href="#组件更新" class="headerlink" title="组件更新"></a>组件更新</h3><p>像 <code>vue-APlayer</code>，创建之后没办法再修改它内部的信息，那就只能用 <code>v-if</code> 等语句控制它的渲染，通过控制一个值来控制它的渲染。    </p>
+<p><del>值更新太快会使vue没办法检测到变化吗?</del> 好吧，并不会。时刻记住vue的“数据双向绑定”机制。    </p>
+<p>props 是父组件向子组件传递信息的渠道，通过 props 传递的信息发生变化时，子组件也随之做出变化。    </p>
+<p>这里，我希望可以控制 APlayer 的 lrc，在编辑完成后可以通过点击预览按钮，改变之前通过 music 这个 props 传递的信息(主要是改变了歌词信息)。</p>
+<p>这里，有一个比较重要的问题。music 对象是与 APlayer 进行了绑定的，music 有任何变化都会导致 APlayer 发生变化。<br>一开始的music对象中的确赋予了一个lrc属性，但是这个lrc的值在取值的时候要注意。因为需要用到预览功能将编辑框中的歌词信息传递给 APlayer，所以很直接的想法就是直接通过编辑框来获取值然后给 music 的 lrc属性，但是最好不要这样做，或者说要有一个判断处理。     </p>
+<p>直接 <code>musci.lrc = lrcEditor.value</code> 这样的粗暴操作，会使得 APlayer 因为编辑框的文字变化而频繁刷新，而且没有编辑完成的歌词直接显示在播放器中也显得凌乱。<br>所以，一个解决方法是设置当前组件设置一个叫 <code>previewing</code> 的 <code>data</code>，通过判断它的真假值来决定是利用编辑框内容还是默认内容来对 <code>music.lrc</code>进行赋值。<code>previewing</code> 默认应当是 <code>false</code>。当点击预览按钮时，将 <code>previewing</code> 设为 <code>true</code>，此时通过编辑框获取歌词内容。当结束预览时，将 <code>previewing</code> 改为 <code>false</code>。</p>
+<h3 id="querySelector-的使用"><a href="#querySelector-的使用" class="headerlink" title="querySelector 的使用"></a><code>querySelector</code> 的使用</h3><p>有时候只能通过js的原生dom操作来解决一些问题。</p>
+<h3 id="自动保存编辑中的歌词"><a href="#自动保存编辑中的歌词" class="headerlink" title="自动保存编辑中的歌词"></a>自动保存编辑中的歌词</h3><p>定时保存正在编辑的歌词到localStorage，点击下载歌词后清除localStorage的歌词内容并清除计时器。可以监听音乐来源信息是否更新来确定是否重新增加自动保存计时器</p>
+<h3 id="无版权音乐get"><a href="#无版权音乐get" class="headerlink" title="无版权音乐get"></a>无版权音乐get</h3><p>参考：<a href="https://www.zhihu.com/question/33199927" target="_blank" rel="noopener">有没有可以随意使用的无版权音乐资源库？</a></p>
+<p>默认音频：<code>https://freepd.com/music/City%20Sunshine.mp3</code></p>
+<p>加载网络文件成功后的无版权图片：<code>https://gratisography.com/fullsize/gratisography-157H.jpg</code></p>
+<h3 id="移动端滚动问题、光标问题"><a href="#移动端滚动问题、光标问题" class="headerlink" title="移动端滚动问题、光标问题"></a>移动端滚动问题、光标问题</h3><p>其实就是编辑框高度问题，响应式问题</p>
+<h3 id="生成文件下载"><a href="#生成文件下载" class="headerlink" title="生成文件下载"></a>生成文件下载</h3><p>fileapi相关知识</p>
+<h3 id="读取本地音乐"><a href="#读取本地音乐" class="headerlink" title="读取本地音乐"></a>读取本地音乐</h3><p>blob对象相关知识</p>
+<h3 id="禁止表单post-仅需本地读取歌曲而已"><a href="#禁止表单post-仅需本地读取歌曲而已" class="headerlink" title="禁止表单post(仅需本地读取歌曲而已)"></a>禁止表单post(仅需本地读取歌曲而已)</h3><p><code>element-ui upload</code> 组件关闭自动上传，回车键事件监听。</p>
+<h3 id="对于歌词编辑框的数据更新问题-input输入框对象的新value更新到data"><a href="#对于歌词编辑框的数据更新问题-input输入框对象的新value更新到data" class="headerlink" title="对于歌词编辑框的数据更新问题(input输入框对象的新value更新到data)"></a>对于歌词编辑框的数据更新问题(input输入框对象的新value更新到data)</h3><p>再次证明了使用VUE的过程中，应该减少对dom的手动操作。手动对输入框赋新值，不会引起element-ui的input组件data更新，所以上级绑定的data同样也不会更新。<br>所以，应该将值赋给上级的data，由上往下地引起数据更新，最后input输入框的值是会更新的。</p>
+<h3 id="网易云音乐几种不同的分享链接"><a href="#网易云音乐几种不同的分享链接" class="headerlink" title="网易云音乐几种不同的分享链接"></a>网易云音乐几种不同的分享链接</h3><p>1 ios:<br><code>分享古巨基的单曲《眼睛不能没眼泪》http://music.163.com/song/86257?userid=118383880 (@网易云音乐)</code><br>2 Android：<br><code>分享古巨基的单曲《另一双手》: http://music.163.com/song/86242/?userid=118383880 (来自@网易云音乐)</code><br>3 Mac OS：<br><code>http://music.163.com/#/m/song?id=68350</code><br>4 网页：<br><code>http://music.163.com/#/song?id=473163943</code>    </p>
+<h3 id="响应式布局"><a href="#响应式布局" class="headerlink" title="响应式布局"></a>响应式布局</h3><p>常见的几种尺寸</p>
+<p>em 和 rem ：浏览器根据谁来转化成px值。<br>em，根据当前元素的字体大小来决定尺寸。但是因为字体大小有可能经过多重继承进而影响 em 单位的大小，所以应当显式指定当前元素的字体大小（比如多少px）。1em = 当前元素字体尺寸的一倍。</p>
+<p>rem，取决于页根元素(html)的字体大小。1rem = 根元素字体尺寸的一倍</p>
+<p>当根元素没有指定字体大小时，浏览器设置中字体大小会影响页面</p>
+<p>参考：<a href="http://imweb.io/topic/56dff5121a5f05dc506430da" target="_blank" rel="noopener">下手响应式及断点设置分析</a></p>
+<h3 id="阿里字体图标的使用"><a href="#阿里字体图标的使用" class="headerlink" title="阿里字体图标的使用"></a>阿里字体图标的使用</h3><p><code>element-ui</code> 本身就带有一些常用的字体图标，但没找到合适的，所以就换了一些。</p>
+<h3 id="减小打包体积"><a href="#减小打包体积" class="headerlink" title="减小打包体积"></a>减小打包体积</h3><p>第三方库分到 <code>vendor.js</code>，或者采用CDN的方式引入。</p>
+<h3 id="路由的使用，当前路由地址"><a href="#路由的使用，当前路由地址" class="headerlink" title="路由的使用，当前路由地址"></a>路由的使用，当前路由地址</h3><p>路由设置，监听。</p>
+<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><p>国外服务器获取歌曲链接的问题。本来觉得国外服务器可能要用代理，或者利用一下国内的服务器，后来根据API文档解决了问题。</p>
+<p>nginx反向代理，让API为前端服务，参考：<br><a href="http://codelife.me/blog/2013/09/12/reverse-proxy-for-a-subdirectory-in-nginx/" target="_blank" rel="noopener">Nginx反向代理映射成子路径</a>，<a href="https://blog.csdn.net/tzy233/article/details/79780444" target="_blank" rel="noopener">Nginx的location规则：优先级和路径替换</a></p>
+<p>此外，为减小静态资源体积，在 nginx 提供页面服务的 server 段中开启 gzip。<br>参考 <a href="http://blog.51cto.com/sohudrgon/1596538" target="_blank" rel="noopener">Nginx(4)-nginx配置文件详解-http配置段</a></p>
+<p>加入gzip相关配置如下</p>
+<pre><code>  # 开启gzip
+  gzip on;
+  # 启用gzip压缩的最小文件，小于设置值的文件将不会压缩
+  gzip_min_length 1k;
+  # gzip 压缩级别，1-10，数字越大压缩的越好，也越占用CPU时间，后面会有详细说明
+  gzip_comp_level 2;
+  # 进行压缩的文件类型。javascript有多种形式。其中的值可以在 mime.types 文件中找到。
+  gzip_types text/plain application/javascript application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;
+  # 是否在http header中添加Vary: Accept-Encoding，建议开启
+  gzip_vary on;
+  # 禁用IE 6 gzip
+  gzip_disable &quot;MSIE [1-6]\.”;
+</code></pre><p>设置nginx 的缓存：</p>
+<pre><code>  location ~* ^.+\.(ico|gif|jpg|jpeg|png)$ {
+        access_log   off;
+        expires      30d;
+  }
+  location ~* ^.+\.(css|js|txt|xml|swf|wav)$ {
+    access_log   off;
+    expires      24h;
+  }
+  location ~* ^.+\.(html|htm)$ {
+        expires      1h;
+  }
+</code></pre><p>nginx中，404页面的设置。</p>
+  
+    </div> 
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+
+    <div class="post-info-wrapper">
+            
+                    <!-- Post Info -->
+                    <p class="post-date">2018-07-07</p>
+                    
+                    
+                        <p class="post-info-categories">
+                            <a class="post-category-link" href="/categories/cyber/">赛博朋克</a>
+                        </p>
+                    
+
+                    
+            
+    </div>
+</article>
+
+
+    
+    <!-- Comments -->
+    <div class="post-comment-wrapper">
+        
+    <!-- Livere -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjA4Mi84NjQ2">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+    
+           if (typeof LivereTower === 'function') { return; }
+    
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+    
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+    </div>
+    
+
+            </main>
+
+            <!-- 'To Top' Btn-->
+            
+                <div id="to-top">
+    <a href="#top" class="toTop">
+        <i class="fa fa-pagelines"></i>
+    </a>
+</div>
+            
+
+            <!-- Footer -->
+            
+                <footer class="footer-wrapper col-xs-12 col-sm-12">
+    <div class="footer-banner-wrapper">
+        <p class="footer-banner">Powered by <a href="https://hexo.io/" title="Hexo">Hexo</a></p>
+        <P class="footer-banner">Theme <a href="https://github.com/Lonezj/hexo-theme-wind" title="Wind">wind</a></P>
+    </div>
+</footer>
+            
+        </div>
+
+        <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+        <link rel="stylesheet" href="/css/google-prettify-monokai.css" type="text/css">
+        <script src="//cdn.bootcss.com/prettify/r298/prettify.min.js" type="text/javascript"></script>
+    </body>
+</html>
