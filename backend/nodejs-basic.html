@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+    <!-- Head -->
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="voezy">
+    <meta name="description" itemprop="description" content="">
+    <meta name="keywords" content="wind,lonezj,node">
+
+    <!-- Page Title -->
+    
+        <title>NodeJS基础知识简记 | Voezy</title>
+    
+    <link rel="icon" href="/img/avatar.png">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    
+    <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    
+        <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-115976686-1', 'auto');ga('send', 'pageview');
+</script>
+    
+    <style>
+        .deactiveColor{
+            color: #37474f;
+        }
+        .activeColor{
+            color: #006064;
+        }
+        a:hover{
+            color: #006064;
+        }
+        .header-btn{
+            color: #37474f;
+        }
+        
+        .post-content img{
+            margin: 50px auto;
+        }
+        
+    </style>
+</head>
+    <body>
+        <div class="container">
+
+            <!-- Top Anchor -->
+            <div id="top"></div>
+
+            <!-- Header -->
+            <header class="header-wrapper">
+    <div class="header-title-wrapper">
+        <!-- Page Title -->
+        <p class="header-title">
+             
+                
+                    NodeJS基础知识简记
+                
+            
+        </p>  
+    </div>    
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+    
+    <div class="header-detail">
+        <!-- Header Button -->
+        <div class="header-btn-wrapper">
+            
+                <span>
+                    <a class="home-btn header-btn" href="/" title="homepage"><i class="fa fa-home"></i></a>
+                </span>
+
+                
+                    <span>
+                        <a class="catalog-btn header-btn"><i class="fa fa-list-ul"></i></a>
+                    </span>
+                
+            
+        </div>
+    </div>
+</header>
+
+            <!-- Main -->
+            <main>
+                <article class="post-wrapper">
+    
+
+    
+        <!-- Article Catalog -->
+        <div class="catalog-dropdown col-xs-12 col-sm-12">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#NodeJS基础"><span class="toc-number">1.</span> <span class="toc-text">NodeJS基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码组织和部署"><span class="toc-number">2.</span> <span class="toc-text">代码组织和部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模块的路径解析机制"><span class="toc-number">2.1.</span> <span class="toc-text">模块的路径解析机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#包"><span class="toc-number">2.2.</span> <span class="toc-text">包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令行程序"><span class="toc-number">2.3.</span> <span class="toc-text">命令行程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工程目录"><span class="toc-number">2.4.</span> <span class="toc-text">工程目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NPM"><span class="toc-number">2.5.</span> <span class="toc-text">NPM</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件操作"><span class="toc-number">3.</span> <span class="toc-text">文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#大、小文件复制"><span class="toc-number">3.1.</span> <span class="toc-text">大、小文件复制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Buffer"><span class="toc-number">3.2.</span> <span class="toc-text">Buffer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stream-数据流"><span class="toc-number">3.3.</span> <span class="toc-text">Stream(数据流)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-System（文件系统）"><span class="toc-number">3.4.</span> <span class="toc-text">File System（文件系统）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Path"><span class="toc-number">3.5.</span> <span class="toc-text">Path</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件编码"><span class="toc-number">3.6.</span> <span class="toc-text">文件编码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网路操作"><span class="toc-number">4.</span> <span class="toc-text">网路操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#http"><span class="toc-number">4.1.</span> <span class="toc-text">http</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#https"><span class="toc-number">4.2.</span> <span class="toc-text">https</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#url"><span class="toc-number">4.3.</span> <span class="toc-text">url</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Query-String"><span class="toc-number">4.4.</span> <span class="toc-text">Query String</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zlib"><span class="toc-number">4.5.</span> <span class="toc-text">Zlib</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Net"><span class="toc-number">4.6.</span> <span class="toc-text">Net</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#headers驼峰、http服务器的chunk传输方式"><span class="toc-number">4.7.</span> <span class="toc-text">headers驼峰、http服务器的chunk传输方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进程管理"><span class="toc-number">5.</span> <span class="toc-text">进程管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#调用终端命令"><span class="toc-number">5.1.</span> <span class="toc-text">调用终端命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Process"><span class="toc-number">5.2.</span> <span class="toc-text">Process</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Child-Process"><span class="toc-number">5.3.</span> <span class="toc-text">Child Process</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cluster"><span class="toc-number">5.4.</span> <span class="toc-text">Cluster</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取命令行参数"><span class="toc-number">5.5.</span> <span class="toc-text">获取命令行参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#退出程序并设置状态码"><span class="toc-number">5.6.</span> <span class="toc-text">退出程序并设置状态码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#控制输入输出"><span class="toc-number">5.7.</span> <span class="toc-text">控制输入输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#降权"><span class="toc-number">5.8.</span> <span class="toc-text">降权</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建子进程"><span class="toc-number">5.9.</span> <span class="toc-text">创建子进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进程间通讯"><span class="toc-number">5.10.</span> <span class="toc-text">进程间通讯</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#守护子进程"><span class="toc-number">5.11.</span> <span class="toc-text">守护子进程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#异步编程"><span class="toc-number">6.</span> <span class="toc-text">异步编程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#回调"><span class="toc-number">6.1.</span> <span class="toc-text">回调</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码设计模式"><span class="toc-number">6.2.</span> <span class="toc-text">代码设计模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#异常处理"><span class="toc-number">6.3.</span> <span class="toc-text">异常处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#域"><span class="toc-number">6.4.</span> <span class="toc-text">域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#陷阱"><span class="toc-number">6.5.</span> <span class="toc-text">陷阱</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#大实例"><span class="toc-number">7.</span> <span class="toc-text">大实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#像循环一样的自运行函数"><span class="toc-number">7.1.</span> <span class="toc-text">像循环一样的自运行函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件的设置和作为程序参数的传入"><span class="toc-number">7.2.</span> <span class="toc-text">配置文件的设置和作为程序参数的传入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#边读取边输出响应"><span class="toc-number">7.3.</span> <span class="toc-text">边读取边输出响应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#只读数据流简化代码"><span class="toc-number">7.4.</span> <span class="toc-text">只读数据流简化代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#守护进程"><span class="toc-number">7.5.</span> <span class="toc-text">守护进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部署"><span class="toc-number">7.6.</span> <span class="toc-text">部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">7.7.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+        </div>
+    
+
+    
+        <!--For now, Lightbox Only Show in Post Layout -->
+        
+
+        
+        
+    
+
+    
+
+    <!-- Article Content -->
+    <div class="post-content">
+        <h2 id="NodeJS基础"><a href="#NodeJS基础" class="headerlink" title="NodeJS基础"></a>NodeJS基础</h2><p>linux上nodejs的运行权限问题，在申请监听某些端口需要sudo权限(1024以下)。     </p>
+<p>模块的概念。编写复杂的程序时，为了划分功能及提高可重用、可维护性，将程序分成不同的模块来编写，是一个非常重要的概念。    </p>
+<p>模块的导入：require。    </p>
+<p>导出：exports。    </p>
+<p>初始化，模块仅被导入一次，之后会被缓存起来以供重复利用。    </p>
+<p>二进制模块，c/c++编写，<code>.node</code> 后缀，可以利用系统提供的更多API，但是不容易编写，跨平台使用也有一些问题。</p>
+<hr>
+<h2 id="代码组织和部署"><a href="#代码组织和部署" class="headerlink" title="代码组织和部署"></a>代码组织和部署</h2><h3 id="模块的路径解析机制"><a href="#模块的路径解析机制" class="headerlink" title="模块的路径解析机制"></a>模块的路径解析机制</h3><ul>
+<li>绝对路径</li>
+<li>相对路径</li>
+<li>还有：内置模块、node_modules 目录下的模块加载     </li>
+</ul>
+<p>一个模块中使用require(‘foo/bar’)方式加载模块时，则NodeJS依次尝试使用以下路径。</p>
+<pre><code> /home/user/node_modules/foo/bar
+ /home/node_modules/foo/bar
+ /node_modules/foo/bar
+</code></pre><p>或者指定 NODE_PATH 环境变量。<br>NODE_PATH 环境变量中包含一到多个目录路径，路径之间在Linux下使用 <code>&#39;:&#39;</code> 分隔，在 Windows 下使用 <code>&#39;;&#39;</code> 分隔。</p>
+<h3 id="包"><a href="#包" class="headerlink" title="包"></a>包</h3><p>包的代码、目录结构组织。    </p>
+<p>入口模块 index.js 文件名使整个模块以模块目录作为入口。    </p>
+<p>package.json 自定义入口模块文件名和路径。</p>
+<h3 id="命令行程序"><a href="#命令行程序" class="headerlink" title="命令行程序"></a>命令行程序</h3><ul>
+<li>linux    </li>
+</ul>
+<p>1)js文件顶部加上解析器注释<br>2)js文件加运行权限<br>3)创建软连接到PATH环境变量目录    </p>
+<ul>
+<li>windows    </li>
+</ul>
+<p>1)新建cmd文件在js文件相同目录下<br>2)确保cmd文件所在目录已加入PATH环境变量</p>
+<h3 id="工程目录"><a href="#工程目录" class="headerlink" title="工程目录"></a>工程目录</h3><p>package.json 中， 指定命令行运行指令和命令行运行文件</p>
+<pre><code>  &quot;bin&quot;: {
+        &quot;node-echo&quot;: &quot;./bin/node-echo&quot;
+    }
+</code></pre><p>本地安装测试：</p>
+<pre><code>mrldeMBP:node-echo mrl$ sudo npm i . -g
+/usr/local/bin/node-echo -&gt; /usr/local/lib/node_modules/node-echo/bin/node-echo
+
++ node-echo@1.0.0
+added 1 package in 0.628s
+</code></pre><p>可知，在 <code>/usr/local/bin/</code> 创建了一个软连接叫做 <code>node-echo</code>，它指向了 <code>node-echo</code> 项目的命令行程序在本地 node 全局安装模块目录中的位置，所以，命令行输入 <code>node-echo</code> 即调用这个 node 命令行程序。</p>
+<pre><code>mrldeMBP:node-echo mrl$ node-echo hello hi
+hello hi
+</code></pre><h3 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h3><p>语义版本号:    </p>
+<p>语义版本号分为X.Y.Z三位，分别代表主版本号、次版本号和补丁版本号</p>
+<p><em>还有一个包管理器 yarn，有一些NPM没有的优点, 如缓存软件包、对于依赖的一致性保障</em></p>
+<hr>
+<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><h3 id="大、小文件复制"><a href="#大、小文件复制" class="headerlink" title="大、小文件复制"></a>大、小文件复制</h3><p>为避免内存被撑爆，大文件应边读边写。</p>
+<h3 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h3><p>nodejs新增了对二进制数据的处理。slice操作将改变原二进制对象。nodejs对buffer的操作更像是指针操作。</p>
+<h3 id="Stream-数据流"><a href="#Stream-数据流" class="headerlink" title="Stream(数据流)"></a>Stream(数据流)</h3><p>用流的方式，通过回调函数传递事件，判断每次的读、写情况，进而控制下一次的写入。</p>
+<h3 id="File-System（文件系统）"><a href="#File-System（文件系统）" class="headerlink" title="File System（文件系统）"></a>File System（文件系统）</h3><p>异步版本(大量使用回调函数、err、data参数的传入)、同步版本的使用方法。</p>
+<h3 id="Path"><a href="#Path" class="headerlink" title="Path"></a>Path</h3><p>path.normalize()，将传入路径参数转换为标准路径。<br>坑：处理windows的路径差异，替换 ‘\’ 为 ‘/‘</p>
+<p>path.join 和 path.extname。</p>
+<h3 id="文件编码"><a href="#文件编码" class="headerlink" title="文件编码"></a>文件编码</h3><p>utf-8去除BOM    </p>
+<p>GBK转utf8    </p>
+<p>单字节编码，utf8和gbk对于英文字符的编码是一样的，可以忽略utf8下中文乱码，对正常的英文字符进行处理，不影响其他看起来是乱码的字符。nodejs中的binary编码可以实现这个方法。</p>
+<h2 id="网路操作"><a href="#网路操作" class="headerlink" title="网路操作"></a>网路操作</h2><h3 id="http"><a href="#http" class="headerlink" title="http"></a>http</h3><h3 id="https"><a href="#https" class="headerlink" title="https"></a>https</h3><p>多个证书、多域名，测试类型自制证书支持</p>
+<h3 id="url"><a href="#url" class="headerlink" title="url"></a>url</h3><p>解析url字符串为对象以获取各部分，根据url对象构建url字符串，拼接url</p>
+<h3 id="Query-String"><a href="#Query-String" class="headerlink" title="Query String"></a>Query String</h3><p>参数字符串与参数对象的转换</p>
+<h3 id="Zlib"><a href="#Zlib" class="headerlink" title="Zlib"></a>Zlib</h3><p>数据压缩与解压</p>
+<h3 id="Net"><a href="#Net" class="headerlink" title="Net"></a>Net</h3><p>Net模块用于创建socket服务器/客户端</p>
+<h3 id="headers驼峰、http服务器的chunk传输方式"><a href="#headers驼峰、http服务器的chunk传输方式" class="headerlink" title="headers驼峰、http服务器的chunk传输方式"></a>headers驼峰、http服务器的chunk传输方式</h3><h2 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h2><h3 id="调用终端命令"><a href="#调用终端命令" class="headerlink" title="调用终端命令"></a>调用终端命令</h3><pre><code>var child_process = require(&#39;child_process&#39;);
+var util = require(&#39;util&#39;);
+
+function copy(source, target, callback) {
+    child_process.exec(
+        util.format(&#39;cp -r %s/* %s&#39;, source, target), callback);
+}
+
+copy(&#39;a&#39;, &#39;b&#39;, function (err) {
+    // ...
+});
+</code></pre><h3 id="Process"><a href="#Process" class="headerlink" title="Process"></a>Process</h3><p>全局对象</p>
+<h3 id="Child-Process"><a href="#Child-Process" class="headerlink" title="Child Process"></a>Child Process</h3><p>创建和控制子进程</p>
+<h3 id="Cluster"><a href="#Cluster" class="headerlink" title="Cluster"></a>Cluster</h3><p>充分利用多核cpu，简化多进程服务器程序的开发</p>
+<h3 id="获取命令行参数"><a href="#获取命令行参数" class="headerlink" title="获取命令行参数"></a>获取命令行参数</h3><p>process.argv，头两个元素是执行程序和主模块文件的路径<br>main(process.argv.slice(2))让使用方式更自然。</p>
+<h3 id="退出程序并设置状态码"><a href="#退出程序并设置状态码" class="headerlink" title="退出程序并设置状态码"></a>退出程序并设置状态码</h3><p>process.exit(1)</p>
+<h3 id="控制输入输出"><a href="#控制输入输出" class="headerlink" title="控制输入输出"></a>控制输入输出</h3><p>标准输入、输出、错误流。    </p>
+<p>proccess.stdin、process.stdout、process.stderr</p>
+<h3 id="降权"><a href="#降权" class="headerlink" title="降权"></a>降权</h3><p>完成1024以下端口的监听后，如何取消程序的root权限</p>
+<h3 id="创建子进程"><a href="#创建子进程" class="headerlink" title="创建子进程"></a>创建子进程</h3><p><code>var childProcess = child_process.spawn(‘node’, [‘xxx.js’]);</code></p>
+<p>spawn方法支持三个参数。</p>
+<h3 id="进程间通讯"><a href="#进程间通讯" class="headerlink" title="进程间通讯"></a>进程间通讯</h3><h3 id="守护子进程"><a href="#守护子进程" class="headerlink" title="守护子进程"></a>守护子进程</h3><h2 id="异步编程"><a href="#异步编程" class="headerlink" title="异步编程"></a>异步编程</h2><h3 id="回调"><a href="#回调" class="headerlink" title="回调"></a>回调</h3><p>特殊函数、平行线程</p>
+<h3 id="代码设计模式"><a href="#代码设计模式" class="headerlink" title="代码设计模式"></a>代码设计模式</h3><p>1)函数返回值    </p>
+<p>2)遍历数组    </p>
+<p>串行、并行处理后回调</p>
+<h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><p>try…catch 一般的编写方式只适用于同步代码</p>
+<p>可以通过改造来适应 nodejs 的设计风格。一般要在异常冒泡到执行路径被打断前用try语句捕获异常。</p>
+<p>一般回调函数中第一个参数都是err。</p>
+<p>process 对象的 uncaughtException 事件可以捕获全局异常，被打断执行路径的异常可以被捕获。</p>
+<h3 id="域"><a href="#域" class="headerlink" title="域"></a>域</h3><p>domian模块方便了多重回调函数的异常捕获，使代码变得更简洁。</p>
+<h3 id="陷阱"><a href="#陷阱" class="headerlink" title="陷阱"></a>陷阱</h3><p>被 process 的 uncaughtException 事件捕获的异常和d omain 对象捕获的子域异常，都应该在处理异常后重启程序。因为发生异常后的程序会处于一个不确定的状态。</p>
+<h2 id="大实例"><a href="#大实例" class="headerlink" title="大实例"></a>大实例</h2><h3 id="像循环一样的自运行函数"><a href="#像循环一样的自运行函数" class="headerlink" title="像循环一样的自运行函数"></a>像循环一样的自运行函数</h3><h3 id="配置文件的设置和作为程序参数的传入"><a href="#配置文件的设置和作为程序参数的传入" class="headerlink" title="配置文件的设置和作为程序参数的传入"></a>配置文件的设置和作为程序参数的传入</h3><h3 id="边读取边输出响应"><a href="#边读取边输出响应" class="headerlink" title="边读取边输出响应"></a>边读取边输出响应</h3><h3 id="只读数据流简化代码"><a href="#只读数据流简化代码" class="headerlink" title="只读数据流简化代码"></a>只读数据流简化代码</h3><h3 id="守护进程"><a href="#守护进程" class="headerlink" title="守护进程"></a>守护进程</h3><p>创建子进程来启动程序，并且根据程序退出状态来判断是否需要重启程序<br>主进程、子进程之间的通信、http服务器的关闭</p>
+<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><p>项目目录，启动、关闭程序的sh脚本</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>熟悉文档。不可能记住每个细节，但是可以熟悉文档的大概结构，有问题应该到哪里找办法解决。    </p>
+<p>设计-&gt;实现-&gt;设计    </p>
+<p>理智对待第三方包    </p>
+<p>最值得学习的是异步编程思想、回调函数的使用，还有js异步编程中的异常处理问题。</p>
+  
+    </div> 
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+
+    <div class="post-info-wrapper">
+            
+                    <!-- Post Info -->
+                    <p class="post-date">2018-03-11</p>
+                    
+                    
+                        <p class="post-info-categories">
+                            <a class="post-category-link" href="/categories/backend/">backend</a>
+                        </p>
+                    
+
+                    
+            
+    </div>
+</article>
+
+
+    
+    <!-- Comments -->
+    <div class="post-comment-wrapper">
+        
+    <!-- Livere -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjA4Mi84NjQ2">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+    
+           if (typeof LivereTower === 'function') { return; }
+    
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+    
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+    </div>
+    
+
+            </main>
+
+            <!-- 'To Top' Btn-->
+            
+                <div id="to-top">
+    <a href="#top" class="toTop">
+        <i class="fa fa-pagelines"></i>
+    </a>
+</div>
+            
+
+            <!-- Footer -->
+            
+                <footer class="footer-wrapper col-xs-12 col-sm-12">
+    <div class="footer-banner-wrapper">
+        <p class="footer-banner">Powered by <a href="https://hexo.io/" title="Hexo">Hexo</a></p>
+        <P class="footer-banner">Theme <a href="https://github.com/Lonezj/hexo-theme-wind" title="Wind">wind</a></P>
+    </div>
+</footer>
+            
+        </div>
+
+        <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+        <link rel="stylesheet" href="/css/google-prettify-monokai.css" type="text/css">
+        <script src="//cdn.bootcss.com/prettify/r298/prettify.min.js" type="text/javascript"></script>
+    </body>
+</html>

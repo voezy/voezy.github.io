@@ -97,7 +97,7 @@
     
         <!-- Article Catalog -->
         <div class="catalog-dropdown col-xs-12 col-sm-12">
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#常见问题"><span class="toc-number">1.</span> <span class="toc-text">常见问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#清除浮动"><span class="toc-number">1.1.</span> <span class="toc-text">清除浮动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单词内断句"><span class="toc-number">1.2.</span> <span class="toc-text">单词内断句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#block、inline、inline-block的区别"><span class="toc-number">1.3.</span> <span class="toc-text">block、inline、inline-block的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浏览器元素样式重置"><span class="toc-number">1.4.</span> <span class="toc-text">浏览器元素样式重置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#不常见问题"><span class="toc-number">2.</span> <span class="toc-text">不常见问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#子元素-margin-top-奇异事件"><span class="toc-number">2.1.</span> <span class="toc-text">子元素 margin-top 奇异事件</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#常见问题"><span class="toc-number">1.</span> <span class="toc-text">常见问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#清除浮动"><span class="toc-number">1.1.</span> <span class="toc-text">清除浮动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单词内断句"><span class="toc-number">1.2.</span> <span class="toc-text">单词内断句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#block、inline、inline-block的区别"><span class="toc-number">1.3.</span> <span class="toc-text">block、inline、inline-block的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浏览器元素样式重置"><span class="toc-number">1.4.</span> <span class="toc-text">浏览器元素样式重置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#响应式"><span class="toc-number">1.5.</span> <span class="toc-text">响应式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#不常见问题"><span class="toc-number">2.</span> <span class="toc-text">不常见问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#子元素-margin-top-奇异事件"><span class="toc-number">2.1.</span> <span class="toc-text">子元素 margin-top 奇异事件</span></a></li></ol></li></ol>
         </div>
     
 
@@ -164,7 +164,7 @@ ol,ul{margin:0; padding:0;}
 </code></pre><p>我觉得还可以。    </p>
 <p>其实这个问题要经过大量的测试才能有比较合理的结果。    </p>
 <p>相关： <a href="https://blog.csdn.net/timtimup123321/article/details/49444463" target="_blank" rel="noopener">关于reset.css的疑问：为什么一定要重置浏览器样式？</a></p>
-<hr>
+<h3 id="响应式"><a href="#响应式" class="headerlink" title="响应式"></a>响应式</h3><hr>
 <h2 id="不常见问题"><a href="#不常见问题" class="headerlink" title="不常见问题"></a>不常见问题</h2><h3 id="子元素-margin-top-奇异事件"><a href="#子元素-margin-top-奇异事件" class="headerlink" title="子元素 margin-top 奇异事件"></a>子元素 margin-top 奇异事件</h3><p>本想给子元素一个margin-top使其远离容器上方，却没想到容器跟着往下跑了….😅     </p>
 <p>解决办法有多种，我觉得给父元素加一个 <code>padding-top: 1px;</code> 这种方法不错。还有父元素加 <code>overflow：hidden;</code> 也可以。     </p>
 <p>更多方法：<a href="https://www.jb51.net/css/75789.html" target="_blank" rel="noopener">父元素与子元素之间的margin-top问题(css hack)</a></p>
