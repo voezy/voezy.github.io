@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+    <!-- Head -->
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="voezy">
+    <meta name="description" itemprop="description" content="">
+    <meta name="keywords" content="wind,lonezj,frontend">
+
+    <!-- Page Title -->
+    
+        <title>常见的页面布局方式 | Voezy</title>
+    
+    <link rel="icon" href="/img/avatar.png">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    
+    <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    
+        <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-115976686-1', 'auto');ga('send', 'pageview');
+</script>
+    
+    <style>
+        .deactiveColor{
+            color: #37474f;
+        }
+        .activeColor{
+            color: #006064;
+        }
+        a:hover{
+            color: #006064;
+        }
+        .header-btn{
+            color: #37474f;
+        }
+        
+        .post-content img{
+            margin: 50px auto;
+        }
+        
+    </style>
+</head>
+    <body>
+        <div class="container">
+
+            <!-- Top Anchor -->
+            <div id="top"></div>
+
+            <!-- Header -->
+            <header class="header-wrapper">
+    <div class="header-title-wrapper">
+        <!-- Page Title -->
+        <p class="header-title">
+             
+                
+                    常见的页面布局方式
+                
+            
+        </p>  
+    </div>    
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+    
+    <div class="header-detail">
+        <!-- Header Button -->
+        <div class="header-btn-wrapper">
+            
+                <span>
+                    <a class="home-btn header-btn" href="/" title="homepage"><i class="fa fa-home"></i></a>
+                </span>
+
+                
+                    <span>
+                        <a class="catalog-btn header-btn"><i class="fa fa-list-ul"></i></a>
+                    </span>
+                
+            
+        </div>
+    </div>
+</header>
+
+            <!-- Main -->
+            <main>
+                <article class="post-wrapper">
+    
+
+    
+        <!-- Article Catalog -->
+        <div class="catalog-dropdown col-xs-12 col-sm-12">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#圣杯布局"><span class="toc-number">1.</span> <span class="toc-text">圣杯布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#双飞翼布局"><span class="toc-number">2.</span> <span class="toc-text">双飞翼布局</span></a></li></ol>
+        </div>
+    
+
+    
+        <!--For now, Lightbox Only Show in Post Layout -->
+        
+
+        
+        
+    
+
+    
+
+    <!-- Article Content -->
+    <div class="post-content">
+        <h2 id="圣杯布局"><a href="#圣杯布局" class="headerlink" title="圣杯布局"></a>圣杯布局</h2><p>要点：左右侧板块定宽，中间自适应，填满中部空间<br>注意：宽度缩小到一定程度时(中间板块比两侧板块的宽度要小)，布局将会出现问题。容器应该设置一个合适的最小宽度。</p>
+<ul>
+<li>将两侧板块通过margin拉到中间板块两边。    </li>
+</ul>
+<p>因为在HTML中，各板块的结构顺序是 中间板块、左板块和右板块，所以，左板块margin-left要设置为 -100%。右板块只需设置margin-left为自身宽度的负数即可。</p>
+<ul>
+<li>容器设置左右padding，宽度与两侧板块相对应     </li>
+</ul>
+<p>为了使中间板块不被两侧板块遮挡，容器要设置左右padding。左右padding其实是留给两侧板块的 “显示空间”，而中间板块只占了容器宽度中除了paddinig以外的内容宽度。</p>
+<ul>
+<li>设置两侧板块为相对定位，并且左右距离设置为各自的宽度     </li>
+</ul>
+<p>为了使两侧板块定位到容器的左右padding部分的位置上，要将左右板块改为相对定位，并且调整他们的left或right为他们的宽度(也就是容器padding的宽度)。</p>
+<hr>
+<p>全部代码及结果。</p>
+<script async src="//jsrun.net/J6gKp/embed/html,css,result/light/"></script>
+
+<hr>
+<h2 id="双飞翼布局"><a href="#双飞翼布局" class="headerlink" title="双飞翼布局"></a>双飞翼布局</h2><p>要点：与圣杯布局类似，实现方法略有不同<br>注意：当总宽度小于左右两侧板块宽度时，布局会出现问题，所以也要给外层容器设置一个最小宽度</p>
+<p>不同点在于改变了中间板块的结构，中间板块作为一个容器，将内容放到了其下的一个子元素。中间板块的子元素再设置左右margin为两侧板块相应宽度。这样左右两侧板块就不再需要相对定位及调整左右定位的距离。</p>
+<script async src="//jsrun.net/x6gKp/embed/html,css,result/light/"></script>
+
+<hr>
+<p>以上只是大体的结构，具体应用还要根据具体情况做调整。</p>
+<p>参考：<a href="https://juejin.im/post/599970f4518825243a78b9d5" target="_blank" rel="noopener">CSS 常见布局方式</a></p>
+  
+    </div> 
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+
+    <div class="post-info-wrapper">
+            
+                    <!-- Post Info -->
+                    <p class="post-date">2018-01-16</p>
+                    
+                    
+                        <p class="post-info-categories">
+                            <a class="post-category-link" href="/categories/cyber/">赛博朋克</a>, <a class="post-category-link" href="/categories/cyber/frontend/">frontend</a>
+                        </p>
+                    
+
+                    
+            
+    </div>
+</article>
+
+
+    
+    <!-- Comments -->
+    <div class="post-comment-wrapper">
+        
+    <!-- Livere -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjA4Mi84NjQ2">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+    
+           if (typeof LivereTower === 'function') { return; }
+    
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+    
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+    </div>
+    
+
+            </main>
+
+            <!-- 'To Top' Btn-->
+            
+                <div id="to-top">
+    <a href="#top" class="toTop">
+        <i class="fa fa-pagelines"></i>
+    </a>
+</div>
+            
+
+            <!-- Footer -->
+            
+                <footer class="footer-wrapper col-xs-12 col-sm-12">
+    <div class="footer-banner-wrapper">
+        <p class="footer-banner">Powered by <a href="https://hexo.io/" title="Hexo">Hexo</a></p>
+        <P class="footer-banner">Theme <a href="https://github.com/Lonezj/hexo-theme-wind" title="Wind">wind</a></P>
+    </div>
+</footer>
+            
+        </div>
+
+        <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+        <link rel="stylesheet" href="/css/google-prettify-monokai.css" type="text/css">
+        <script src="//cdn.bootcss.com/prettify/r298/prettify.min.js" type="text/javascript"></script>
+    </body>
+</html>

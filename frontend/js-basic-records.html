@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+    <!-- Head -->
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="voezy">
+    <meta name="description" itemprop="description" content="">
+    <meta name="keywords" content="wind,lonezj,frontend">
+
+    <!-- Page Title -->
+    
+        <title>js中易混淆、忽略的地方 | Voezy</title>
+    
+    <link rel="icon" href="/img/avatar.png">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    
+    <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    
+        <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-115976686-1', 'auto');ga('send', 'pageview');
+</script>
+    
+    <style>
+        .deactiveColor{
+            color: #37474f;
+        }
+        .activeColor{
+            color: #006064;
+        }
+        a:hover{
+            color: #006064;
+        }
+        .header-btn{
+            color: #37474f;
+        }
+        
+        .post-content img{
+            margin: 50px auto;
+        }
+        
+    </style>
+</head>
+    <body>
+        <div class="container">
+
+            <!-- Top Anchor -->
+            <div id="top"></div>
+
+            <!-- Header -->
+            <header class="header-wrapper">
+    <div class="header-title-wrapper">
+        <!-- Page Title -->
+        <p class="header-title">
+             
+                
+                    js中易混淆、忽略的地方
+                
+            
+        </p>  
+    </div>    
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+    
+    <div class="header-detail">
+        <!-- Header Button -->
+        <div class="header-btn-wrapper">
+            
+                <span>
+                    <a class="home-btn header-btn" href="/" title="homepage"><i class="fa fa-home"></i></a>
+                </span>
+
+                
+                    <span>
+                        <a class="catalog-btn header-btn"><i class="fa fa-list-ul"></i></a>
+                    </span>
+                
+            
+        </div>
+    </div>
+</header>
+
+            <!-- Main -->
+            <main>
+                <article class="post-wrapper">
+    
+
+    
+        <!-- Article Catalog -->
+        <div class="catalog-dropdown col-xs-12 col-sm-12">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#自执行函数"><span class="toc-number">1.</span> <span class="toc-text">自执行函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#闭包"><span class="toc-number">2.</span> <span class="toc-text">闭包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#异步特性"><span class="toc-number">3.</span> <span class="toc-text">异步特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件处理"><span class="toc-number">4.</span> <span class="toc-text">事件处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#事件冒泡机制"><span class="toc-number">4.1.</span> <span class="toc-text">事件冒泡机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#阻止默认事件"><span class="toc-number">4.2.</span> <span class="toc-text">阻止默认事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#And"><span class="toc-number">4.3.</span> <span class="toc-text">And</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-number">5.</span> <span class="toc-text">结语</span></a></li></ol>
+        </div>
+    
+
+    
+        <!--For now, Lightbox Only Show in Post Layout -->
+        
+
+        
+        
+    
+
+    
+
+    <!-- Article Content -->
+    <div class="post-content">
+        <h2 id="自执行函数"><a href="#自执行函数" class="headerlink" title="自执行函数"></a>自执行函数</h2><p>我感觉这是js与其他语言比较不同的地方之一。     </p>
+<p>匿名自执行函数的一般结构都是这样的：</p>
+<pre><code class="javascript">(function (params) {
+  // 要执行的内容
+})(realParams);
+</code></pre>
+<p>包裹函数体的括号也可以改成 <code>(function(){...}());</code> 的形式。<br>首先是一个括号中有一个匿名函数，这个就是将要自执行的函数。然后接着一个括号中带有一个变量作为传给自执行函数的参数，这个参数是可选的。    </p>
+<p>解析器如果遇上这样形式的一段代码，将会马上执行。    </p>
+<hr>
+<p>第二种结构，</p>
+<pre><code class="javascript">!function(params){
+  // 要执行的内容
+}(realParams);
+</code></pre>
+<p>注意前面有一个 <code>!</code>。<br>这种形式的函数不仅会马上自动运行，还会返回一个布尔值（如果没有设置返回值，或者返回的是falsy，那么这个布尔值就是  <code>true</code>）。</p>
+<hr>
+<p>第三种结构，</p>
+<pre><code class="javascript">var fun = function(params){
+  // 要执行的内容
+}(realParams);
+</code></pre>
+<p>自执行函数内部的变量和逻辑对外都是不可见的，一般通过return值来获得与自执行函数内部的联系。<br>要记住的就是它们的自执行的性质，还有如何利用他们的变量作用域性质以及返回值。利用这些可以更方便、安全地进行JavaScript编程。</p>
+<hr>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>由于JavaScript中特殊的变量作用域，有些时候就要用到 闭包 这个技巧。</p>
+<p>一般来说，函数外部是没办法访问函数内部的变量的，但是利用闭包就可以打破这个壁垒。阮 的解释比较易懂：</p>
+<blockquote>
+<p>闭包就是能够读取其他函数内部变量的函数。     </p>
+</blockquote>
+<p>更详细的介绍可以参考：<a href="http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html" target="_blank" rel="noopener">学习Javascript闭包（Closure）</a></p>
+<p>通过闭包，可以创建更合理的对象构造函数，然后向外暴露出getter、setter等方法，为对象创造出私有环境。这一点在 《JavaScript 语言精髓》 中有非常详细的阐释。</p>
+<hr>
+<h2 id="异步特性"><a href="#异步特性" class="headerlink" title="异步特性"></a>异步特性</h2><p>JavaScript原本是为了浏览器编程而诞生的，由于网络环境的不稳定，要应对这种复杂性，JavaScript天生就需要异步特性。    </p>
+<p>除了异步请求、鼠标点击、定时器等异步事件可以体现JS的异步特性，还有一个非常经典的就是for循环的阻塞问题。其实也不是单纯的异步问题，它也和js的变量作用域有关。    </p>
+<p>比如 <a href="http://www.cnblogs.com/hq233/p/8042995.html" target="_blank" rel="noopener">Js中for循环的阻塞机制</a> 中提到的for循环中设置定时器的问题。定时器事件是会产生阻塞的，因此它的执行是异步的。问题是它没有自己的变量作用域，它引用的是for循环中的索引 i。当for循环都执行完毕后，也许定时器事件开始执行了，它会往外寻找变量 i，但是这时候定时器所引用的for循环索引 i 已经改变了，执行结果就与设置计时器的初衷不太符合了。    </p>
+<p>要解决这个问题，可以用到上述一些自执行函数的知识。虽然定时器的执行是异步的，但是给定时器传入的变量可以利用自执行函数传入一个当次执行的准确索引值，而且这样的自执行函数也形成了自己的变量作用域，不再引用整个for循环的索引值。这样就解决了一个简单的for循环阻塞问题。</p>
+<p>JavaScript的异步特性在很多地方都有体现，不能改变这点，就要多适应这点。</p>
+<p>如果循环中的操作不是定时器而是简单的打印输出，那么虽然它的作用域还是依赖于这个循环，但是因为它的执行是即时的，在索引i变化前它就输出了，就没有 异步+依赖外部作用域 的打击那么大了。</p>
+<hr>
+<p>下面是js异步特性的另一个展示，代码运行在nodejs环境下。</p>
+<pre><code class="javascript">var http= require(&#39;http&#39;)
+
+function consoleMsg(msg) {
+    http.get(&#39;http://www.baidu.com&#39;, function(res) {
+        console.log(msg);
+    })
+    return true;
+}
+
+consoleMsg(&#39;msg 1&#39;);
+consoleMsg(&#39;msg 2&#39;);
+consoleMsg(&#39;msg 3&#39;);
+consoleMsg(&#39;msg 4&#39;);
+consoleMsg(&#39;end&#39;);
+</code></pre>
+<p>函数 <code>consoleMsg</code> 用于获取百度首页文档内容并且输出一个消息。在node环境中执行这段代码，可以发现函数的输出结果顺序与调用顺序并不一致，甚至每次都不一样。</p>
+<p>如何使他们按照设定好的顺序执行？在es5标准之下，可以通过每次回调函数中再次调用下一个想要执行的函数，来保持一定的执行顺序。    </p>
+<p>像这样。</p>
+<pre><code class="javascript">var http = require(&#39;http&#39;);
+var url = &#39;http://www.baidu.com&#39;;
+
+http.get(url, function (res) {
+    console.log(&#39;msg 1&#39;);
+    http.get(url, function (res) {
+        console.log(&#39;msg 2&#39;);
+        http.get(url, function (res) {
+            console.log(&#39;msg 3&#39;);
+            http.get(url, function (res) {
+                console.log(&#39;msg 4&#39;);
+                http.get(url, function (res) {
+                    console.log(&#39;end&#39;);
+                })
+            })
+        })
+    })
+})
+</code></pre>
+<p>这样就可以使它们依次执行。但是，不难想象，当函数的处理逻辑增加时，回调函数也会变得更加复杂，会写出大量的 <code>&#39;&gt;&#39;</code> 型代码。    </p>
+<p>大伙都在用ES6的promise，有空得跟上。    </p>
+<hr>
+<h2 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h2><h3 id="事件冒泡机制"><a href="#事件冒泡机制" class="headerlink" title="事件冒泡机制"></a>事件冒泡机制</h3><p>js中，事件传播分为捕获阶段和冒泡阶段。先是捕获阶段，从外到内，然后是冒泡阶段，从内到外。当两个相互嵌套的元素同时监听同一种事件时，根据注册时设置的执行阶段来决定谁的事件处理函数先执行。</p>
+<p>可以通过传入addEventListener的第三个参数来设置执行阶段。false为冒泡阶段执行，true为捕获阶段执行，默认(没有传入参数时)就是冒泡阶段执行。</p>
+<p>IE 9 之前的浏览器不支持捕获事件。</p>
+<p>为了阻止事件进一步传播，可以通过 <code>event.stopPropagation()</code> 来停止事件传播。在 IE10 及以下版本需要使用 <code>window.event.cancelBubble = true</code>。</p>
+<h3 id="阻止默认事件"><a href="#阻止默认事件" class="headerlink" title="阻止默认事件"></a>阻止默认事件</h3><p>也就是阻止浏览器中一些事件发生后的默认行为。    </p>
+<p>比如a标签的点击事件发生之后，默认是页面跳转，阻止默认事件之后，可以由自定义的事件处理函数来决定要做什么。    </p>
+<p>使用方法：在注册的事件处理函数中加入 <code>event.preventDefault()</code>。IE 10 及以下是 <code>window.event.returnValue = false</code>。<br>(顺带一提IE 10 以前这种方式真的太奇怪了，明明给事件处理函数传入了事件参数却不用上它)</p>
+<hr>
+<h3 id="And"><a href="#And" class="headerlink" title="And"></a>And</h3><p>入门阶段需要学习的地方真的太多了，事件处理的使用姿势还有那些？戳这个-&gt;    </p>
+<p><a href="https://segmentfault.com/q/1010000002462675#a-1020000002463604" target="_blank" rel="noopener">事件处理中的闭包与模块化</a>    </p>
+<p>答主第二段关于面向对象的事件处理函数挺棒的。主要是事件的绑定和事件的处理函数分离，其中要特别留意的是函数的执行对象。</p>
+<p>其中有一个评论说到</p>
+<blockquote>
+<p>一直在纠匿名函数包一层可以解决函数传参的问题，但是不能解绑。— dr2009</p>
+</blockquote>
+<p>的确，我一开始也是这样想的。<br>像下面这段这样写，似乎没法利用事件对象。</p>
+<pre><code class="javascript">var el = document.getElementById(&#39;id&#39;);
+var handler = function(){};
+
+el.addEventListener(&#39;click&#39;, handler, false);
+
+el.removeEventListener(&#39;click&#39;, handler)
+</code></pre>
+<p>所以只好这样迁就一下：</p>
+<pre><code class="javascript">var el = document.getElementById(&#39;id&#39;);
+el.addEventListener(&#39;click&#39;, function handler(ev) {}, false);
+</code></pre>
+<p>嗯，这样总算把事件对象给传进去了。慢着…好像没法解除事件绑定了啊？！</p>
+<p>把上面链接里的一个答案抽出来简单看一下。</p>
+<pre><code class="javascript">(function() {
+    &quot;use strict&quot;;
+
+    var counter = {
+        value: 0,
+        click: function() {
+            console.log(&quot;click: &quot; + ++this.value);
+        }
+    };
+
+    function once(el, ev, fn) {
+        el.addEventListener(ev, function handler() {
+            fn.apply(this, arguments);
+            el.removeEventListener(ev, handler);
+        });
+    }
+
+    once(window.document, &quot;click&quot;, counter.click.bind(counter));
+}());
+</code></pre>
+<p>才发现自己完全就没搞懂事件处理。这才是合理的事件处理手段的一种啊。    </p>
+<p>首先这是一个闭包，其中包含了要处理目的事件和对象的所有逻辑。<br>闭包里，<code>counter</code> 是点击事件发生后希望进行处理的对象。<br>事件处理函数的绑定是通过 <code>once</code> 函数来进行的。<br>而事件的处理则是由 <code>counter.click</code> 负责。</p>
+<p>整个流程是，通过 <code>once</code> 给文档对象添加一个点击事件监听。<br>事件处理函数是 <code>counter.click</code>，而且通过 <code>bind</code> 来将处理函数的执行对象绑定为 <code>counter</code>，也就是执行 <code>click</code> 方法时 <code>this</code> 指向 <code>counter</code>。    </p>
+<p>因为在 once 中，handler 是专门用于与相应事件进行绑定，执行之后就自行解绑了。所以只执行一次。在 handler 中才调用处理函数 fn, 也就是counter.click。<br>apply 可以绑定 this 值以及传递 arguments 对象。所以可以在 arguments 这里将事件 e 传递过去。当然也可以直接显式地指定click方法的参数，然后调用的时候将事件e传过去。    </p>
+<p>这样，就算完成了事件的绑定和事件处理的分离了。解决了传参和解绑的问题。    </p>
+<p>但是这段代码有一点让我疑惑的就是调用 fn.apply 时传递this值(这时this值是文档对象)。我个人觉得，应该是因为apply方法中的 this 参数是必须的吧。也正是因为这里将文档对象绑定为click的this值，所以一开始调用 once 时，才需要用 bind 将 click 方法与 counter对象绑定起来。</p>
+<p>一段代码，将 闭包、js作用域、面向对象、bind和apply的使用全给你串了一遍。好玩不。</p>
+<hr>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>JS这种语言是非常自由的，函数里面还可以写函数，内部函数没有的东西还能在外面拿。不像c语言那些，严格的函数和变量的声明和定义，要调用函数往往需要传参，一碰到没定义的变量，完了，报错。处处是规则。<br>但是，自由的代价往往是高昂的。在JavaScript这样规则更少的世界，要维持良好的运行秩序就意味着你要更加自觉自律，要自己给自己培养一套严格的规范和要求。</p>
+  
+    </div> 
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+
+    <div class="post-info-wrapper">
+            
+                    <!-- Post Info -->
+                    <p class="post-date">2018-01-29</p>
+                    
+                    
+                        <p class="post-info-categories">
+                            <a class="post-category-link" href="/categories/frontend/">frontend</a>
+                        </p>
+                    
+
+                    
+            
+    </div>
+</article>
+
+
+    
+    <!-- Comments -->
+    <div class="post-comment-wrapper">
+        
+    <!-- Livere -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjA4Mi84NjQ2">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+    
+           if (typeof LivereTower === 'function') { return; }
+    
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+    
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+    </div>
+    
+
+            </main>
+
+            <!-- 'To Top' Btn-->
+            
+                <div id="to-top">
+    <a href="#top" class="toTop">
+        <i class="fa fa-pagelines"></i>
+    </a>
+</div>
+            
+
+            <!-- Footer -->
+            
+                <footer class="footer-wrapper col-xs-12 col-sm-12">
+    <div class="footer-banner-wrapper">
+        <p class="footer-banner">Powered by <a href="https://hexo.io/" title="Hexo">Hexo</a></p>
+        <P class="footer-banner">Theme <a href="https://github.com/Lonezj/hexo-theme-wind" title="Wind">wind</a></P>
+    </div>
+</footer>
+            
+        </div>
+
+        <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+        <link rel="stylesheet" href="/css/google-prettify-monokai.css" type="text/css">
+        <script src="//cdn.bootcss.com/prettify/r298/prettify.min.js" type="text/javascript"></script>
+    </body>
+</html>
