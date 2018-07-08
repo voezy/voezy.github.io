@@ -97,7 +97,7 @@
     
         <!-- Article Catalog -->
         <div class="catalog-dropdown col-xs-12 col-sm-12">
-            
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#准备好多个网站应用和域名"><span class="toc-number">1.</span> <span class="toc-text">准备好多个网站应用和域名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx配置"><span class="toc-number">2.</span> <span class="toc-text">nginx配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重启nginx（或者重新加载配置）"><span class="toc-number">3.</span> <span class="toc-text">重启nginx（或者重新加载配置）</span></a></li></ol>
         </div>
     
 
@@ -114,17 +114,12 @@
     <!-- Article Content -->
     <div class="post-content">
         <p>总有些稀奇古怪的东西想放到主机挂着。比如想挂两个小站到主机。</p>
-<ol>
-<li>准备好多个网站应用和域名    </li>
-</ol>
-<p>假设 网站(应用) 1 的本地端口是4000，想要配置域名 <code>domain-eg1.com</code>；网站2 的本地端口是5000，想要配置域名 <code>domain-eg2.com</code>。    </p>
+<h3 id="准备好多个网站应用和域名"><a href="#准备好多个网站应用和域名" class="headerlink" title="准备好多个网站应用和域名"></a>准备好多个网站应用和域名</h3><p>假设 网站(应用) 1 的本地端口是4000，想要配置域名 <code>domain-eg1.com</code>；网站2 的本地端口是5000，想要配置域名 <code>domain-eg2.com</code>。    </p>
 <p>docker镜像比较方便部署，而且可以保证运行环境的一致性。可以部署多个不同docker镜像，暴露不同的端口。</p>
-<ol>
-<li>nginx配置    <pre><code class="bash">cd /etc/nginx/sites-available
+<h3 id="nginx配置"><a href="#nginx配置" class="headerlink" title="nginx配置"></a>nginx配置</h3><pre><code class="bash">cd /etc/nginx/sites-available
 sudo vi default
 </code></pre>
-其实就是写两个配置，都监听80端口，然后转发流量到相应端口。</li>
-</ol>
+<p>其实就是写两个配置，都监听80端口，然后转发流量到相应端口。</p>
 <pre><code class="json">server {
   listen 80;
   server_name domain-eg1.com;
@@ -141,12 +136,10 @@ server {
   }
 }
 </code></pre>
-<ol>
-<li>重启nginx（或者重新加载配置）<pre><code class="bash">sudo /etc/init.d/nginx stop
+<h3 id="重启nginx（或者重新加载配置）"><a href="#重启nginx（或者重新加载配置）" class="headerlink" title="重启nginx（或者重新加载配置）"></a>重启nginx（或者重新加载配置）</h3><pre><code class="bash">sudo /etc/init.d/nginx stop
 sudo /etc/init.d/nginx start
 </code></pre>
-或者用 <code>sudo nginx -s reload</code> 更平滑地切换配置。</li>
-</ol>
+<p>或者用 <code>sudo nginx -s reload</code> 更平滑地切换配置。</p>
 <p>这样，访问 domain-eg1.com 的请求将转发到端口4000， 访问domain-eg2.com 的请求将转发到端口5000，由不同的应用进行响应处理。</p>
   
     </div> 
