@@ -128,7 +128,7 @@
 <p>适用情况：居中元素宽度已知(transform可以不用知道元素宽度)；不要求现代浏览器    </p>
 </blockquote>
 <p>先使子元素绝对定位，向某个方向偏移容器宽度的一半，再设置子元素反方向的margin为子元素的一半宽度。<br>代码和结果如下。</p>
-<script async src="//jsrun.net/P6gKp/embed/html,css,result/light/"></script>
+<script async src="//jsfiddle.net/voezy/3u4efq2d/1/embed/html,css,result/"></script>
 
 <p>其中，可以将margin-left改成transform的方式，效果相同。但这时候就要求浏览器的支持了。</p>
 <pre><code>transform: translate(-50%, 0);
@@ -138,7 +138,7 @@
 <p>适用情况：居中元素宽度已知或未知, 多个元素水平居中； 不要求现代浏览器</p>
 </blockquote>
 <p>把居中元素设置为行内(块)元素，容器设置文字居中分布，就可以将行内元素居中显示。</p>
-<script async src="//jsrun.net/s6gKp/embed/html,css,result/light/"></script>
+<script async src="//jsfiddle.net/voezy/qk3mrwL7/embed/html,css,result/"></script>
 
 <hr>
 <h4 id="弹性盒子-flex"><a href="#弹性盒子-flex" class="headerlink" title="弹性盒子(flex)"></a>弹性盒子(flex)</h4><blockquote>
@@ -147,21 +147,21 @@
 <p>即 <code>display: flex;</code> ，并且设置子元素的水平分布方式。与一般的盒子模型有很多差异。用它来使元素水平居中比较简单，而且还可以居中多个元素。但是桌面浏览器的兼容性也是一个问题，尤其是IE要求10+。</p>
 <p>要注意的是，如果要水平居中的子元素如果未设置高度，那么它的高度将被拉伸到与容器元素高度相等。再设置一个垂直方向的对齐方式为center就可以解决。</p>
 <p>上代码和结果：</p>
-<script async src="//jsrun.net/E6gKp/embed/html,css,result/light/"></script>
+<script async src="//jsfiddle.net/voezy/hf1rm2ck/embed/html,css,result/"></script>
 
 <hr>
 <h3 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h3><h4 id="行高法"><a href="#行高法" class="headerlink" title="行高法"></a>行高法</h4><blockquote>
 <p>适用情况: 行内元素，单行，容器元素高度已知; 不要求现代浏览器      </p>
 </blockquote>
 <p>行高设为容器元素本身的高度，即可使其中的单行行内元素垂直居中。</p>
-<script async src="//jsrun.net/76gKp/embed/html,css,result/light/"></script>
+<script async src="//jsfiddle.net/voezy/qyv2rge9/embed/html,css,result/"></script>
 
 <hr>
 <h4 id="上下padding"><a href="#上下padding" class="headerlink" title="上下padding"></a>上下padding</h4><blockquote>
 <p>适用情况: 行内元素, 单行或多行；不要求现代浏览器</p>
 </blockquote>
 <p>容器高度未设置，上下padding设为相等的值，即可将其中的行内元素垂直居中。</p>
-<script async src="//jsrun.net/c6gKp/embed/html,css,result/light/"></script>
+<script async src="//jsfiddle.net/voezy/y1unv3ex/embed/html,css,result/"></script>
 
 <hr>
 <h4 id="绝对定位-margin-或transform-1"><a href="#绝对定位-margin-或transform-1" class="headerlink" title="绝对定位 + margin(或transform)"></a>绝对定位 + margin(或transform)</h4><p>与水平居中时的情况和使用方法一样。</p>
@@ -171,14 +171,14 @@
 </blockquote>
 <p>这个是将容器元素的显示方式设为table-cell，再设置垂直方向的对齐方式为middle即可。</p>
 <p>又或者将容器元素的显示方式设置为table，需要垂直居中的元素设置为 <code>display: table-cell</code>, 并且 <code>vertical-align: middle;</code>。</p>
-<script async src="//jsrun.net/d6gKp/embed/html,css,result/light/"></script>
+<script async src="//jsfiddle.net/voezy/86buzxyv/embed/"></script>
 
 <hr>
 <h4 id="弹性盒子"><a href="#弹性盒子" class="headerlink" title="弹性盒子"></a>弹性盒子</h4><blockquote>
 <p>适用情况: 要求现代浏览器(IE10+)    </p>
 </blockquote>
 <p>行内元素和块级元素垂直居中都适用。与水平居中时的情况和使用方法类似，区别是设置垂直方向元素对齐方式为center。</p>
-<script async src="//jsrun.net/F6gKp/embed/html,css,result/light/"></script>
+<script async src="//jsfiddle.net/voezy/azmtxk9v/embed/html,css,result/"></script>
 
 <h3 id="水平垂直居中"><a href="#水平垂直居中" class="headerlink" title="水平垂直居中"></a>水平垂直居中</h3><h4 id="弹性盒子-1"><a href="#弹性盒子-1" class="headerlink" title="弹性盒子"></a>弹性盒子</h4><blockquote>
 <p>适用情况：要求现代浏览器     </p>
