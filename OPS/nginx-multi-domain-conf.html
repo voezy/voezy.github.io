@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="author" content="voezy">
     <meta name="description" itemprop="description" content="">
-    <meta name="keywords" content="wind,lonezj">
+    <meta name="keywords" content="wind,lonezj,nginx">
 
     <!-- Page Title -->
     
-        <title>Archive | Voezy</title>
+        <title>单服务器部署多网站(nginx配置多域名) | Voezy</title>
     
     <link rel="icon" href="/img/avatar.png">
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
@@ -58,8 +58,10 @@
     <div class="header-title-wrapper">
         <!-- Page Title -->
         <p class="header-title">
-              
-                Voezy
+             
+                
+                    单服务器部署多网站(nginx配置多域名)
+                
             
         </p>  
     </div>    
@@ -79,11 +81,7 @@
 
                 
                     <span>
-                        <a class="header-btn" href="/about" title="About"><i class="fa fa-user-circle-o"></i></a>
-                    </span>
-                
-                    <span>
-                        <a class="header-btn" href="/gallery" title="Gallery"><i class="fa fa-camera-retro"></i></a>
+                        <a class="catalog-btn header-btn"><i class="fa fa-list-ul"></i></a>
                     </span>
                 
             
@@ -93,80 +91,113 @@
 
             <!-- Main -->
             <main>
-                <!-- Archive -->
-<div class="archive-wrapper">
+                <article class="post-wrapper">
     
-    <div class="archive-block">
-        <!-- Post Title -->
-        <a href="/cyber/Hakintosh-AsusF454L-I5-5200U-HD5500.html" title="华硕F454L安装黑苹果简单记录(硬件参考：i5-5200u，hd5500)">
-            <span class="archive-post-title">华硕F454L安装黑苹果简单记录(硬件参考：i5-5200u，hd5500)</span>
-        </a>
 
-        <!-- Date And Categories -->
-        <div>
-            <span class="archive-post-date">2017-03-28</span>
-            <span class="archive-categories">
-                <a class="archive-post-category-link" href="/categories/cyber/">赛博朋克</a>
-            </span>
+    
+        <!-- Article Catalog -->
+        <div class="catalog-dropdown col-xs-12 col-sm-12">
+            
         </div>
-    </div>
     
-    <div class="archive-block">
-        <!-- Post Title -->
-        <a href="/cyber/multi-end-hexo-blog-posting.html" title="Hexo多终端(系统)同步撰写博客——从windows到linux">
-            <span class="archive-post-title">Hexo多终端(系统)同步撰写博客——从windows到linux</span>
-        </a>
 
-        <!-- Date And Categories -->
-        <div>
-            <span class="archive-post-date">2017-02-25</span>
-            <span class="archive-categories">
-                <a class="archive-post-category-link" href="/categories/cyber/">赛博朋克</a>
-            </span>
-        </div>
-    </div>
     
-    <div class="archive-block">
-        <!-- Post Title -->
-        <a href="/cyber/github-pages-Hexo-blog-Windows.html" title="利用github pages 和Hexo搭建博客（Windows环境）">
-            <span class="archive-post-title">利用github pages 和Hexo搭建博客（Windows环境）</span>
-        </a>
-
-        <!-- Date And Categories -->
-        <div>
-            <span class="archive-post-date">2017-02-08</span>
-            <span class="archive-categories">
-                <a class="archive-post-category-link" href="/categories/cyber/">赛博朋克</a>
-            </span>
-        </div>
-    </div>
-    
-    <div class="archive-block">
-        <!-- Post Title -->
-        <a href="/movie/lolita-dream-selfsaving.html" title="《洛丽塔》">
-            <span class="archive-post-title">《洛丽塔》</span>
-        </a>
-
-        <!-- Date And Categories -->
-        <div>
-            <span class="archive-post-date">2017-02-08</span>
-            <span class="archive-categories">
-                <a class="archive-post-category-link" href="/categories/movie/">影视</a>
-            </span>
-        </div>
-    </div>
-    
-</div>
-
-<!-- Pagination -->
-<div class="pagination-wrapper">
-    <ul class="pagination-btn">
+        <!--For now, Lightbox Only Show in Post Layout -->
         
-            <li class="previous"><a href="/archives/page/3/"> <i class="fa fa-angle-left "></i> </a></li>
+
         
         
-    </ul>
-</div>
+    
+
+    
+
+    <!-- Article Content -->
+    <div class="post-content">
+        <p>总有些稀奇古怪的东西想放到主机挂着。比如想挂两个小站到主机。</p>
+<ol>
+<li>准备好多个网站应用和域名    </li>
+</ol>
+<p>假设 网站(应用) 1 的本地端口是4000，想要配置域名 <code>domain-eg1.com</code>；网站2 的本地端口是5000，想要配置域名 <code>domain-eg2.com</code>。    </p>
+<p>docker镜像比较方便部署，而且可以保证运行环境的一致性。可以部署多个不同docker镜像，暴露不同的端口。</p>
+<ol>
+<li>nginx配置    <pre><code class="bash">cd /etc/nginx/sites-available
+sudo vi default
+</code></pre>
+其实就是写两个配置，都监听80端口，然后转发流量到相应端口。</li>
+</ol>
+<pre><code class="json">server {
+  listen 80;
+  server_name domain-eg1.com;
+  location / {
+    proxy_pass http://127.0.0.1:4000;
+  }
+}
+
+server {
+  listen 80;
+  server_name domain-eg2.com;
+  location / {
+    proxy_pass http://127.0.0.1:5000;
+  }
+}
+</code></pre>
+<ol>
+<li>重启nginx（或者重新加载配置）<pre><code class="bash">sudo /etc/init.d/nginx stop
+sudo /etc/init.d/nginx start
+</code></pre>
+或者用 <code>sudo nginx -s reload</code> 更平滑地切换配置。</li>
+</ol>
+<p>这样，访问 domain-eg1.com 的请求将转发到端口4000， 访问domain-eg2.com 的请求将转发到端口5000，由不同的应用进行响应处理。</p>
+  
+    </div> 
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+
+    <div class="post-info-wrapper">
+            
+                    <!-- Post Info -->
+                    <p class="post-date">2018-04-21</p>
+                    
+                    
+                        <p class="post-info-categories">
+                            <a class="post-category-link" href="/categories/OPS/">OPS</a>
+                        </p>
+                    
+
+                    
+            
+    </div>
+</article>
+
+
+    
+    <!-- Comments -->
+    <div class="post-comment-wrapper">
+        
+    <!-- Livere -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjA4Mi84NjQ2">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+    
+           if (typeof LivereTower === 'function') { return; }
+    
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+    
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+    </div>
+    
+
             </main>
 
             <!-- 'To Top' Btn-->

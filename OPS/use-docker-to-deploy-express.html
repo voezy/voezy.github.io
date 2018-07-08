@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+    <!-- Head -->
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="voezy">
+    <meta name="description" itemprop="description" content="">
+    <meta name="keywords" content="wind,lonezj,nginx">
+
+    <!-- Page Title -->
+    
+        <title>利用docker部署express应用 | Voezy</title>
+    
+    <link rel="icon" href="/img/avatar.png">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    
+    <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    
+        <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-115976686-1', 'auto');ga('send', 'pageview');
+</script>
+    
+    <style>
+        .deactiveColor{
+            color: #37474f;
+        }
+        .activeColor{
+            color: #006064;
+        }
+        a:hover{
+            color: #006064;
+        }
+        .header-btn{
+            color: #37474f;
+        }
+        
+        .post-content img{
+            margin: 50px auto;
+        }
+        
+    </style>
+</head>
+    <body>
+        <div class="container">
+
+            <!-- Top Anchor -->
+            <div id="top"></div>
+
+            <!-- Header -->
+            <header class="header-wrapper">
+    <div class="header-title-wrapper">
+        <!-- Page Title -->
+        <p class="header-title">
+             
+                
+                    利用docker部署express应用
+                
+            
+        </p>  
+    </div>    
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+    
+    <div class="header-detail">
+        <!-- Header Button -->
+        <div class="header-btn-wrapper">
+            
+                <span>
+                    <a class="home-btn header-btn" href="/" title="homepage"><i class="fa fa-home"></i></a>
+                </span>
+
+                
+                    <span>
+                        <a class="catalog-btn header-btn"><i class="fa fa-list-ul"></i></a>
+                    </span>
+                
+            
+        </div>
+    </div>
+</header>
+
+            <!-- Main -->
+            <main>
+                <article class="post-wrapper">
+    
+
+    
+        <!-- Article Catalog -->
+        <div class="catalog-dropdown col-xs-12 col-sm-12">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装docker"><span class="toc-number">1.</span> <span class="toc-text">安装docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建express应用"><span class="toc-number">2.</span> <span class="toc-text">创建express应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#绑定docker账户并上传镜像"><span class="toc-number">3.</span> <span class="toc-text">绑定docker账户并上传镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务器中安装docker并拉取镜像进行部署"><span class="toc-number">4.</span> <span class="toc-text">服务器中安装docker并拉取镜像进行部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nginx代理express"><span class="toc-number">5.</span> <span class="toc-text">nginx代理express</span></a></li></ol>
+        </div>
+    
+
+    
+        <!--For now, Lightbox Only Show in Post Layout -->
+        
+
+        
+        
+    
+
+    
+
+    <!-- Article Content -->
+    <div class="post-content">
+        <h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><p>在win 10环境下使用时，试了三个版本，首先是Docker for Windows Installer和InstallDocker.msi都没有安装成功，前者只能在专业版以上的win10系统才能安装。只有DockerToolbox.exe才适用于我的家庭版 win10，下载链接：<a href="https://docs.docker.com/toolbox/overview/#ready-to-get-started" target="_blank" rel="noopener">ready-to-get-started</a>。    </p>
+<p>然后选择默认选项进行安装，发现它把git卸载又重装了一遍，所以如果已经安装了git window客户端，应该可以在默认选项中取消勾选git, 不用再重装git了。    </p>
+<p>卡在检测已创建实例那里比较久，想拷贝一下查查为什么，结果ctrl+c好像直接使它取消了，然后就run下去了。。或者也是刚好处理完的时机？    </p>
+<p>最后就是显示了docker的字符logo，背着箱子的鲸。    </p>
+<p>输入<code>docker run hello-world</code>运行一个实例来测试docker是否生效。如果看到成功运行的提示那么就说明docker正常运行了。    </p>
+<h2 id="创建express应用"><a href="#创建express应用" class="headerlink" title="创建express应用"></a>创建express应用</h2><p>确保 express 应用在开发环境测试可以正常运行的情况下，在项目根目录加入文件 <code>Dockerfile</code>，这个文件包含了用于创建docker镜像的命令。</p>
+<pre><code>FROM registry.docker-cn.com/library/node:8.11
+MAINTAINER voezy
+ADD . /app/
+WORKDIR /app
+RUN npm install
+EXPOSE 3000
+CMD [ &quot;npm&quot;, &quot;start&quot;]
+</code></pre><p>第一句是基于哪个镜像，这里用了docker-cn的加速镜像，因为官方在国外的镜像有时候实在太慢。    </p>
+<p>第二句指明了维护者。    </p>
+<p>第三句创建文件 /app。    </p>
+<p>第四句指明工作目录位于新建的app。   </p>
+<p>RUN后面的命令用于在镜像中安装这个express应用的依赖。   </p>
+<p>EXPOSE指定要暴露的端口。   </p>
+<p>最后一句是这个express应用的启动命令。    </p>
+<p>输入命令进行构建：<code>docker build -t netease-music-site-express .</code>，不能少了最后的点，这个点表示将当前目录所有文件复制到镜像中。</p>
+<p>然后输入命令：<code>docker run -d -p 9000:3000 netease-music-site-express</code>，就可以打开 <code>localhost:9000</code> 查看效果了。要注意的是，如果是windows环境，因为docker是基于linux核心的，所以这个镜像应用其实是运行在一个虚拟机中的，该虚拟机的ip也就是docker初始化完成时提示的ip。所以windows下打开 <code>192.168.99.100:9000</code> 查看效果。</p>
+<h2 id="绑定docker账户并上传镜像"><a href="#绑定docker账户并上传镜像" class="headerlink" title="绑定docker账户并上传镜像"></a>绑定docker账户并上传镜像</h2><p>到 <code>https://hub.docker.com/</code> 注册账户。    </p>
+<p>在 docker 命令行中输入 <code>docker login</code>    </p>
+<p>然后输入用户名和密码，就登陆成功了。    </p>
+<p>给镜像添加tag：    </p>
+<pre><code>docker tag netease-music-site-express voezy/netease-music-site-express
+</code></pre><p>然后推送镜像到docker hub：    </p>
+<p><code>docker push voezy/netease-music-site-express</code>    </p>
+<p>推送成功后，默认似乎是公开的。    </p>
+<h2 id="服务器中安装docker并拉取镜像进行部署"><a href="#服务器中安装docker并拉取镜像进行部署" class="headerlink" title="服务器中安装docker并拉取镜像进行部署"></a>服务器中安装docker并拉取镜像进行部署</h2><p>ssh 登陆到服务器，输入以下命令进行docker的安装：     </p>
+<p><code>curl https://releases.rancher.com/install-docker/17.12.sh | sh</code>   </p>
+<p>安装完成后，输入<code>docker login</code>进行登陆，如果是自己的非公开镜像，应该是要登陆才能下载的。</p>
+<p>然后输入<code>sudo docker pull voezy/netease-music-site-express</code> 拉取镜像。</p>
+<p>镜像下载完毕后，输入命令运行镜像：</p>
+<pre><code>sudo docker run -d -p 9000:3000 --restart=always voezy/netease-music-site-express
+</code></pre><p><code>--restart=always</code> 使镜像应用中断时自动重启。也许可以部分代替pm2的功能。</p>
+<p>这样子，在浏览器中打开 <code>主机ip:9000</code> 应该可以看到express应用运行成功了。</p>
+<h2 id="nginx代理express"><a href="#nginx代理express" class="headerlink" title="nginx代理express"></a>nginx代理express</h2><p>安装nginx：</p>
+<pre><code>sudo apt-get install nginx
+</code></pre><p>安装完毕后，修改nginx的配置文件。    </p>
+<pre><code>cd /etc/nginx/sites-available
+</code></pre><p>然后输入命令进行编辑：</p>
+<pre><code>sudo vi default
+</code></pre><p>可以看到有许多默认的配置，如果觉得有必要，可以把默认配置文件备份一下。    </p>
+<p>删除旧的配置，新的配置如下：</p>
+<pre><code class="json">server {
+  listen 80;
+  server_name example.com;
+  location / {
+    proxy_pass http://127.0.0.1:9000;
+  }
+}
+</code></pre>
+<p>访问 example.com 时，nginx会把所有流量转发到本机的9000端口，也就是方才docker镜像中express应用所占用的端口，所以这个域名的所有动作都交给这个 express 应用处理。</p>
+<p>保存后，可以用命令 <code>sudo nginx -t</code> 来检查配置文件有没有错误。</p>
+<p>重启nginx：</p>
+<pre><code>sudo /etc/init.d/nginx stop
+sudo /etc/init.d/nginx start
+</code></pre><p>或者用 <code>sudo nginx -s reload</code>。</p>
+<p>开机自启nginx:</p>
+<pre><code>systemctl start nginx
+systemctl enable nginx
+</code></pre><p>开机自启docker</p>
+<pre><code>sudo systemctl enable docker
+sudo usermod -aG docker 用户名
+</code></pre>  
+    </div> 
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+
+    <div class="post-info-wrapper">
+            
+                    <!-- Post Info -->
+                    <p class="post-date">2018-04-20</p>
+                    
+                    
+                        <p class="post-info-categories">
+                            <a class="post-category-link" href="/categories/OPS/">OPS</a>
+                        </p>
+                    
+
+                    
+            
+    </div>
+</article>
+
+
+    
+    <!-- Comments -->
+    <div class="post-comment-wrapper">
+        
+    <!-- Livere -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjA4Mi84NjQ2">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+    
+           if (typeof LivereTower === 'function') { return; }
+    
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+    
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+    </div>
+    
+
+            </main>
+
+            <!-- 'To Top' Btn-->
+            
+                <div id="to-top">
+    <a href="#top" class="toTop">
+        <i class="fa fa-pagelines"></i>
+    </a>
+</div>
+            
+
+            <!-- Footer -->
+            
+                <footer class="footer-wrapper col-xs-12 col-sm-12">
+    <div class="footer-banner-wrapper">
+        <p class="footer-banner">Powered by <a href="https://hexo.io/" title="Hexo">Hexo</a></p>
+        <P class="footer-banner">Theme <a href="https://github.com/Lonezj/hexo-theme-wind" title="Wind">wind</a></P>
+    </div>
+</footer>
+            
+        </div>
+
+        <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+        <link rel="stylesheet" href="/css/google-prettify-monokai.css" type="text/css">
+        <script src="//cdn.bootcss.com/prettify/r298/prettify.min.js" type="text/javascript"></script>
+    </body>
+</html>

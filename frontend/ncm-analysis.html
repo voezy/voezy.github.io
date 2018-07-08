@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+    <!-- Head -->
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="voezy">
+    <meta name="description" itemprop="description" content="">
+    <meta name="keywords" content="wind,lonezj">
+
+    <!-- Page Title -->
+    
+        <title>管中窥豹-某云音乐官网页面结构粗浅分析 | Voezy</title>
+    
+    <link rel="icon" href="/img/avatar.png">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    
+    <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    
+        <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-115976686-1', 'auto');ga('send', 'pageview');
+</script>
+    
+    <style>
+        .deactiveColor{
+            color: #37474f;
+        }
+        .activeColor{
+            color: #006064;
+        }
+        a:hover{
+            color: #006064;
+        }
+        .header-btn{
+            color: #37474f;
+        }
+        
+        .post-content img{
+            margin: 50px auto;
+        }
+        
+    </style>
+</head>
+    <body>
+        <div class="container">
+
+            <!-- Top Anchor -->
+            <div id="top"></div>
+
+            <!-- Header -->
+            <header class="header-wrapper">
+    <div class="header-title-wrapper">
+        <!-- Page Title -->
+        <p class="header-title">
+             
+                
+                    管中窥豹-某云音乐官网页面结构粗浅分析
+                
+            
+        </p>  
+    </div>    
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+    
+    <div class="header-detail">
+        <!-- Header Button -->
+        <div class="header-btn-wrapper">
+            
+                <span>
+                    <a class="home-btn header-btn" href="/" title="homepage"><i class="fa fa-home"></i></a>
+                </span>
+
+                
+                    <span>
+                        <a class="catalog-btn header-btn"><i class="fa fa-list-ul"></i></a>
+                    </span>
+                
+            
+        </div>
+    </div>
+</header>
+
+            <!-- Main -->
+            <main>
+                <article class="post-wrapper">
+    
+
+    
+        <!-- Article Catalog -->
+        <div class="catalog-dropdown col-xs-12 col-sm-12">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前期分析"><span class="toc-number">1.</span> <span class="toc-text">前期分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题"><span class="toc-number">2.</span> <span class="toc-text">问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#详细分析"><span class="toc-number">3.</span> <span class="toc-text">详细分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
+        </div>
+    
+
+    
+        <!--For now, Lightbox Only Show in Post Layout -->
+        
+
+        
+        
+    
+
+    
+
+    <!-- Article Content -->
+    <div class="post-content">
+        <h2 id="前期分析"><a href="#前期分析" class="headerlink" title="前期分析"></a>前期分析</h2><p>1.注意到，页面下方的播放条是固定的，就算url改变，也可以锁定在下方且保持播放状态。    </p>
+<p>查看网页源码，发现运用了 iframe 标签。顶部的导航栏和底部的播放器应该是在外层页面中的。然后，从轮播图到底部的网站信息栏，都是在另一个页面中的，在这个外层页面中通过iframe标签引用过来。    </p>
+<p>至于如何做到地址栏改变而不刷新页面，查看源码发现应该是应用了修改 window.location.hash 会改变浏览器地址栏但不刷新页面这一特性，源码中也可以看到他们用了github上的一段js，经过查找发现是一个几年前的开源js库（最近一次提交时间是5年前），就是github用户 blixt 的 js-hash。初步猜测应该是点击某个链接会将内容呈现在iframe中，这样整体页面不会刷新，仅将iframe指向的url修改了，而播放器可以保持播放状态，就达到了目的。</p>
+<p>最后仿了一下，见<a href="http://nesmusic.voezy.com/" target="_blank" rel="noopener">低仿某云音乐</a>。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>1.为什么要给整个文档添加事件监听，而不是给 a 标签添加。而当判断点击事件目标或者源不是a标签时，为什么要 <code>_el = _el.parentNode;</code>。    </p>
+<p>2.为什么页面中的代码都没有调用Hash.go()    </p>
+<p>而根据页面中的代码，_onHashChange() 中的</p>
+<pre><code class="javascript">if (typeof window.onHashChange == &#39;function&#39;) {
+    window.onHashChange(_hash);
+}
+</code></pre>
+<p>似乎还不能直接使用 <code>window.onHashChange(newHash)</code> 来改变地址栏，而且，也没有看见它调用 <code>refreshIFrame()</code>，那么它是怎么做到改变地址栏、刷新 iframe 的?    </p>
+<p>页面中的js只是调用了 <code>top.GDispatcher.dispatch(_url, _replace)</code>，也没有添加 ‘#’ 的操作，如果链接中没有 ‘#’ 的话，改变地址栏时不会自动带上’#’。    </p>
+<p>而搜索 ‘#’ 发现是在 <code>_onHashChange(_hash)</code> 中有类似 <code>_url = _hash.replace(&#39;/m/&#39;, &#39;/#/&#39;)</code> 的操作，也是在 _onHashChange(_hash)中才有刷新iframe、疑似用 window.onHashChange(_hash) 改变地址栏这样的操作。    </p>
+<p>页面中还加载了几个外部js文件，猜想应该是在这些js中进行了相关的调用。比如调用 refreshIFrame(_url)，然后就会调用 _onHashChange(_url)，然后就是刷新iframe、更改地址栏。当然可能还有做一些步骤才能使用 _onHashChange中() 最后部分的 window.onHashChange(_hash);     </p>
+<p>尝试在各个外部脚本中搜索refreshIFrame，于是在首页的外层文档页面加载的脚本pt_frame_index.js中，发现了<br><code>return GDispatcher.refreshIFrame(d4h.href)</code> 这样的语句，基本可以确定是在这个js中进行刷新iframe、改变地址栏这个操作了。</p>
+<h2 id="详细分析"><a href="#详细分析" class="headerlink" title="详细分析"></a>详细分析</h2><p>首先，无论着陆页面的链接是什么，暂撇开各种变量和函数定义，页面首先会判断是否为移动端、是否是特定(活动、邮箱音乐盒)页面。如果是，那么就跳转移动端或者不进行处理。如果不是，那么外层文档页面就会使用 <code>location.href = &#39;/#&#39; + GUtil.getPathAndHash(location.href)</code>，来将地址栏调整为 <code>根路径 + &#39;/#&#39; + path</code>这种形式。其实就是在根路径后设了个hash。    </p>
+<p>网易云官网上其实所有的frame都是套在同一个外层文档页面中，这个外层文档页面的网址就是 ‘music.163.com’。<br>而内层框架加载的url则类似于 <code>&#39;http://music.163.com/friend&#39;</code> 或者 <code>&#39;http://music.163.com/msg/#/at&#39;</code>。这个除了从逻辑上可以猜出来，也可以用网页源代码来对比得出结论，在各个页面查看源代码然后拿去比对，会发现都是同样的文本。    </p>
+<p>那么地址栏上为什么地址显示的是 （第一种）<code>&#39;http://music.163.com/#/friend&#39;</code> 或者 （第二种）<code>&#39;http://music.163.com/#/msg/m/at&#39;</code> 这样?    </p>
+<p>前面说，全部内部iframe都被套在一个url为 <code>&#39;music.163.com&#39;</code> 的外层文档页面中，而且要做到点击页面上的链接，不刷新页面，使得进度条固定、音乐得以保持播放。    </p>
+<p>前期分析已经说明这个网页是通过修改 <code>location.hash</code> 来改变地址栏而不刷新页面，那么怎么用? 其实就是将 <code>&#39;/#&#39; + 目标路径替换到原来的 location.href</code>，这样是不会刷新页面的，相当于仅改变了hash。   </p>
+<p>比如，在首页设置 <code>location.href = &#39;/#&#39;</code>，那么其实还是停留在网站的根路径也就是这个首页，只是改了下hash，所以不刷新。    </p>
+<p>同理，也是在这个首页，(F12打开控制台)设置 <code>location.href = &#39;/#&#39; + &#39;/friend&#39;</code>，会发现，地址栏变成了 <code>&#39;http://music.163.com/#/friend&#39;</code>，音乐没有停止播放(页面不刷新)，而中间的主体内容变成了 “朋友” 页的内容。<br>这就是第一种地址栏的由来。    </p>
+<p>第二种地址栏，就是将路径中的 ‘/#’ (包括紧随网站根路径的’/#’) 替换为 ‘/m’，然后前面加上 ‘/#’ 再赋给 location.href。所以两种地址栏就是这样来的。    </p>
+<p>地址栏上根路径之后的第一个 ‘/#’ 就是为了改hash值而存在的。无论后面接的是什么，其实都是停留在 ‘music.163.com’ 这个页面，内容的变动其实只是iframe的刷新而已。    </p>
+<p>那么为什么有些页面要把内部iframe中加载的链接中的 ‘/#’ 替换成 ‘/m’ 再放到地址栏呢，我猜想应该是为了区分外层文档页面和内部iframe的链接逻辑才这样做的。    </p>
+<p>比如地址栏的 <code>&#39;http://music.163.com/#/msg/m/at&#39;</code> 和内部 iframe 加载的 <code>&#39;http://music.163.com/msg/#/at&#39;</code>, 前者是为了改变hash来指明页面内容、表明是外层文档页面，后者是内部frame加载的链接。    </p>
+<p>但是，等等，进入到”我的音乐”页面，点击左侧”我的歌手”或者”我的MV”，发现内部iframe也是局部改变、没有刷新的。再看看”我的歌手”这个链接指向的地址 “<a href="http://music.163.com/my/#/music/artist&quot;，而&quot;我的MV&quot;的链接是" target="_blank" rel="noopener">http://music.163.com/my/#/music/artist&quot;，而&quot;我的MV&quot;的链接是</a> “<a href="http://music.163.com/my/#/music/mv&quot;，到这里，可以看出，这个内部iframe加载的&quot;我的音乐&quot;这个链接" target="_blank" rel="noopener">http://music.163.com/my/#/music/mv&quot;，到这里，可以看出，这个内部iframe加载的&quot;我的音乐&quot;这个链接</a> “<a href="http://music.163.com/my/&quot;，也会利用hash值的改变来局部更新自身这个iframe的页面内容。" target="_blank" rel="noopener">http://music.163.com/my/&quot;，也会利用hash值的改变来局部更新自身这个iframe的页面内容。</a>    </p>
+<p>页面中的内嵌脚本定义了 GDispatcher.refreshIFrame()，但是没有调用，说明页面加载的外部脚本有可能会调用这个函数来刷新内部iframe。    </p>
+<p>再往后，页面的正常浏览过程中，对a标签的点击事件进行拦截，调用自定义的处理函数，对于部分链接，会改变外层文档页面的hash值，以便于在iframe中刷新内容而不影响外层文档页面中音乐播放的状态。    </p>
+<p>在 pt_frame_index.js 中发现有给 window.onHashChange 赋值，是一个函数。所以应该是在这个 pt_frame_index.js 中定义了某些函数，这里猜测会根据location的hash值决定页面内容的刷新，但后面发现这样的猜测虽然不错，但也不完全对，其实整体是有个对外层文档页面的hash的监听，一旦变动就会调用_onHashChange()，刷新内部iframe。</p>
+<p>对于点击页面上的链接这个操作，来一个从头到尾比较详细的分析。</p>
+<p>首先，分析在首页点击头像-我的消息这个链接的处理过程。这个链接是 <a href="http://music.163.com/msg/#/at。触发" target="_blank" rel="noopener">http://music.163.com/msg/#/at。触发</a> _onAnchorClick(_event)，获得点击事件的元素_el之后，交由 dispatch2(_el.href) 来处理。然后又交给 GDispatcher.dispatch(_url, _replace) 来处理。然后得到 _ph = GUtil.getPathAndHash(_url)，也就是 _ph = ‘/msg/m/at’。因为 _replace 没有传参，所以直接 location.hash = _ph，也就是location.hash = ‘/msg/m/at’。hash值改变不会导致当前这个外部页面刷新，也就是说播放器什么的状态都会保持，只是改变了地址栏的显示而已，所以当前location.href = ‘<a href="http://music.163.com/#/msg/m/at&#39;。" target="_blank" rel="noopener">http://music.163.com/#/msg/m/at&#39;。</a>   </p>
+<p>分析点击iframe中一个链接之后的处理过程。拿’我的消息’中的’评论’做一个例子。链接是 <a href="http://music.163.com/msg/#/comment。点击它，触发事件监听器" target="_blank" rel="noopener">http://music.163.com/msg/#/comment。点击它，触发事件监听器</a> _onAnchorClick(_event)。_el 变量取得点击的目标。因为点击的是”评论”链接，所以_el是一个a标签。交由 location.dispatch2(_el.href)处理。然后 dispatch2 中又交给 top.GDispatcher.dispatch(_url, _replace) 处理，也就是最外层的GDispatcher.dispatch方法。在其中，通过GUtil.getPathAndHash(_url)来获得了路径_ph，也就是 _ph = ‘/msg/m/comment’。然后因为_replace没有传递过来，所以，直接location.hash = _ph。所以，此时最外层的location.hash就是  ‘/msg/m/comment’，地址栏就变成了 ‘<a href="http://music.163.com/#/msg/m/comment&#39;(&#39;#&#39;之后都是hash)。" target="_blank" rel="noopener">http://music.163.com/#/msg/m/comment&#39;(&#39;#&#39;之后都是hash)。</a>    </p>
+<p>这是地址栏变动的过程，那么，iframe内容的改变呢?    </p>
+<p>由于页面中的脚本都没有调用GDispatcher.refreshIFrame()的具体语句，要了解刷新iframe内容过程的话只能到丑陋的混淆过的pt_frame_index.js中，但是已经不想再看下去了。    </p>
+<p>不过，可以进行某些猜想，毕竟页面中清晰可见地定义了_onHashChange(_hash)，如果不是处理hash变动的话那就没意思了。而且，pt_frame_index.js中还有 window.onHashChange=this.Ze3x.f4j(this) 这一句，在控制台输入window.onHashChange也可以清楚知道这是个已定义的方法。    </p>
+<p>先猜想在首页点击’我的消息’之后的框架刷新过程。点击’我的消息’，事件源的a标签中的链接经过上述层层处理，使得location.hash发生改变，当前location.href 变成 ‘<a href="http://music.163.com/#/msg/m/at&#39;。pt_frame_index.js中定义了某些函数，使得浏览器检测到hash值的改变，将_hash" target="_blank" rel="noopener">http://music.163.com/#/msg/m/at&#39;。pt_frame_index.js中定义了某些函数，使得浏览器检测到hash值的改变，将_hash</a> = ‘/msg/m/at’ 传给了_onHashChange(_hash)。_onHashChange(_hash)的作用就要来了。根据_url = _hash.replace(‘/m/‘, ‘/#/‘)，_url为’/msg/#/at’， 然后给_url加协议和主机名，变成 _url = ‘<a href="http://music.163.com/msg/#/at&#39;。" target="_blank" rel="noopener">http://music.163.com/msg/#/at&#39;。</a>    </p>
+<p>然后，就是这句了：_iframe.contentWindow.location.replace(_url)。这个语句使得显示主题内容的内部iframe定位到了’<a href="http://music.163.com/msg&#39;，且有hash值&#39;/at&#39;，所以这个iframe整个的location.href" target="_blank" rel="noopener">http://music.163.com/msg&#39;，且有hash值&#39;/at&#39;，所以这个iframe整个的location.href</a> 为 ‘<a href="http://music.163.com/msg/#/at&#39;。注意到我们是从首页点击了头像-&#39;我的消息" target="_blank" rel="noopener">http://music.163.com/msg/#/at&#39;。注意到我们是从首页点击了头像-&#39;我的消息</a>‘ 触发这个过程的，所以iframe的location.href是从”<a href="http://music.163.com/discover&quot;(当然是在控制台输入g_iframe.contentWindow.location.href得到的啦)变成了&#39;http://music.163.com/msg/#/at&#39;，是url发生了改变，那么这个iframe是要刷新的，所以就定位到了" target="_blank" rel="noopener">http://music.163.com/discover&quot;(当然是在控制台输入g_iframe.contentWindow.location.href得到的啦)变成了&#39;http://music.163.com/msg/#/at&#39;，是url发生了改变，那么这个iframe是要刷新的，所以就定位到了</a> ‘我的消息-@我的’ 这个页面来了。但是，最外层文档页面的变化，只是从 ‘<a href="http://music.163.com/&#39;，到" target="_blank" rel="noopener">http://music.163.com/&#39;，到</a> ‘<a href="http://music.163.com/#/msg/m/at&#39;，得益于_onAnchorClick(" target="_blank" rel="noopener">http://music.163.com/#/msg/m/at&#39;，得益于_onAnchorClick(</a>) –&gt; dispatch2() –&gt; GDispatcher.dispatch() 的处理，仅仅改变了最外层页面的hash值，没有动整个页面的url。所以呈现出来的整体效果是点击 导航栏头像的 ‘我的消息’ - 保持播放状态 - 刷新iframe以显示 ‘我的消息’。然后，window.onHashChange(_hash)。    </p>
+<p>再猜想点击’我的消息’-‘评论’之后更新内容的过程。点击’评论’选项卡，location.hash改变了之后，在 pt_frame_index.js中，_hash = ‘/msg/m/comment’ 被传给了_onHashChange(_hash)。然后，因为_url = _hash.replace(‘/m/‘, ‘/#/‘)，所以，_url = ‘/msg/#/comment’，然后给_url加协议和主机名，变成 _url = ‘<a href="http://music.163.com/msg/#/comment&#39;。" target="_blank" rel="noopener">http://music.163.com/msg/#/comment&#39;。</a>    </p>
+<p>然后，就是 <code>_iframe.contentWindow.location.replace(_url)</code>。_iframe就是中间负责内容刷新的那个内部框架。因为一开始点击的就是 头像-我的消息，内部框架的url就定位到了<code>http://music.163.com/msg/#/at</code>，也就是刚打开我的消息时看到的 ‘@我的’ 那一个tab。所以呢，现在把内部框架从 <code>&#39;http://music.163.com/msg/#/at&#39;</code> 改成了 <code>&#39;http://music.163.com/msg/#/comment&#39;</code>，可以看到，这个iframe的href也只是hash值改变了而已，从’/at’ 变成了 ‘/comment’，这个内部框架也不会刷新的，只是根据hash的改变而局部改变了内容，也就是从显示 ‘@我的’ 到显示 ‘评论’，只刷新了右边部分。然后，window.onHashChange(_hash)。    </p>
+<p>到这里，还是有点怀疑自己的猜测，又搜寻了一些关于window.onHashChange的资料。看到好几年前的文章说到，主要有三种方法监听hash的变化并且调用方法来处理，使主页面与iframe之间得以”通讯”。一是用setInterval来定时检查hash，二是改变 iframe 的src、尺寸以触 发 iframe 中的 window.onresize事件来向iframe外单项传递信息，三是 “最大可能的使用”window.onhashchange 事件来监听 hash 的改变。(见<a href="http://www.cnblogs.com/fly-allblue/p/3387334.html" target="_blank" rel="noopener">window.onhashchange（监听 URL hash）</a>)。现在，由于新型浏览器的普及率越来越高，估计最后一种方法将是比较重要的一种，所以，具体用法可以click <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/onhashchange" target="_blank" rel="noopener">window.onhashchange</a>。    </p>
+<p>又想到这个网站上的外层文档页面<code>&lt;body&gt;</code>标签中引入的Hash.js，还有GDispatcher中那句Hash.init(_onHashChange)，好像就有点贯通的感觉了。Hash.js正是用了上面所说的几种方法来监听hash的变动并且调用Hash.init(cb)中的回调函数cb。所以，外层文档页面 <code>&#39;http://music.163.com/&#39;</code> 与内部iframe的互动，就是通过hash来完成的。点击外层文档页面的链接，会反映到hash值，hash值变动又触发_onHashChange()，iframe就会有所反应。点击iframe中的链接，会调用到外层文档页面的GDispatcher.dispatch()来处理，使地址栏发生改变，也就是使hash值改变，那么又会触发_onHashChange()，自然最终又会使变化体现在iframe中。    </p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>那么，整个页面的运行逻辑大体是，地址栏输入这个某音乐网站的任意一个链接，首先进行一些变量的定义，略过不表。特定网页不作处理。如果不是特定网页，就通过 location.href = ‘/#’ + GUtil.getPathAndHash(location.href)，将打开的这个url中域名之后的路径部分作为hash添加到根目录后面，也不会引起外层文档页面的刷新。如果打开了一个iframe才有可能使用的链接，也会将路径部分变成hash接到根路径之后，再赋给location.href，所以效果同样是打开了唯一的外层文档页面 <code>&#39;http://music.163.com/&#39;</code>。    </p>
+<p>然后是将hash.js的内容放进来，定义一些函数，再调用 Hash.init(_onHashChange) 来设置hash变动的处理函数。这里，如果第一次打开的是首页，那么hash值就为空，由于调用Hash.init()会自动调用一次_onHashChange(_hash)，当hash为空时，就会使用默认的_url = _default，也就是’/discover’，然后就是_iframe.contentWindow.location.replace(_url)，使得打开首页时，内部iframe加载的是 <code>&#39;http://music.163.com/discover&#39;</code>。如果是别的着陆链接，那就按照路径或者说hash来使iframe加载不同的链接啦。    </p>
+<p>至于运行的过程，就像上面所说，监听到a的点击事件，就会改变地址栏的hash(无论外层的还是iframe的a标签点击事件，都会调用外层的处理函数)。然后因为有了对hash的监听函数，这个监听函数_onHashChange()又会根据新_hash来刷新iframe的内容。    </p>
+<p>整个页面关于链接部分和框架内外联动部分内容的初始化、运行逻辑大概就是这样的啦。    </p>
+<p>到这里，既然hash值的改变会自动触发_onHashChange()，那么GDispatcher.refreshIFrame()的作用是什么? (refreshIFrame()中调用了_onHashChange())，我猜应该是在某些时期用于强制刷新iframe的。    </p>
+<p>当然，以上所有都只是实现框架内外联系的大体思路，除此之外还有很多很多的细节值得推敲(不然那经过压缩都还有好几百kb的js是哪儿来的？)，还有一个很重要的地方就是音乐资源的加载和播放等等这些东西没有探索到。</p>
+  
+    </div> 
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+
+    <div class="post-info-wrapper">
+            
+                    <!-- Post Info -->
+                    <p class="post-date">2018-04-09</p>
+                    
+                    
+                        <p class="post-info-categories">
+                            <a class="post-category-link" href="/categories/frontend/">frontend</a>
+                        </p>
+                    
+
+                    
+            
+    </div>
+</article>
+
+
+    
+    <!-- Comments -->
+    <div class="post-comment-wrapper">
+        
+    <!-- Livere -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjA4Mi84NjQ2">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+    
+           if (typeof LivereTower === 'function') { return; }
+    
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+    
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+    </div>
+    
+
+            </main>
+
+            <!-- 'To Top' Btn-->
+            
+                <div id="to-top">
+    <a href="#top" class="toTop">
+        <i class="fa fa-pagelines"></i>
+    </a>
+</div>
+            
+
+            <!-- Footer -->
+            
+                <footer class="footer-wrapper col-xs-12 col-sm-12">
+    <div class="footer-banner-wrapper">
+        <p class="footer-banner">Powered by <a href="https://hexo.io/" title="Hexo">Hexo</a></p>
+        <P class="footer-banner">Theme <a href="https://github.com/Lonezj/hexo-theme-wind" title="Wind">wind</a></P>
+    </div>
+</footer>
+            
+        </div>
+
+        <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+        <link rel="stylesheet" href="/css/google-prettify-monokai.css" type="text/css">
+        <script src="//cdn.bootcss.com/prettify/r298/prettify.min.js" type="text/javascript"></script>
+    </body>
+</html>
