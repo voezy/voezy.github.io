@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html>
+    <!-- Head -->
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="voezy">
+    <meta name="description" itemprop="description" content="">
+    <meta name="keywords" content="wind,lonezj">
+
+    <!-- Page Title -->
+    
+        <title>《JavaScript语言精粹》简要笔记 | Voezy</title>
+    
+    <link rel="icon" href="/img/avatar.png">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    
+    <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    
+        <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-115976686-1', 'auto');ga('send', 'pageview');
+</script>
+    
+    <style>
+        .deactiveColor{
+            color: #37474f;
+        }
+        .activeColor{
+            color: #006064;
+        }
+        a:hover{
+            color: #006064;
+        }
+        .header-btn{
+            color: #37474f;
+        }
+        
+        .post-content img{
+            margin: 50px auto;
+        }
+        
+    </style>
+</head>
+    <body>
+        <div class="container">
+
+            <!-- Top Anchor -->
+            <div id="top"></div>
+
+            <!-- Header -->
+            <header class="header-wrapper">
+    <div class="header-title-wrapper">
+        <!-- Page Title -->
+        <p class="header-title">
+             
+                
+                    《JavaScript语言精粹》简要笔记
+                
+            
+        </p>  
+    </div>    
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+    
+    <div class="header-detail">
+        <!-- Header Button -->
+        <div class="header-btn-wrapper">
+            
+                <span>
+                    <a class="home-btn header-btn" href="/" title="homepage"><i class="fa fa-home"></i></a>
+                </span>
+
+                
+                    <span>
+                        <a class="catalog-btn header-btn"><i class="fa fa-list-ul"></i></a>
+                    </span>
+                
+            
+        </div>
+    </div>
+</header>
+
+            <!-- Main -->
+            <main>
+                <article class="post-wrapper">
+    
+
+    
+        <!-- Article Catalog -->
+        <div class="catalog-dropdown col-xs-12 col-sm-12">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第二章-语法"><span class="toc-number">1.</span> <span class="toc-text">第二章 语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三章-对象"><span class="toc-number">2.</span> <span class="toc-text">第三章 对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四章-函数"><span class="toc-number">3.</span> <span class="toc-text">第四章 函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第五章-继承"><span class="toc-number">4.</span> <span class="toc-text">第五章 继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第六章-数组"><span class="toc-number">5.</span> <span class="toc-text">第六章 数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第七章-正则表达式"><span class="toc-number">6.</span> <span class="toc-text">第七章 正则表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第八章-方法"><span class="toc-number">7.</span> <span class="toc-text">第八章 方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第九章-代码风格"><span class="toc-number">8.</span> <span class="toc-text">第九章 代码风格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第十章-优美的特性"><span class="toc-number">9.</span> <span class="toc-text">第十章 优美的特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附录A-毒瘤"><span class="toc-number">10.</span> <span class="toc-text">附录A 毒瘤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附录B-糟粕"><span class="toc-number">11.</span> <span class="toc-text">附录B 糟粕</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附录C-JSLint"><span class="toc-number">12.</span> <span class="toc-text">附录C JSLint</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附录D-语法图"><span class="toc-number">13.</span> <span class="toc-text">附录D 语法图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附录E-JSON"><span class="toc-number">14.</span> <span class="toc-text">附录E JSON</span></a></li></ol>
+        </div>
+    
+
+    
+        <!--For now, Lightbox Only Show in Post Layout -->
+        
+
+        
+        
+    
+
+    
+
+    <!-- Article Content -->
+    <div class="post-content">
+        <hr>
+<h2 id="第二章-语法"><a href="#第二章-语法" class="headerlink" title="第二章 语法"></a>第二章 语法</h2><p>1.少用块注释    </p>
+<p>块注释中，像 ‘/<em>‘ 和 ‘</em>/‘ 这样的字符对也可能出现在正则表达式字面量中，所以对于被注释的代码来说不安全。    </p>
+<p>2.作者提倡用字母开头的标识符，提倡标识符只使用字母，数字和下划线。    </p>
+<p>其实有待商议吧，因为jQuery的美元符运用得很成功，也比较简便。美元符和下划线其实是可以用在开头的。还有些工具库是用下划线来作为标识符的。    </p>
+<p>3.字符串相等    </p>
+<p>包含相同字符且字符顺序相同的字符串对象被认为是相等的, ‘a’ + ‘b’ === ‘ab’</p>
+<p>4.代码块    </p>
+<p>Js的代码块不会创建新作用域，因此要把变量定义放在函数头部，而不是代码块中。    </p>
+<p>5.空字符串为false，但仅包含空格的字符串为true。    </p>
+<p>6.使用for…in枚举对象属性名时，应该使用object.hasOwnProperty(variable)来确定一个属性是该对象的成员，还是来自于原型链。    </p>
+<p>7.break语句可以指定一个标签来退出相应的语句。    </p>
+<hr>
+<h2 id="第三章-对象"><a href="#第三章-对象" class="headerlink" title="第三章 对象"></a>第三章 对象</h2><p>对象通过引用来传递，同一个对象不会被复制。    </p>
+<p>1.js具有原型链特性，允许对象继承另一个对象的属性，正确使用可以减少对象初始化的时间和内存。    </p>
+<p>2.对象属性    </p>
+<p>对象的属性名可以用一个符合命名规则的标识符来命名，也可以使用字符串。如果使用字符串来命名一个对象的属性，则不要求这个字符串要符合命名规则，但是在使用这个属性时不能使用’.’运算符，只能使用obj[‘属性名字符串’]的方法来使用。    </p>
+<p>3.使用’||’来设置默认值。使用’&amp;&amp;’来避免因从未定义的成员属性中取值而产生的TypeError异常，这时整个表达式的值将会是想要的值或者 undefined。</p>
+<p>4.所有通过对象字面量创建的对象都连接到 Object.prototype。    </p>
+<p>5.根据对象原型创建对象。    </p>
+<p>可以给Object原型添加一个create方法，可以依照参数中的对象，生成另一个对象。    </p>
+<p>对新对象的更新不会影响原对象(当然应该如此…)，原型只有在检索值的时候才会被用到，比如检索一个新对象中没有的属性时，会顺着原型链寻找这个属性，直到返回某个原型中的该属性值或者undefined。    </p>
+<p>原型关系是动态的，添加新属性到原型中会立刻对基于该原型创建的对象可见。    </p>
+<p>给Object增加一个新方法，它使用一个对象作为原型，创建新对象。    </p>
+<pre><code class="JavaScript">if (typeof Object.create!== &#39;function&#39;) {
+    Object.create= function(o) {
+        var f = function() {};
+        f.prototype = o;
+        return new f();
+    };
+}
+</code></pre>
+<p>似乎还有一种通过拷贝对象属性来生成新对象的方法，这样大概可以使原对象和新对象互不影响？    </p>
+<p>6.反射(检查对象属性)    </p>
+<p>原型链中所有属性都会产生返回值，所以在检索一个对象中自身具有的属性时，有两个方法：    </p>
+<p>(1)抛弃类型为”function”的属性。    </p>
+<p>(2)用hasOwnProperty检查该属性。这个方法不会检查原型链。    </p>
+<p>delete可以用来删除对象属性。    </p>
+<p>7.减少全局变量污染    </p>
+<p>只创建一个唯一的全局变量var MYAPP = {};    </p>
+<p>然后通过    </p>
+<p>MYAPP.val1 = {…}    </p>
+<p>MYAPP.val2 = {…}    </p>
+<p>这样的方式来定义变量。    </p>
+<p>这不是最好的方法, 后面还有更详尽的方法。</p>
+<hr>
+<h2 id="第四章-函数"><a href="#第四章-函数" class="headerlink" title="第四章 函数"></a>第四章 函数</h2><p>1.函数对象    </p>
+<p>对象字面量产生的对象连接到 Object.prototype；    </p>
+<p>函数对象连接到Function.prototype(该原型对象本身也连接到Object.prototype)    </p>
+<p>2.闭包    </p>
+<p>通过函数字面量(Function literal)创建的函数对象包含一个连接到外部上下文的连接，这就被称为闭包    </p>
+<p>3.附加参数    </p>
+<p>每个函数除了形参，还有this和arguments两个参数。this的值根据调用模式而定。    </p>
+<p>4.this的值    </p>
+<p>(1)方法调用模式    </p>
+<p>函数作为对象的一个属性，用’.’调用时，就是方法调用模式，这时this就相当于所属对象，可以对所属对象进行取值或修改。    </p>
+<p>(2)函数调用模式    </p>
+<p>函数不是一个对象的属性时，就是函数调用模式，此时this被绑定到全局对象。    </p>
+<p>比如：</p>
+<pre><code class="JavaScript">var obj = {
+  val: 1,
+  inci: function () {
+    console.log(&#39;inci this: &#39; + this);
+
+    function helper() {
+      console.log(&#39;helper this: &#39; + this);
+    }
+
+    helper();
+  }
+}
+
+obj.inci();
+</code></pre>
+<p>输出：    </p>
+<pre><code class="bash">mrldeMBP:frontend mrl$ node testfunction.js
+inci this: [object Object]
+helper this: [object global]
+</code></pre>
+<p>调用helper时，就是函数调用模式，绑定的是全局对象。    </p>
+<p>解决：    </p>
+<pre><code class="JavaScript">var obj = {
+  val: 1,
+  inci: function () {
+    console.log(&#39;inci this: &#39; + this);
+    var that = this;
+
+    function helper() {
+      console.log(&#39;helper this: &#39; + this);
+      console.log(&#39;helper that: &#39; + that);
+    }
+
+    helper();
+  }
+}
+
+obj.inci();
+</code></pre>
+<p>输出：    </p>
+<pre><code class="bash">mrldeMBP:frontend mrl$ node testfunction.js
+inci this: [object Object]
+helper this: [object global]
+helper that: [object Object]
+</code></pre>
+<p>(3)构造器调用模式    </p>
+<p>new 语句调用一个函数，将会以该函数为原型创建一个对象，此时，this会绑定到这个新创建的对象。    </p>
+<p>以此为目的创建的函数称为构造器函数，保存它的变量的名称应该采用大写格式，这样有利于区分构造器函数，因为如果调用构造器函数时不加上new可能会发生一些意外。    </p>
+<p>构造器函数有更好的风格可以采用，后面会说。    </p>
+<p>(4)apply调用模式    </p>
+<p>某函数.apply(另一个对象, [参数数组])    </p>
+<p>apply前一个参数用于指定this所绑定的对象，第二个参数是要调用的函数所接收的参数值数组。    </p>
+<p>其实，call方法也许原理也类似？不过，call方法第二个往后的参数不是参数值数组，而是分开写的参数。    </p>
+<p>apply方法可以直接把当前函数的arguments传过去？    </p>
+<p>5.参数    </p>
+<p>arguments 可以获取所有传递到当前函数的参数值，哪怕比定义的形参多出来的参数。arguments 并不是真正的数组对象，它不具有数组的方法。    </p>
+<p>6.异常捕获    </p>
+<p>抛出异常对象时，可以指定异常对象的属性，通常包括name和message，也可以包括其他属性。     </p>
+<pre><code>throw {
+  name: ’TypeError’,
+  message: ‘add needs numbers’
+}
+</code></pre><p>7.扩充类型的功能    </p>
+<p>可以用这种方法给原型扩充一个添加方法的方法：    </p>
+<pre><code class="JavaScript">Function.prototype.method = function (name, func) {
+  // 类库混用时，要确定没有该方法的时候才添加
+  if (!this.prototype[name]) {
+    this.prototype[name] = func;
+  }
+  return this;
+}
+</code></pre>
+<p>示例：<br>(1)为数字扩充一个取整方法    </p>
+<pre><code class="JavaScript">Function.prototype.method = function (name, func) {
+  if (!this.prototype[name]) {
+    this.prototype[name] = func;
+  }
+  return this;
+}
+
+Number.method(&#39;integer&#39;, function () {
+  return Math[this &lt; 0 ? &#39;ceil&#39; : &#39;floor&#39;](this);
+});
+
+var f1 = -1.22;
+var f2 = 1.33;
+
+console.log(f1.integer());
+console.log(f2.integer());
+</code></pre>
+<p>输出：</p>
+<pre><code class="bash">mrldeMBP:frontend mrl$ node testfunction
+-1
+1
+</code></pre>
+<p>(2)为字符串对象扩充一个去除首尾字符串的trim方法。    </p>
+<pre><code class="JavaScript">Function.prototype.method = function (name, func) {
+  if (!this.prototype[name]) {
+    this.prototype[name] = func;
+  }
+  return this;
+}
+
+String.method(&#39;trim&#39;, function () {
+  return this.replace(/^\s+|\s+$/g, &#39;&#39;);
+});
+
+var s1 = &#39;    A string.    &#39;;
+console.log(&#39;Original s1: &#39; + &#39;&quot;&#39; + s1 + &#39;&quot;&#39;);
+console.log(&#39;Trimed s1: &#39; + &#39;&quot;&#39; + s1.trim() + &#39;&quot;&#39;);
+</code></pre>
+<p>输出:</p>
+<pre><code class="bash">mrldeMBP:frontend mrl$ node testfunction
+Original s1: &quot;    A string.    &quot;
+Trimed s1: &quot;A string.&quot;
+mrldeMBP:frontend mrl$
+</code></pre>
+<p>8.递归    </p>
+<p>js没有尾递归优化，所以在某些深度递归可能会因为堆栈溢出而运行失败。    </p>
+<p>但可以自己创建带有尾递归优化的函数。    </p>
+<p>尾递归，在递归函数结束时返回自身调用的结果。    </p>
+<p>9.闭包    </p>
+<p>(1)更好的构造器    </p>
+<p>创建一个构造器，它返回的对象中只带有getXXX、setXXX等方法，避免将变量暴露在外，这样才更有意义。    </p>
+<p>(2)循环中的作用域    </p>
+<p>参考For循环中创建使用外部变量i的函数的糟糕例子。    </p>
+<p>正确的方法是避免在for循环中创建函数，在for以外创建函数，然后在循环中调用那个外部函数。    </p>
+<p>1)糟糕的例子：</p>
+<pre><code class="JavaScript">var testFor = function (nodes) {
+  for (var i = 0; i &lt; 3; i++) {
+    nodes[i].h = function () {
+      console.log(i);
+    }
+  }
+}
+
+nodes = [{}, {}, {}];
+
+testFor(nodes);
+
+for (var i = 0; i &lt; 3; i++) {
+  nodes[i].h();
+}
+</code></pre>
+<p>输出：</p>
+<pre><code>mrldeMBP:frontend mrl$ node testfunction
+3
+3
+3
+</code></pre><p>2)改良的例子：</p>
+<pre><code class="JavaScript">var testFor = function (nodes) {
+  var helper = function (i) {
+    return function () {
+      console.log(i);
+    }
+  }
+  var i;
+  for (i = 0; i &lt; 3; i++) {
+    nodes[i].h = helper(i);
+  }
+}
+
+nodes = [{}, {}, {}];
+
+testFor(nodes);
+
+for (var i = 0; i &lt; 3; i++) {
+  nodes[i].h();
+}
+</code></pre>
+<p>输出：    </p>
+<pre><code class="bash">mrldeMBP:frontend mrl$ node testfunction
+0
+1
+2
+</code></pre>
+<p>3)使用es6的let语法<br>let 使变量的作用域只在自己所在块之内，所以不存在1)中取循环外变量值的问题</p>
+<pre><code class="JavaScript">var testFor = function (nodes) {
+  for (let i = 0; i &lt; 3; i++) {
+    nodes[i].h = function () {
+      console.log(i);
+    }
+  }
+}
+
+nodes = [{}, {}, {}];
+
+testFor(nodes);
+
+for (var i = 0; i &lt; 3; i++) {
+  nodes[i].h();
+}
+</code></pre>
+<p>输出：</p>
+<pre><code class="JavaScript">mrldeMBP:frontend mrl$ node testfunction
+0
+1
+2
+</code></pre>
+<p>10.模块    </p>
+<p>利用作用域和闭包的特点，创建提供接口但隐藏状态及实现的函数或对象。    </p>
+<pre><code class="JavaScript">Function.prototype.method = function (name, func) {
+  if (!this.prototype[name]) {
+    this.prototype[name] = func;
+  }
+  return this;
+}
+
+String.method(&#39;deentityify&#39;, function () {
+  var entity = {
+    quot: &#39;&quot;&#39;,
+    lt: &#39;&lt;&#39;,
+    gt: &#39;&gt;&#39;
+  };
+
+  return function () {
+    return this.replace(/&amp;([^&amp;;]+);/g, function (a, b) {
+      var r = entity[b];
+      return typeof r === &#39;string&#39; ? r : a;
+    });
+  };
+}());
+
+
+console.log(&#39;haha &amp;lt; haha&#39;.deentityify());
+</code></pre>
+<p>字符串replace方法中，第二个参数可以是一个返回替换字符串的函数，这个函数第一个参数是匹配模式的字符串，后面是子表达式匹配的字符串。    </p>
+<p>但是，以上这种方法为什么比以下这种方法要好？</p>
+<pre><code class="JavaScript">Function.prototype.method = function (name, func) {
+  if (!this.prototype[name]) {
+    this.prototype[name] = func;
+  }
+  return this;
+}
+
+String.method(&#39;deentityify&#39;, function () {
+  var entity = {
+    quot: &#39;&quot;&#39;,
+    lt: &#39;&lt;&#39;,
+    gt: &#39;&gt;&#39;
+  };
+
+  return this.replace(/&amp;([^&amp;;]+);/g, function (a, b) {
+    console.log(&#39;a: &quot;&#39; + a + &#39;&quot;, b: &quot;&#39; + b + &#39;&quot;&#39;);
+    var r = entity[b];
+    return typeof r === &#39;string&#39; ? r : a;
+  });
+});
+
+console.log(&#39;haha &amp;lt; haha&#39;.deentityify());
+</code></pre>
+<p>首先要注意到，第一种方法中，为String添加deentityify方法时，使用了自运行的函数，该函数里定义了一个entity对象集合，然后是返回了一个函数，在该返回函数中才对字符串进行替换处理。    </p>
+<p>不同之处正是这里。后面的方法虽然也能达到同样的效果，但是由于每次都会对entity进行赋值初始化等操作，将会多耗费一点时间。而第一种方法，只初始化一次entity，而由于其后的返回函数中要用到这个变量，所以这个变量初始化一次后，将会一直存在，其后使用deentityify方法时，不会再对entity对象执行赋值操作，提高了一点效率。如果是一些比较复杂的赋值初始化操作，较少无意义的重复操作应该能节省不少时间。    </p>
+<p>模块模式有利于程序封装和构造单例对象(根据字面量创建，声明周期内不发生变化)，还可以构造安全的对象。    </p>
+<p>11.级联    </p>
+<p>对于设置或修改对象状态却不返回值的方法，可以返回this而不是undefined，便于在一条语句中依次调用同一个对象的多个方法。（类似jQuery的链式调用）    </p>
+<p>12.柯里化    </p>
+<p>13.记忆    </p>
+<p>利用作用域和自运行函数，创建具有记忆功能的函数，减少递归调用的运算量。    </p>
+<p>典例，斐波那契数列的计算。    </p>
+<p>可推广的带记忆功能的函数的构造，只需提供需要记忆的数组初值和带有递归计算式的函数即可构造带有记忆功能的函数。    </p>
+<pre><code class="JavaScript">var memorizer = function (memo, formula) {
+  var recur = function (n) {
+    var result = memo[n];
+    if (typeof result !== &#39;number&#39;) {
+      result = formula(recur, n);
+      memo[n] = result;
+    }
+    return result;
+  };
+
+  return recur;
+};
+
+var fibonacci = memorizer([0, 1], function (recur, n) {
+  return recur(n - 1) + recur(n - 2);
+});
+
+for (let i = 0; i &lt; 10; i++) {
+  console.log(fibonacci(i));
+}
+</code></pre>
+<p>[0 1]自传入memorizer构造器后便一直存在，可重复利用。</p>
+<hr>
+<h2 id="第五章-继承"><a href="#第五章-继承" class="headerlink" title="第五章 继承"></a>第五章 继承</h2><p>1.伪类    </p>
+<p>js的原型机制和类有些许复杂。    </p>
+<p>一个函数对象被创建时，新的函数对象有一个prototype属性，这个属性的值是一个包含constructor属性的对象。通过prototype可以扩充一个构造器的原型，比如给一个构造器函数增加一个方法。    </p>
+<p>通过prototype还可以指定构造器函数的原型， 如 </p>
+<pre><code class="JavaScript">var Cat = function(){…}
+Cat.prototype = new AnothCostrc();
+</code></pre>
+<p>但这不是十分理想的继承方式，可以通过给Function原型添加inherits方法，用以确定继承的父类。</p>
+<pre><code class="JavaScript">Function.prototype.method = function (name, func) {
+  if (!this.prototype[name]) {
+    this.prototype[name] = func;
+  }
+  return this;
+}
+
+Function.method(&#39;inherits&#39;, function (Parent) {
+  this.prototype = new Parent();
+  return this;
+})
+</code></pre>
+<p>两个方法都返回this，可以用级联的方式编程。    </p>
+<p>构造器首字母大写的习惯应该被记住。    </p>
+<p>非常值得注意的地方是new语句和对象属性的使用。没有new，将导致this的绑定错误，但这是没有错误提示的。这样创建的对象属性是公开的，也没办法访问父类的方法。所以，js的类构造器函数仅仅是提供了一种类似于基于类的语言的使用方法，但是并不彻底，也稍显杂乱。    </p>
+<p>2.对象说明符    </p>
+<p>为了便于构造新对象，可以利用对象说明符，因为这样就不必记住繁杂的参数的顺序：    </p>
+<pre><code class="JavaScript">var myObject = maker({
+  first: f,
+  middle: m,
+  last: l,
+})
+</code></pre>
+<p>4.函数化构造器    </p>
+<p>伪代码模板：    </p>
+<pre><code class="JavaScript">// 参数是可选的, my 应该是一个从它那里继承属性的对象
+var constructor = function (spec, my) {
+  var that = {}, 
+     priVal1; // 其他的私有实例变量
+  my = my || {};
+
+  // 添加公有变量
+  my.attr1 = spec &amp;&amp; spec.attr1;
+  my.attr2 = spec &amp;&amp; spec.attr2;
+
+  // 根据my对象利用适当的方法创建一个新对象, 
+  // 如字面量构造、new前缀调用构造器函数、
+  // 前面第三章介绍的Object.create和现在这种函数化构建对象等等
+  that = `一个新对象`;
+
+  // 设置私有变量
+  ...
+
+  // 添加获取私有变量的getter方法
+  that.getPriVal1 = function () {
+    return priVal1;
+  }
+
+  // 设置其他添加给that的特权方法
+  …
+  var func1 = function () {…}
+  that.func1 = func1;  // 分两步定义一个对象方法，这个构建函数内部的方法可以调用func1，可以最大限度减少因为that.func1的破坏而导致的潜在影响
+
+  // 返回新对象
+  return that;
+}
+</code></pre>
+<p>可以如下添加一个访问父类方法的对象原型方法，用that.superior(‘父类对象方法名’)来调用父类的方法。</p>
+<pre><code class="JavaScript">Function.prototype.method = function (name, func) {
+  if (!this.prototype[name]) {
+    this.prototype[name] = func;
+  }
+  return this;
+}
+
+Object.method(&#39;superior&#39;, function (name) {
+  var that = this,
+    method = that[name];
+
+  return function () {
+    return method.apply(that, arguments);
+  }
+})
+
+var parObj = function () {
+  var that = {},
+  name = &#39;par&#39;;
+
+  var getName = function () {
+    return name;
+  }
+  that.getName = getName;
+
+  return that;
+}
+
+var par = parObj();
+console.log(par.getName());
+
+var childObj = function () {
+  var that = parObj();
+  var superGetName = that.superior(&#39;getName&#39;);
+  var getName = function () {
+    return superGetName() + &quot;&#39;s child.&quot;
+  };
+  that.getName = getName;
+
+  return that;
+}
+
+var child = childObj();
+console.log(child.getName());
+</code></pre>
+<p>如果对象的所有状态都是私有的，那么该对象就成为一个防伪（tamper-proof）对象，对象的完整性不会受到破坏。    </p>
+<p>持久性对象，是使用函数化方法创建的对象，且该对象所有方法都不使用this或that。    </p>
+<p>5.部件    </p>
+<p>从一套部件中把对象组装出来。例子，构造一个给任何对象添加简单事件处理特性的函数，它有fire、on和事件注册表对象。    </p>
+<pre><code class="JavaScript">var eventuality = function (that) {
+    var registry = {};
+    that.fire = function (event) {
+        // 在一个对象上触发一个事件。该事件可以是一个包含事件名称的字符串
+        // 或者是一个拥有包含事件名称的 type 属性的对象。
+        // 通过&#39;on&#39;方法注册的事件处理程序中匹配事件名称的函数将被调用。
+        var array,
+            func,
+            handler,
+            i,
+            type = typeof event === &#39;string&#39; ? event : event.type;
+        if (registry.hasOwnProperty(type)) {
+            array = registry[type];
+            for (i = 0; i &lt; array.length; i += 1) {
+                handler = array[i];
+                // 每个处理程序包含一个方法和一组可选的参数。
+                // 如果该方法是一个字符串形式的名字，那么寻找到该函数。
+                func = handler.method;
+                if (typeof func === &#39;string&#39;) {
+                    func = this[func];
+                }
+                // 调用一个处理程序。如果该条目包含参数，那么传递它们过去。否则，传递该事件对象。
+                func.apply(this, handler.parameters || [event]);
+            }
+        }
+        return this;
+    };
+
+    that.on = function (type, method, parameters) {
+        // 注册一个事件。构造一条处理程序条目。将它插入到处理程序数组中，
+        // 如果这种类型的事件还不存在，就构造一个。
+        var handler = {
+            method: method,
+            parameters: parameters
+        };
+        if (registry.hasOwnProperty(type)) {
+            registry[type].push(handler);
+        } else {
+            registry[type] = [handler];
+        }
+        return this;
+    };
+
+    return that;
+};
+</code></pre>
+<hr>
+<h2 id="第六章-数组"><a href="#第六章-数组" class="headerlink" title="第六章 数组"></a>第六章 数组</h2><p>真正的数组是一种性能优良的数据结构，但是js中的数组只是拥有类数组特性的对象，它比较慢，但是使用起来更加方便。它只不过多了一个可以用整数作为属性名的特性。    </p>
+<p>1.长度    </p>
+<p>长度与元素个数不一定相等。数组不会下标越界，var a = [], a[10] = 1，那么a的长度是11，但只有一个元素。    </p>
+<p>方括号后置运算符将方括号内的表达式转换为字符串，这个字符串被用作属性名。如 var a = []，a[‘att’] = ‘v’。    </p>
+<p>可直接设置length，设置更大的length不会分配更多空间给数组，但设置更小的length将使第length位之后的元素被删去。<br>length只计算属性名为整数的元素个数。    </p>
+<p>2.删除    </p>
+<p>delete可以删去数组元素，但会留下一个占位空洞，其后的元素没有前移。    </p>
+<p>用splice方法可以更好地删除一个数组元素，anArr.splice(2, 1)删除anArr[2]起的一个元素。但对于大型数组来说效率可能不高。    </p>
+<p>3.容易混淆的地方    </p>
+<p>typeof 不能区分数组和对象，都是object。    </p>
+<p>弥补缺陷：    </p>
+<pre><code class="JavaScript">var isArray = function (value) {
+  return Object.prototype.toString.apply(value) === &quot;[object Array]”;
+};
+</code></pre>
+<p>鉴别 value 是否为数组，且可以鉴别来自不同 window或frame 中构造的数组对象。</p>
+<p>4.指定初始值    </p>
+<p>为数组对象增加指定初始值的方法，以免因数组元素不存在而出现undefined错误。    </p>
+<pre><code class="JavaScript">Array.dim = function (dimension, initial) {
+  var a = [];
+  for (var I = 0; i &lt; dimension; i++ ) {
+    a[I] = initial;
+  }
+  return a;
+};
+</code></pre>
+<p>可以类似地构造构造一个二维数组，但是在初始化内部每一个一维数组时不能用Array.dim(n, [])，这样每一个元素都将引用同一个一维数组。    </p>
+<p>可以设置两个循环来初始化一个二维数组。    </p>
+<hr>
+<h2 id="第七章-正则表达式"><a href="#第七章-正则表达式" class="headerlink" title="第七章 正则表达式"></a>第七章 正则表达式</h2><p>1.一个例子    </p>
+<p>捕获型和非捕获型分组(有?:前缀)。前者会有性能上的损失。    </p>
+<p>2.结构    </p>
+<p>字面量创建、构造器函数创建。    </p>
+<p>三种标识。    </p>
+<p>正则对象的几个属性。    </p>
+<p>同样字面量构建的正则表达式共享一个单例? 貌似在chrome上测试并不是同一个单例。    </p>
+<p>3.元素    </p>
+<p>已被匹配的子串不会再被下一个子匹配式匹配。    </p>
+<p>4.正则表达式的转义    </p>
+<p>\1表示指向分组1的捕获文本的引用    </p>
+<p>5.量词    </p>
+<p>量词后加上后缀 <code>?</code> 表示非贪婪匹配。</p>
+<hr>
+<h2 id="第八章-方法"><a href="#第八章-方法" class="headerlink" title="第八章 方法"></a>第八章 方法</h2><p>这章讲各种对象的一些原生方法。</p>
+<p>（一）数组部分    </p>
+<p>1.anArr.join()与 + 运算符连接字符串问题。    </p>
+<p>作者写书的时候，IE6/7比较流行，那时候join方法性能比较好。现在经过优化后，+ 运算符性能已经比join要好了。</p>
+<p>2.anArr.shift()方法移除数组的第一个元素并将它返回。    </p>
+<p>3.anArr.slice(a,b)方法中，会复制数组第a个元素开始，复制到 anArr[b-1] 作为数组返回。参数如果是负数，那么将会取它与数组长度之和，如</p>
+<pre><code class="JavaScript">var a = [1,2,3]
+</code></pre>
+<p>a.slice(0,2)和a.slice(-3,2) 和a.slice(0,-1)都返回[1, 2]。</p>
+<p>B可选，没有它将返回a到最后一个元素的复制的数组。</p>
+<p>4.anArr.sort方法    </p>
+<p>将数组中的元素进行排序。可以自定义比较函数，比较函数fn接受两个参数，若第一个参数等于第二个，返回0，若第一个排在第二个前面，返回负数，若第二个排在第一个前，返回正数。    </p>
+<pre><code>arr.sort(fn)。
+</code></pre><p>5.anArr.splice()方法    </p>
+<p>6.anArr.unshift()方法    </p>
+<p>将元素添加到数组开始部分，返回新长度。</p>
+<p>（二）函数部分    </p>
+<p>apply、call    </p>
+<p>（三）数字部分    </p>
+<p>1.toExponential(x)，把数字转换为指数形式的字符串，x是小数点位数，范围是0-20，可选    </p>
+<p>2.toFixed(x), 将数字转换为十进制数字，x是小数点位数，范围是0-20，可选    </p>
+<p>3.toPrecision(x)，将number转换为十进制形式的字符串，x控制数字精度，范围0-21，可选    </p>
+<p>4.toString(x)，将数字转换为字符串，x控制进制，默认是10，范围2-36，可选    </p>
+<p>（四）对象<br>hasOwnProperty()    </p>
+<p>（五）RegExp    </p>
+<p>exec比test慢。    </p>
+<p>lastIndex的运用。    </p>
+<p>（六）字符串    </p>
+<p>charAt、charCodeAt、concat、indexOf、lastIndexOf、localeCompare、match，    </p>
+<p>match中正则式带g则返回匹配子串数组，不带g则与reg.exec(str)结果相同    </p>
+<p>replace, 普通的替代字符串和正则式只替换匹配到的第一个字符串，带g修饰符的正则式可以替换全部匹配的字符串。$的意义。    </p>
+<p>Search。    </p>
+<p>fromCharCode()方法根据一串字符编码返回一个字符串。    </p>
+<hr>
+<h2 id="第九章-代码风格"><a href="#第九章-代码风格" class="headerlink" title="第九章 代码风格"></a>第九章 代码风格</h2><p>作者的风格、坚持{}括住代码块、if后加一个空格。    </p>
+<hr>
+<h2 id="第十章-优美的特性"><a href="#第十章-优美的特性" class="headerlink" title="第十章 优美的特性"></a>第十章 优美的特性</h2><p>作者设想的精简的js的精华。    </p>
+<hr>
+<h2 id="附录A-毒瘤"><a href="#附录A-毒瘤" class="headerlink" title="附录A 毒瘤"></a>附录A 毒瘤</h2><p>1.全局变量    </p>
+<p>所有全局变量都存放在全局对象window中    </p>
+<pre><code>var foo = 1;
+window.foo == 1;
+</code></pre><p>2.作用域    </p>
+<p>函数开头声明变量。    </p>
+<p>3.自动插入分号    </p>
+<p>js的自动修复机制可能会干坏事：    </p>
+<pre><code class="JavaScript">function testR() {
+  return 
+  {
+    status: 1
+  }
+}
+
+console.log(testR());
+</code></pre>
+<p>看起来会输出1，但是因为js在return后自动加入了分号’;’，所以输出了 <code>undefined</code>。<br>将返回对象的花括号放在上一行return后面可以解决这个问题。</p>
+<p>4.保留字    </p>
+<p>括号表示法可以使用保留字作为对象的属性名，但不是推荐的做法。    </p>
+<p>5.Unicode    </p>
+<p>一对字符在js和Unicode中的含义不同。</p>
+<p>6.typeof     </p>
+<p>null是对象</p>
+<p>7.parseInt    </p>
+<p>最好在parseInt时加上表示进制的参数。    </p>
+<p>大概是因为某些浏览器对于字符串中数字的进制判断有问题，可能会采用10进制以外的进制进行转换。<br>经过测试，chrome68和node v8.9.3都没有书中提到的’08’和’09’转换为0的问题。</p>
+<p>8.浮点数    </p>
+<p>浮点数运算有精度问题，可以通过*100之后运算最后/100等操作来提高精度。    </p>
+<p>9.NaN    </p>
+<p>检查是否为数字：    </p>
+<pre><code>var isNumber = function isNumber(value) {
+  return typeof value === ‘number’ &amp;&amp; isFinite(value);
+}
+</code></pre><p>10.伪数组    </p>
+<p>数组与对象都是对象，最好检查原型toString之后的字符串来确定是不是数组。</p>
+<p>11.假值（指逻辑上的假）    </p>
+<p>有时候，==的强制类型转换可能会使假值满足判断条件。</p>
+<pre><code class="JavaScript">var value;
+value == null // true
+value === null  // false
+</code></pre>
+<p>12.hasOwnProperty    </p>
+<p>这是个方法，不是运算符，所以可能被替换，导致判断出错。</p>
+<p>13.对象    </p>
+<p>注意原型链上可能存在着一个对象本不期待出现的属性。</p>
+<hr>
+<h2 id="附录B-糟粕"><a href="#附录B-糟粕" class="headerlink" title="附录B 糟粕"></a>附录B 糟粕</h2><p>有问题的特性    </p>
+<p>1.==    </p>
+<p>强制类型转换导致出现了一些传递性问题。</p>
+<p>2.with    </p>
+<p>用以快捷访问对象属性，但运行效果难以确定。</p>
+<p>3.eval    </p>
+<p>降低性能、减弱安全性。Function构造器也如此。还有定时器要尽量避免使用字符串参数。</p>
+<p>4.continue    </p>
+<p>降低性能。</p>
+<p>5.switch穿越    </p>
+<p>从一个case条件跳到下一个case条件。容易出错。</p>
+<p>6.缺少块的语句    </p>
+<p>要严格规范</p>
+<p>7.++—    </p>
+<p>8.位运算符    </p>
+<p>性能问题</p>
+<p>9.function语句对比function表达式    </p>
+<p>function语句解析提升，放宽了先声明后使用的要求。    </p>
+<p>坚持 var foo = function foo() {}。    </p>
+<pre><code class="JavaScript">(function() {
+  var hidden_variable;
+  // 尽管可能对环境有影响，但不引入全局变量
+} ());
+</code></pre>
+<p>10.类型的包装对象    </p>
+<p>少用new Object、new Array这样的操作，可用{}、[]代替。</p>
+<p>11.new    </p>
+<p>少用new。</p>
+<p>12.void    </p>
+<p>接受运算数并返回undefined，容易造成困惑。    </p>
+<hr>
+<h2 id="附录C-JSLint"><a href="#附录C-JSLint" class="headerlink" title="附录C JSLint"></a>附录C JSLint</h2><p>1.未定义的变量和函数    </p>
+<p>避免因隐式的全局变量声明，减少错误。JSLint可以读取/*global va1,… /这样的注释，辨别拼写错误和被遗忘的全局变量，还可以模拟浏览器环境。    </p>
+<p>2.成员属性    </p>
+<p>。。。</p>
+<h2 id="附录D-语法图"><a href="#附录D-语法图" class="headerlink" title="附录D 语法图"></a>附录D 语法图</h2><hr>
+<h2 id="附录E-JSON"><a href="#附录E-JSON" class="headerlink" title="附录E JSON"></a>附录E JSON</h2><p>1.安全问题    </p>
+<p>JSON.parse取代eval。    </p>
+<p>不要直接把从服务器获取的文本放到节点的innerHTML中，以免把恶意脚本插入到文档里面，恶意脚本可以读取全部全局变量，接触到用户能看到的所有信息。    </p>
+  
+    </div> 
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+
+    <div class="post-info-wrapper">
+            
+                    <!-- Post Info -->
+                    <p class="post-date">2018-05-03</p>
+                    
+                    
+                        <p class="post-info-categories">
+                            <a class="post-category-link" href="/categories/frontend/">frontend</a>
+                        </p>
+                    
+
+                    
+            
+    </div>
+</article>
+
+
+    
+    <!-- Comments -->
+    <div class="post-comment-wrapper">
+        
+    <!-- Livere -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjA4Mi84NjQ2">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+    
+           if (typeof LivereTower === 'function') { return; }
+    
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+    
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+    </div>
+    
+
+            </main>
+
+            <!-- 'To Top' Btn-->
+            
+                <div id="to-top">
+    <a href="#top" class="toTop">
+        <i class="fa fa-pagelines"></i>
+    </a>
+</div>
+            
+
+            <!-- Footer -->
+            
+                <footer class="footer-wrapper col-xs-12 col-sm-12">
+    <div class="footer-banner-wrapper">
+        <p class="footer-banner">Powered by <a href="https://hexo.io/" title="Hexo">Hexo</a></p>
+        <P class="footer-banner">Theme <a href="https://github.com/Lonezj/hexo-theme-wind" title="Wind">wind</a></P>
+    </div>
+</footer>
+            
+        </div>
+
+        <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+        <link rel="stylesheet" href="/css/google-prettify-monokai.css" type="text/css">
+        <script src="//cdn.bootcss.com/prettify/r298/prettify.min.js" type="text/javascript"></script>
+    </body>
+</html>
