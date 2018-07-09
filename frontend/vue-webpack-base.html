@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+    <!-- Head -->
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="voezy">
+    <meta name="description" itemprop="description" content="">
+    <meta name="keywords" content="wind,lonezj">
+
+    <!-- Page Title -->
+    
+        <title>webpack搭建vue简易脚手架 | Voezy</title>
+    
+    <link rel="icon" href="/img/avatar.png">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    
+    <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    
+        <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-115976686-1', 'auto');ga('send', 'pageview');
+</script>
+    
+    <style>
+        .deactiveColor{
+            color: #37474f;
+        }
+        .activeColor{
+            color: #006064;
+        }
+        a:hover{
+            color: #006064;
+        }
+        .header-btn{
+            color: #37474f;
+        }
+        
+        .post-content img{
+            margin: 50px auto;
+        }
+        
+    </style>
+</head>
+    <body>
+        <div class="container">
+
+            <!-- Top Anchor -->
+            <div id="top"></div>
+
+            <!-- Header -->
+            <header class="header-wrapper">
+    <div class="header-title-wrapper">
+        <!-- Page Title -->
+        <p class="header-title">
+             
+                
+                    webpack搭建vue简易脚手架
+                
+            
+        </p>  
+    </div>    
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+    
+    <div class="header-detail">
+        <!-- Header Button -->
+        <div class="header-btn-wrapper">
+            
+                <span>
+                    <a class="home-btn header-btn" href="/" title="homepage"><i class="fa fa-home"></i></a>
+                </span>
+
+                
+                    <span>
+                        <a class="catalog-btn header-btn"><i class="fa fa-list-ul"></i></a>
+                    </span>
+                
+            
+        </div>
+    </div>
+</header>
+
+            <!-- Main -->
+            <main>
+                <article class="post-wrapper">
+    
+
+    
+        <!-- Article Catalog -->
+        <div class="catalog-dropdown col-xs-12 col-sm-12">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装基本依赖"><span class="toc-number">1.</span> <span class="toc-text">安装基本依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#初始化"><span class="toc-number">2.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始编码工程"><span class="toc-number">3.</span> <span class="toc-text">开始编码工程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
+        </div>
+    
+
+    
+        <!--For now, Lightbox Only Show in Post Layout -->
+        
+
+        
+        
+    
+
+    
+
+    <!-- Article Content -->
+    <div class="post-content">
+        <p>假设项目为webpack-vue，已有 package.json。</p>
+<h2 id="安装基本依赖"><a href="#安装基本依赖" class="headerlink" title="安装基本依赖"></a>安装基本依赖</h2><p>1)webpack    </p>
+<p>装webpack:</p>
+<pre><code class="bash">npm install webpack webpack-cli --save-dev
+</code></pre>
+<p>这次尝试一下es6语法，webpack的配置文件也有些许变化。    </p>
+<p>2)babel    </p>
+<pre><code class="bash">npm install babel-loader babel-core babel-preset-env --save-dev
+</code></pre>
+<p>3)eslint</p>
+<pre><code>npm install --save-dev eslint
+</code></pre><p>在项目根目录添加.babelrc文件，其中内容是</p>
+<pre><code class="json">{
+    &quot;presets&quot;: [
+        &quot;env&quot;
+    ]
+}
+</code></pre>
+<p>这里，如果参考了其他的库对babelrc进行修改，注意如果加入了    </p>
+<pre><code class="json">    &quot;presets&quot;: [
+        [&quot;env&quot;, {
+            &quot;modules&quot;: true
+        }]
+    ],
+</code></pre>
+<p>那么就不能再webpack配置文件中使用es6的import新语法了。    </p>
+<p>所以，不加 “modules”: true。    </p>
+<p>我是因为要按需引入element-ui组件时发现它要求修改babelrc，就摸到了这点。    </p>
+<p>按需加载后打包的从2m多降到了不到1m（当然是目前用的组件比较少）。</p>
+<p>4)vue    </p>
+<pre><code class="bash">npm install vue —save
+</code></pre>
+<p>其他依赖：css-loader style-loader，加载字体和图片的file-loader, url-loader等，根据需求添加。如果要引入element-ui这样的组件库，那么很可能需要用这些loader来对特殊资源进行加载和打包。    </p>
+<hr>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>1)eslint    </p>
+<pre><code class="bash">eslint --init
+</code></pre>
+<p>设置自己需要的规则。    </p>
+<p>然后在项目根目录生成了.eslintrc.js文件。可以在其中自定义规则。    </p>
+<p>注意要”env”规则要开启”node”: true，才可以使用__dirname等node环境下的特有变量。    </p>
+<p>同理，只有开启了浏览器环境，才可以使用浏览器环境特有的window变量。    </p>
+<p>2)webpack    </p>
+<p>在package.json中指定webpack打包脚本，    </p>
+<pre><code class="json">  &quot;scripts&quot;: {
+     // ...你的脚本配置
+    &quot;build&quot;: “webpack”     // webpack脚本配置
+  },
+</code></pre>
+<p>这样就可以通过npm run build的方式，让webpack利用默认配置文件进行打包。这个默认配置文件就是webpack.config.js，但是因为这里采用了es6语法，要使用babel对webpack配置文件进行编译，所以，webpack文件的默认配置文件变为webpack.config.babel.js。现在在项目根目录建立webpack.config.babel.js，然后使用es6语法进行设置。    </p>
+<p>webpack配置文件初期的模板参考。    </p>
+<p>这里建立了src目录，其中js目录用于存放js文件，app.js文件作为主入口，将需要的js都打包输出到webpack-vue/build/bundle.js中。    </p>
+<pre><code class="javascript">import path from &#39;path&#39;;
+
+export default {
+    entry: ‘./src/js/app.js&#39;,
+    output: {
+        path: path.resolve(__dirname, &#39;build&#39;),
+        filename: &#39;bundle.js&#39;
+    }
+};
+</code></pre>
+<p>可以运行 npm run build尝试一下。    </p>
+<p>要注意entry的形式，可以是上面这样的相对路径，也可以path.join(__dirname, ‘src/js/main.js’)。但是’src/xxx.js’似乎不行。    </p>
+<p>初始化包括但不限于上述步骤。还可以包括建立.gitignore、.editorconfig、.eslintignore等等，编写符合项目需求的配置文件。    </p>
+<h2 id="开始编码工程"><a href="#开始编码工程" class="headerlink" title="开始编码工程"></a>开始编码工程</h2><p>1、测试    </p>
+<p>在项目根目录下增加一个index.html，内容是：</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;zh-CN&quot;&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot; /&gt;
+  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+  &lt;title&gt;webpack-vue&lt;/title&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+ &lt;div id=“app&quot;&gt;hello&lt;/div&gt;
+  &lt;script src=&quot;build/bundle.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre>
+<p>然后，</p>
+<pre><code class="javascript">// src/js/app.js
+alert(&#39;hello world’);
+</code></pre>
+<p>webpack新增module配置，一定要注意module是不带s的，后面的plugins倒是带s    </p>
+<pre><code class="javascript">  module: {
+    rules: [{
+      test: /\.js$/,
+      loader: &#39;babel-loader&#39;,
+      exclude: /ndoe_modules/
+    }]
+  },
+  resolve: {
+    alias: {
+      &#39;vue$&#39;: &#39;vue/dist/vue.esm.js&#39; // 用 webpack 1 时需用 &#39;vue/dist/vue.common.js&#39;
+    }
+  }
+</code></pre>
+<p>后面的resolve配置用于给页面增加vue编译时环境。因为默认只有运行时环境，这样没法在客户端编译模板，或者挂载到一个元素上并以其 DOM 内部的 HTML 作为模板（比如这里是把vue应用挂到了#app上）    </p>
+<p>现在运行npm run build，再打开index.html就可以看到效果了。    </p>
+<p>2、插件    </p>
+<p>1）让webpack把css打包到bundle.js。    </p>
+<p>安装loader：<code>npm install --save-dev css-loader style-loader</code>   </p>
+<p>在webpack的rules数组中添加一条规则：    </p>
+<pre><code class="json">{
+      test: /\.css$/,
+      loader: &#39;style-loader!css-loader&#39;
+}
+</code></pre>
+<p>这时只要在某个入口里，用import ‘你的css路径’; 这种方式就可以将样式打包到bundle.js中。    </p>
+<p>2）利用html作为模板，自动引入打包后的文件(如本文中的bundle.js)    </p>
+<p>安装插件：npm install –save-dev html-webpack-plugin    </p>
+<p>webpack配置文件引入插件：    </p>
+<pre><code class="javascript">import HtmlWebpackPlugin from &#39;html-webpack-plugin’;
+</code></pre>
+<p>添加插件配置：</p>
+<pre><code class="javascript">  plugins: [
+    new HtmlWebpackPlugin({
+      template: &#39;index.html’
+    })
+  ],
+</code></pre>
+<p>这个template就是之前编写的index.html文件。现在可以把其中对bundle.js文件的引用删除。也可以把它移到别的路径，比如src里。    </p>
+<p>再build一次，发现在build目录自动生成了index.html，而且引入了打包后的bundle.js。    </p>
+<p>3）And<br>还有把图片、字体等东西打包到bundle.js中的url-loader。</p>
+<p>用于开发的简易服务器。     </p>
+<p>安装：<code>npm install --save-dev webpack-dev-server</code></p>
+<pre><code class="javascript">  devServer: {
+    contentBase: &#39;./build&#39;
+  },
+</code></pre>
+<p>脚本：<code>&quot;dev&quot;:&quot;webpack-dev-server --open”</code>,  <code>npm run dev</code>就可以打开看效果了。    </p>
+<p>字体loader规则：    </p>
+<p>字体规则：    </p>
+<pre><code class="javascript">{
+      test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+      loader: &#39;url-loader&#39;,
+      options: {
+        limit: 10000
+      }
+    }
+</code></pre>
+<p>或者</p>
+<pre><code class="javascript">{
+      test: /\.(ttf|eot|woff|woff2)$/,
+      loader: &#39;file-loader&#39;,
+      options: {
+        name: &#39;fonts/[name].[ext]&#39;,
+      }
+    }
+</code></pre>
+<p>4）单文件模板加载和解析    </p>
+<p>还有加载和编译vue单文件模板的loader：    </p>
+<p>安装：<code>npm install --save-dev vue-loader vue-template-compiler</code></p>
+<p>修改webpack配置。    </p>
+<p>先导入插件：    </p>
+<pre><code>import  {VueLoaderPlugin} from &#39;vue-loader’;
+</code></pre><p>设置规则：</p>
+<pre><code class="javascript">{
+      test: /\.vue$/,
+      loader: &#39;vue-loader&#39;
+}
+</code></pre>
+<p>增加插件：</p>
+<pre><code class="javascript">  plugins: [
+    // ….
+    new  VueLoaderPlugin()
+  ],
+</code></pre>
+<p>然后修改index.html，    </p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;zh-CN&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot; /&gt;
+  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+  &lt;title&gt;webpack-vue&lt;/title&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id=&quot;app&quot;&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre>
+<p>修改app.js</p>
+<pre><code class="javascript">import Vue from &#39;vue&#39;;
+import &#39;../css/main.css&#39;;
+import App from &#39;../App.vue&#39;;
+
+new Vue({
+  el: &#39;#app&#39;,
+  components: {
+    App
+  },
+  template: &#39;&lt;App/&gt;&#39;
+});
+</code></pre>
+<p>增加src/App.vue    </p>
+<pre><code class="vue">&lt;template&gt;
+    &lt;div id=&quot;app&quot;&gt;
+        {{msg}}
+    &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+    name: &#39;app&#39;,
+    data() {
+        return {
+            msg: &#39;hello&#39;
+        }
+    }
+}
+&lt;/script&gt;
+</code></pre>
+<p><code>npm run dev</code>，可以看到效果。</p>
+<p>5)局部刷新    </p>
+<p>修改webpack配置。    </p>
+<p>先到入webpack：</p>
+<pre><code>import webpack from &#39;webpack’;
+</code></pre><p>然后增加插件：</p>
+<pre><code>  plugins: [
+    //...
+    new webpack.HotModuleReplacementPlugin()
+  ],
+</code></pre><p>最后修改package.json中的运行脚本：</p>
+<pre><code>&quot;dev&quot;: &quot;webpack-dev-server  --hot-only —open&quot;
+</code></pre><p>6）生产环境下的配置    </p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>最后总结一下要安装的：</p>
+<pre><code class="bash">npm install webpack webpack-cli babel-loader babel-core babel-preset-env eslint css-loader style-loader webpack-dev-server vue-loader vue-template-compiler html-webpack-plugin --save-dev
+</code></pre>
+<p>还有<code>npm install vue —save</code></p>
+<p>(要使用element-ui，还要装element-ui、file-loader, url-loader、babel-plugin-component)</p>
+  
+    </div> 
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+
+    <div class="post-info-wrapper">
+            
+                    <!-- Post Info -->
+                    <p class="post-date">2018-06-26</p>
+                    
+                    
+                        <p class="post-info-categories">
+                            <a class="post-category-link" href="/categories/frontend/">frontend</a>
+                        </p>
+                    
+
+                    
+            
+    </div>
+</article>
+
+
+    
+    <!-- Comments -->
+    <div class="post-comment-wrapper">
+        
+    <!-- Livere -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjA4Mi84NjQ2">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+    
+           if (typeof LivereTower === 'function') { return; }
+    
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+    
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+    </div>
+    
+
+            </main>
+
+            <!-- 'To Top' Btn-->
+            
+                <div id="to-top">
+    <a href="#top" class="toTop">
+        <i class="fa fa-pagelines"></i>
+    </a>
+</div>
+            
+
+            <!-- Footer -->
+            
+                <footer class="footer-wrapper col-xs-12 col-sm-12">
+    <div class="footer-banner-wrapper">
+        <p class="footer-banner">Powered by <a href="https://hexo.io/" title="Hexo">Hexo</a></p>
+        <P class="footer-banner">Theme <a href="https://github.com/Lonezj/hexo-theme-wind" title="Wind">wind</a></P>
+    </div>
+</footer>
+            
+        </div>
+
+        <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+        <link rel="stylesheet" href="/css/google-prettify-monokai.css" type="text/css">
+        <script src="//cdn.bootcss.com/prettify/r298/prettify.min.js" type="text/javascript"></script>
+    </body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+    <!-- Head -->
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="voezy">
+    <meta name="description" itemprop="description" content="">
+    <meta name="keywords" content="wind,lonezj">
+
+    <!-- Page Title -->
+    
+        <title>es6新特性简记 | Voezy</title>
+    
+    <link rel="icon" href="/img/avatar.png">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    
+    <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    
+        <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-115976686-1', 'auto');ga('send', 'pageview');
+</script>
+    
+    <style>
+        .deactiveColor{
+            color: #37474f;
+        }
+        .activeColor{
+            color: #006064;
+        }
+        a:hover{
+            color: #006064;
+        }
+        .header-btn{
+            color: #37474f;
+        }
+        
+        .post-content img{
+            margin: 50px auto;
+        }
+        
+    </style>
+</head>
+    <body>
+        <div class="container">
+
+            <!-- Top Anchor -->
+            <div id="top"></div>
+
+            <!-- Header -->
+            <header class="header-wrapper">
+    <div class="header-title-wrapper">
+        <!-- Page Title -->
+        <p class="header-title">
+             
+                
+                    es6新特性简记
+                
+            
+        </p>  
+    </div>    
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+    
+    <div class="header-detail">
+        <!-- Header Button -->
+        <div class="header-btn-wrapper">
+            
+                <span>
+                    <a class="home-btn header-btn" href="/" title="homepage"><i class="fa fa-home"></i></a>
+                </span>
+
+                
+                    <span>
+                        <a class="catalog-btn header-btn"><i class="fa fa-list-ul"></i></a>
+                    </span>
+                
+            
+        </div>
+    </div>
+</header>
+
+            <!-- Main -->
+            <main>
+                <article class="post-wrapper">
+    
+
+    
+        <!-- Article Catalog -->
+        <div class="catalog-dropdown col-xs-12 col-sm-12">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#let和const"><span class="toc-number">1.</span> <span class="toc-text">let和const</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#箭头函数和词法this"><span class="toc-number">2.</span> <span class="toc-text">箭头函数和词法this</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript类"><span class="toc-number">3.</span> <span class="toc-text">JavaScript类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript对象字面量改进"><span class="toc-number">4.</span> <span class="toc-text">JavaScript对象字面量改进</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript模板字符串字面量"><span class="toc-number">5.</span> <span class="toc-text">JavaScript模板字符串字面量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ECMAScript-2015-Promise"><span class="toc-number">6.</span> <span class="toc-text">ECMAScript 2015 Promise</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ECMAScript-2015-Generator、iterator、iterable-和-for…of"><span class="toc-number">7.</span> <span class="toc-text">ECMAScript 2015 Generator、iterator、iterable 和 for…of</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数-默认参数和-rest-运算符"><span class="toc-number">8.</span> <span class="toc-text">函数: 默认参数和 rest 运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展语法"><span class="toc-number">9.</span> <span class="toc-text">扩展语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-中的解构"><span class="toc-number">10.</span> <span class="toc-text">JavaScript 中的解构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-模块"><span class="toc-number">11.</span> <span class="toc-text">JavaScript 模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新的JavaScript集合"><span class="toc-number">12.</span> <span class="toc-text">新的JavaScript集合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对象代理"><span class="toc-number">13.</span> <span class="toc-text">对象代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#反射"><span class="toc-number">14.</span> <span class="toc-text">反射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#symbol"><span class="toc-number">15.</span> <span class="toc-text">symbol</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型化数组"><span class="toc-number">16.</span> <span class="toc-text">类型化数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他特性"><span class="toc-number">17.</span> <span class="toc-text">其他特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下一版本的ECMAScript"><span class="toc-number">18.</span> <span class="toc-text">下一版本的ECMAScript</span></a></li></ol>
+        </div>
+    
+
+    
+        <!--For now, Lightbox Only Show in Post Layout -->
+        
+
+        
+        
+    
+
+    
+
+    <!-- Article Content -->
+    <div class="post-content">
+        <h2 id="let和const"><a href="#let和const" class="headerlink" title="let和const"></a>let和const</h2><p>1、let声明的变量，代替var，有块作用域，无变量提升。    </p>
+<p>2、const    </p>
+<p>不允许在初始声明后，将名称重新绑定到不同对象（但其实仍未影响可写性，可写性可以用 Object.defineProperty() 和 Object.freeze() 控制，严格模式下试图改变只读属性会抛出TypeError）    </p>
+<h2 id="箭头函数和词法this"><a href="#箭头函数和词法this" class="headerlink" title="箭头函数和词法this"></a>箭头函数和词法this</h2><p>对于this、arguments、super 和 new.target，箭头函数是从外层函数继承这些元素的值，而不是声明重新声明一套。（es5之前，这些都是在函数作用域内局部预定义的声明，不能被其中的匿名函数所读取）</p>
+<h2 id="JavaScript类"><a href="#JavaScript类" class="headerlink" title="JavaScript类"></a>JavaScript类</h2><p>在原型之上模仿类的语法糖。有助于熟悉java、c++这类语言的人上手js。</p>
+<h2 id="JavaScript对象字面量改进"><a href="#JavaScript对象字面量改进" class="headerlink" title="JavaScript对象字面量改进"></a>JavaScript对象字面量改进</h2><p>设置对象的原型、方法、动态key时，更有“聚合性”，使用对象字面量定义对象时，更趋近于整体。    </p>
+<h2 id="JavaScript模板字符串字面量"><a href="#JavaScript模板字符串字面量" class="headerlink" title="JavaScript模板字符串字面量"></a>JavaScript模板字符串字面量</h2><p>const str = <code>The result of operation ${op} is ${someNumber}</code>;<br>且支持多行。    </p>
+<p>原始字符串：String.raw<code>Hi\u000A!</code>; // 不处理 unicode 转义符<br>有助于防止与转义符和引号相关的错误。    </p>
+<p>参考: <a href="https://wizardforcel.gitbooks.io/exploring-es6/content/md/6/6.3.html" target="_blank" rel="noopener">https://wizardforcel.gitbooks.io/exploring-es6/content/md/6/6.3.html</a>    </p>
+<p>如果在模板字面量前面加上标签 String.raw ，那么就变成了“原生的”的字符串了，反斜杠再也不是用于转义的特殊字符，也就是说， \n 不会转义成换行符：    </p>
+<pre><code>const str = String.raw`Not a newline: \n`;
+console.log(str === &#39;Not a newline: \\n&#39;); // true
+</code></pre><p>参考：<a href="https://zhuanlan.zhihu.com/p/31687266" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/31687266</a>    </p>
+<p>标签函数。本质上是以任意方式转换字符串字面量的函数。    </p>
+<p>标签函数的第一个参数是被嵌入表达式分隔的文本的数组。第二个参数开始是嵌入表达式的内容。    </p>
+<h2 id="ECMAScript-2015-Promise"><a href="#ECMAScript-2015-Promise" class="headerlink" title="ECMAScript 2015 Promise"></a>ECMAScript 2015 Promise</h2><p>链式调用与then、catch，创建promise，resolve和reject    </p>
+<h2 id="ECMAScript-2015-Generator、iterator、iterable-和-for…of"><a href="#ECMAScript-2015-Generator、iterator、iterable-和-for…of" class="headerlink" title="ECMAScript 2015 Generator、iterator、iterable 和 for…of"></a>ECMAScript 2015 Generator、iterator、iterable 和 for…of</h2><p>生成器和 yield 关键字，创建迭代器以及迭代器中的状态管理。    </p>
+<p>iterable 是为方便创建迭代器而提供接口的对象。提供一个 Symbol.iterator 键，该键的值是一个生成器函数。    </p>
+<p>for..of 循环遍历。数组和新的集合（Map、Set、WeakMap）都可以用这种方式。    </p>
+<h2 id="函数-默认参数和-rest-运算符"><a href="#函数-默认参数和-rest-运算符" class="headerlink" title="函数: 默认参数和 rest 运算符"></a>函数: 默认参数和 rest 运算符</h2><p>1.function request(url, method = ‘GET’) { // (…)}    </p>
+<p>2.rest 运算符    </p>
+<pre><code class="javascript">function manyArgs(a, b, ...args) { 
+// args === [&#39;Hello&#39;, &#39;World&#39;, true]
+} 
+manyArgs(1, 2, &#39;Hello&#39;, &#39;World&#39;, true);
+</code></pre>
+<p>通过 rest 运算符声明的变量是真正的数组，所以 arguments 中出现的有些方法，比如 caller和 callee 现在就不能用了</p>
+<h2 id="扩展语法"><a href="#扩展语法" class="headerlink" title="扩展语法"></a>扩展语法</h2><p>有点与rest相反的意味。<br>将一个数组参数扩展为多个参数。    </p>
+<pre><code class="JavaScript">function manyArgs(a, b, c, d) { // (...)} 
+let arr = [1, 2, 3, 4]; 
+manyArgs(...arr);
+</code></pre>
+<h2 id="JavaScript-中的解构"><a href="#JavaScript-中的解构" class="headerlink" title="JavaScript 中的解构"></a>JavaScript 中的解构</h2><p>允许采用一种有趣的方式，将一个变量转换成绑定到其内部的多个变量。还有就是给解构后的某个变量改名。    </p>
+<h2 id="JavaScript-模块"><a href="#JavaScript-模块" class="headerlink" title="JavaScript 模块"></a>JavaScript 模块</h2><p>import 和 export。如何导入导出，导入导出的模块名。import 的语义既允许异步加载模块，又允许同步加载模块。    </p>
+<p>范没有提到在 Web 上到底该如何实现。未来在html中可能会有新语法来增加支持。JavaScript 加载器标准 也许会有参考意义。    </p>
+<h2 id="新的JavaScript集合"><a href="#新的JavaScript集合" class="headerlink" title="新的JavaScript集合"></a>新的JavaScript集合</h2><p>Set、Map、WeakSet 和 WeakMap。    </p>
+<p>WeakSet 内的对象在集合外的对象不再引用它们之后，就变成了无效的了。    </p>
+<p>WeakMap 是在键上弱（像 WeakSet），在它存储的值上强。    </p>
+<p>基于 hash 的 map 依然不可用。    </p>
+<h2 id="对象代理"><a href="#对象代理" class="headerlink" title="对象代理"></a>对象代理</h2><p>自定义对象的行为。    </p>
+<p>没有过多的键迭代，不需要显式重写 setter，不需要玩弄原型链。    </p>
+<h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><p>代理是对 JavaScript 动态能力的一个不错的补充，而对代理的补充就是反射（reflection）。对于每个可以被代理捕获和重写的操作，Reflect 对象允许用同样一致的 API 访问该操作    </p>
+<h2 id="symbol"><a href="#symbol" class="headerlink" title="symbol"></a>symbol</h2><p>Symbol 主要用作对象的键。Symbol 对象键不同于字符串键，不能被 Object.keys 枚举，也不能被 JSON.stringify看到。    </p>
+<h2 id="类型化数组"><a href="#类型化数组" class="headerlink" title="类型化数组"></a>类型化数组</h2><p>类型化数组提供了对有符号和无符号 8 位、16 位 和 32 位整数的高效存储。它还有 32 位和 64 位浮点值的版本。    </p>
+<h2 id="其他特性"><a href="#其他特性" class="headerlink" title="其他特性"></a>其他特性</h2><p>1、内置子类化    </p>
+<p>2、尾递归优化    </p>
+<p>3、Unicode。支持在模式中通过从 u 标志嵌入码点    </p>
+<p>4、新的数字字面量。二进制和八进制字面量。    </p>
+<h2 id="下一版本的ECMAScript"><a href="#下一版本的ECMAScript" class="headerlink" title="下一版本的ECMAScript"></a>下一版本的ECMAScript</h2><p>1、Async/Await    </p>
+<p>2、单指令多数据（SIMD）    </p>
+<p>3、异步迭代    </p>
+<p>参考：<a href="https://www.zcfy.cc/article/a-rundown-of-javascript-2015-features-1915.html" target="_blank" rel="noopener">https://www.zcfy.cc/article/a-rundown-of-javascript-2015-features-1915.html</a></p>
+  
+    </div> 
+
+    
+        <!-- Division Line -->
+        <div class="division"></div> 
+    
+
+    <div class="post-info-wrapper">
+            
+                    <!-- Post Info -->
+                    <p class="post-date">2018-05-12</p>
+                    
+                    
+                        <p class="post-info-categories">
+                            <a class="post-category-link" href="/categories/frontend/">frontend</a>
+                        </p>
+                    
+
+                    
+            
+    </div>
+</article>
+
+
+    
+    <!-- Comments -->
+    <div class="post-comment-wrapper">
+        
+    <!-- Livere -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjA4Mi84NjQ2">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+    
+           if (typeof LivereTower === 'function') { return; }
+    
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+    
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+    </div>
+    
+
+            </main>
+
+            <!-- 'To Top' Btn-->
+            
+                <div id="to-top">
+    <a href="#top" class="toTop">
+        <i class="fa fa-pagelines"></i>
+    </a>
+</div>
+            
+
+            <!-- Footer -->
+            
+                <footer class="footer-wrapper col-xs-12 col-sm-12">
+    <div class="footer-banner-wrapper">
+        <p class="footer-banner">Powered by <a href="https://hexo.io/" title="Hexo">Hexo</a></p>
+        <P class="footer-banner">Theme <a href="https://github.com/Lonezj/hexo-theme-wind" title="Wind">wind</a></P>
+    </div>
+</footer>
+            
+        </div>
+
+        <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+        <link rel="stylesheet" href="/css/google-prettify-monokai.css" type="text/css">
+        <script src="//cdn.bootcss.com/prettify/r298/prettify.min.js" type="text/javascript"></script>
+    </body>
+</html>
