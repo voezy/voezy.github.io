@@ -198,7 +198,7 @@ http.get(url, function (res) {
 <p>为了阻止事件进一步传播，可以通过 <code>event.stopPropagation()</code> 来停止事件传播。在 IE10 及以下版本需要使用 <code>window.event.cancelBubble = true</code>。</p>
 <h3 id="阻止默认事件"><a href="#阻止默认事件" class="headerlink" title="阻止默认事件"></a>阻止默认事件</h3><p>也就是阻止浏览器中一些事件发生后的默认行为。    </p>
 <p>比如a标签的点击事件发生之后，默认是页面跳转，阻止默认事件之后，可以由自定义的事件处理函数来决定要做什么。    </p>
-<p>使用方法：在注册的事件处理函数中加入 <code>event.preventDefault()</code>。IE 10 及以下是 <code>window.event.returnValue = false</code>。<br>(顺带一提IE 10 以前这种方式真的太奇怪了，明明给事件处理函数传入了事件参数却不用上它)</p>
+<p>使用方法：在注册的事件处理函数中加入 <code>event.preventDefault()</code>。IE 10 及以下是 <code>window.event.returnValue = false</code>。    </p>
 <hr>
 <h3 id="And"><a href="#And" class="headerlink" title="And"></a>And</h3><p>入门阶段需要学习的地方真的太多了，事件处理的使用姿势还有那些？戳这个-&gt;    </p>
 <p><a href="https://segmentfault.com/q/1010000002462675#a-1020000002463604" target="_blank" rel="noopener">事件处理中的闭包与模块化</a>    </p>
