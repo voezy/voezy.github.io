@@ -171,7 +171,8 @@
 <h2 id="遇到一些问题"><a href="#遇到一些问题" class="headerlink" title="遇到一些问题"></a>遇到一些问题</h2><h3 id="第三章-1"><a href="#第三章-1" class="headerlink" title="第三章"></a>第三章</h3><p>设置资料缺失时的显示，第五段，“我们在welcome.wxml中，新增data…”应该是在welcome.js中新增data。</p>
 <h3 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h3><p>index/index.js中，设置路由跳转，函数toDetailPage要放在pages里面。主要是没有展示清楚。</p>
 <h3 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h3><p>1.例子代码中pageLimit似乎没有定义。    </p>
-<p>2.方法addReadStatus中，每一篇文章加入阅读状态之后push到newArticles那一句，newArticles.push(movie)中的movie应该改为article。这是哪个练手项目贴过来的代码…<br>3.还有，所有的setStorageSync或者getStorageSync里面的READED_ARTICLES都应该加上引号，因为这个参数类型是字符串，不然会有对象未定义的错误。    </p>
+<p>2.方法addReadStatus中，每一篇文章加入阅读状态之后push到newArticles那一句，newArticles.push(movie)中的movie应该改为article。      </p>
+<p>3.还有，所有的setStorageSync或者getStorageSync里面的READED_ARTICLES都应该加上引号，因为这个参数类型是字符串，不然会有对象未定义的错误。    </p>
 <p>4.在说明重新打开小程序也需要给文章加上阅读状态那一段，对于函数getArticles的修改说明似乎是有误或者说漏了点什么。<br>只简单地写道：</p>
 <pre><code>  // pages/index/index.js
   this.setData({
