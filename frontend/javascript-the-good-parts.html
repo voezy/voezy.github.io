@@ -145,7 +145,7 @@
     };
 }
 </code></pre>
-<p>似乎还有一种通过拷贝对象属性来生成新对象的方法，这样大概可以使原对象和新对象互不影响？    </p>
+<p>在es5中，新增了Object.create()用于原型式继承。</p>
 <p>6.反射(检查对象属性)    </p>
 <p>原型链中所有属性都会产生返回值，所以在检索一个对象中自身具有的属性时，有两个方法：    </p>
 <p>(1)抛弃类型为”function”的属性。    </p>
@@ -487,6 +487,27 @@ Function.method(&#39;inherits&#39;, function (Parent) {
   last: l,
 })
 </code></pre>
+<p>3.原型(式继承)    </p>
+<p>利用对象字面量构造出一个基本对象parent，然后可以用第三章提到的create方法，构造出更多基于parent的对象。由于原型链的作用，这样构造出来的对象是可以完全利用parent对象的资源的。但是也要注意，这样构造出来的对象只是空对象，如果在未对它进行重新初始化前，修改某个引用对象值，那么由于原型链的作用，parent中的属性将会被改变。</p>
+<p>比如：</p>
+<pre><code class="JavaScript">var Parent = {
+    name: &quot;Jim&quot;,
+    sex: &quot;male&quot;,
+    hobby: [&quot;sports&quot;],
+    children:{son:&quot;Jack&quot;,daughter:&quot;Lily&quot;},
+    getName : function(){
+        return this.name;
+    }
+}
+
+var c = clone(Parent);
+c.hobby.push(&quot;game&quot;);
+c.children.son = &quot;James&quot;;
+
+console.log(Parent.hobby);   //[&quot;sports&quot;,&quot;game&quot;]
+console.log(Parent.children.son);   //&quot;James&quot;
+</code></pre>
+<p>Parent被修改了。所以，当要利用的属性是一个对象或者其他类型的对象时，应当注意不要修改了原型。    </p>
 <p>4.函数化构造器    </p>
 <p>伪代码模板：    </p>
 <pre><code class="JavaScript">// 参数是可选的, my 应该是一个从它那里继承属性的对象
