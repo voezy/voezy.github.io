@@ -507,7 +507,8 @@ c.children.son = &quot;James&quot;;
 console.log(Parent.hobby);   //[&quot;sports&quot;,&quot;game&quot;]
 console.log(Parent.children.son);   //&quot;James&quot;
 </code></pre>
-<p>Parent被修改了。所以，当要利用的属性是一个对象或者其他类型的对象时，应当注意不要修改了原型。    </p>
+<p>Parent被修改了。所以，当要利用的属性是一个对象或者其他类型的对象时，应当注意不要修改了原型。     </p>
+<p>‘new’ 关键字类似于类式继承。而Object.create则更像是原型式继承。    </p>
 <p>4.函数化构造器    </p>
 <p>伪代码模板：    </p>
 <pre><code class="JavaScript">// 参数是可选的, my 应该是一个从它那里继承属性的对象
