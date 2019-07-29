@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1">
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <script src="/Scripts/jquery/jquery-1.8.3.min.js"></script>
+    <script src="/Scripts/wap/core.js?v=149"></script>
+</head>
+<body class="white_temp" >
+    <div id="divPLX">
+    
+
+
+    <script src="/Scripts/jquery/lozad.min.js"></script>
+
+
+    <script type="text/javascript">
+    var setting = { albumId: "5303f02d-0dff-413f-b522-1c7a256db276", enterType: 0, lang: 0, showType: 0, groupShowType: 9, sortType: 0 };
+</script>
+<script src="/Scripts/jquery/lozad.min.js"></script>
+<script src="/Scripts/swipe/v4.5.0/swiper.min.js"></script>
+<link href="/Themes/swipe/v4.5.0/swiper.min.css" rel="stylesheet">
+<link href="/Themes/embed/reset.css?v=41" type="text/css" rel="stylesheet" /><link href="/Themes/embed/normalize.css?v=41" rel="stylesheet" /><link href="/Themes/embed/albumtemplate9.css?v=41" rel="stylesheet" /><script src="/Scripts/wap/AlbumTemplate9.js?v=41"></script>
+
+<!-- 进入动画 -->
+<div id="divLoadingMain" class="loadingmain">
+        <img class="gif"  src="/Upload/loaddata.gif"  />
+    </div>
+
+<!-- 错误提示 -->
+<div class="notice" style="display:none;" id="divErr"></div>
+<!-- 导航栏 -->
+<div class="nav_static">
+    <div class="nav_content">
+        <!-- <ul class="nav_bar clearfix">
+            <li id="liLive" class="nav_item active" onclick="showGroup()"><label id="lblLive">照片直播</label></li>
+            <li id="liTimeline" class="timeline" onclick="changeShow(2);"></li>
+            <li id="liWaterfall" class="waterfall" onclick="changeShow(1);"></li>
+            <li id="liGrid" class="grid on" onclick="changeShow(0);"></li>
+        </ul>
+         -->
+        <!-- 新照片提示 -->
+        <div id="divNewPhoto" class="liveUpLoad" style="display:none;" onclick="reloadPhoto();"><label id="lblNewPhoto"></label>&nbsp;<label id="lblNewPhotoTip">新照片</label></div>
+    </div>
+</div>
+<!-- 相册主体 -->
+<div id="divAlbum" style="display: none;">
+    
+    <!-- 照片列表 -->
+    <div id="divPhoto" class="photo_area" style="display:none;">
+        <!-- 三列方形 -->
+        <div id="divList" class="clearfix divul"></div>
+        <!-- 瀑布流 -->
+        <div id="divLeftList" class="phoLeft"></div>
+        <div id="divRightList" class="phoRight"></div>
+        <!-- 时间轴 -->
+        <div id="divTimeline" class="timelist"></div>
+         <!-- 数据加载提示 -->
+        <p id="loading" class="addmore" style="display:none;">数据加载中</p>
+    </div>
+   
+    <!-- 无数据 -->
+    <div id="divNoData" class="noalbum" style="display:none;">
+        <img src="/Themes/mbo/images/zanwu3.png" />
+    </div>
+</div>
+
+<!-- 照片数量 -->
+<div id="divPhotoQty" class="count-wrapper black" style="display:none;">
+    <span id="currentQty">0</span>&nbsp;/&nbsp;
+    <span id="totalQty">0</span>
+</div>
+
+<!-- 右侧工具栏 -->
+<div class="suspend_right" style="display:block">
+    <a class="puzzle" onclick="puzzle();" id="btnPuzzle">拼图</a>
+</div>
+
+<!-- 回到顶部 -->
+<div id="goTop" class="gotop" onclick="goTop();" style="display: none;"></div>
+
+<div class="view_big" id="divViewBig">
+    <div class="swp_header">
+      <div class="save_tip"><span id="lblSavePhoto">请长按照片保存</span></div>  
+    </div>
+    <a href="javascript:void(0);" class="swp_close" onclick="closeSwiper();"></a>
+    <div id="lazyPlaceHold" class="lazy-placehold" style="display: none;"></div>
+    <div id="divViewTip" class="bigImage-save hide"></div>
+    <div id="divSwiper" class="swiper-container photo_swiper">
+      <div class="swiper-wrapper">
+      </div>
+    </div>
+    <div class="swp_footer">
+      <div class="operation_pho">
+        <span id="spanPhotoRemark"></span>
+      </div>
+      <div class="func_area">
+        <div id="divGrapher" class="operater" style="display: block;">
+          <div class="avatar">
+            <div class="avatar-bg">
+              <img id="imgGrapher" src="" data-src="/Themes/album/images/camerist-img.png" />
+            </div>
+            <div class="cam_name">
+              <span id="grapherName"></span>
+              <p id="lblGrapher">摄影师</p>
+            </div>
+          </div>
+        </div>
+        <div class="opt_btn">
+          <a id="btnOriginal" class="view_original" onclick="viewOriginal();" href="javascript:void(0);">
+            <i></i>
+            <span><label id="lblFileSize"></label></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- 拼图弹出层 -->
+<div id="divPuzzle" style="display: none;">
+    <a class="puzzle_cancel" href="javascript:void(0);" onclick="cancelPuzzle();">
+        <label id="lblPuzzleCancel">取消</label>
+    </a>
+    <a class="puzzle_next" href="javascript:void(0);" onclick="startPuzzle();">
+        <label id="lblPuzzleConfirm">确定拼图</label>（<span id="puzzleCount">0</span>&nbsp;/&nbsp;9）
+    </a>
+</div>
+<!-- 拼图信息提示 -->
+<div id="divPuzzleTip" class="layout_alert" style="display: none;">
+    <div class="alert">
+        <div class="alert_tit">
+            <label id="lblTip">温馨提示</label>
+        </div>
+        <div class="alert_con" id="divPuzzleMsg">拼图照片数量至少2张</div>
+        <div class="alert_btn_group">
+            <div><a id="btnTipOk" class="alert_btn" href="javascript:void(0);" onclick="closePuzzleMsg();">确定</a></div>
+        </div>
+    </div>
+</div>
+<!-- 拼图进度 -->
+<div id="divPuzzleProgress" class="puzzle-loading" style="display: none;">
+    <div class="puzzle-loading-hint">
+        <h5 id="lblPuzzleTip1">拼图中…</h5>
+        <p><label id="lblPuzzleTip2">已拼图</label>&nbsp;<label id="lblPuzzleProgress">0</label>%</p>
+    </div>
+</div>
+<!-- 拼图结果 -->
+<div id="divPuzzleResult" style="display: none;" class="puzzle_result">
+    <a class="div_close" onclick="closePuzzle();"></a>
+    <img id="imgPuzzle" src="" />
+    <div id="lblPuzzleSave" class="tip-txt">长按图片保存到本地</div>
+</div>
+<!-- 检查横屏 -->
+<div id="divTurnOver" class="turn-over">
+    <div class="gif"></div>
+    <div class="text"><label id="lblPortrait"></label></div>
+</div>
+
+<!-- 相册摄影师信息 -->
+<div style="display: none;">
+        <div id="827c3c2d-e825-4e6e-8e92-d0b206c87fbf">http://static1.pailixiang.com/user/1901/19010414233118710786.jpg%40!puhead</div>
+        <div id="0af0fa6e-f678-4e31-9304-7d05d9ba1757">https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83erAjZPZl0ZrqgumDRqKDHu7rkKDfD8Dx8p2KDD1LLzibkX5oN3obo7Se617GibMlH0Pa7XdWgLSlFicw/132</div>
+        <div id="7a811fe9-d552-4e9a-a586-9f471948bb17">https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKsrsiaEdlriblMBUe2Z6MZic95xO8x5TDjaBHhxJye4yWFm2GW3uch0ck4CFJCK3QItLibjxeJhvFQVA/132</div>
+    </div>
+
+    <input name="wxImgUrl" type="hidden" id="wxImgUrl" value="http://static.pailixiang.com/org/pailixiang/wxshare.jpg" />
+    <input name="hidTitle" type="hidden" id="hidTitle" value="“新保险▪唯服务” 全新定义保险服务产品暨“童管家”全球首发会" />
+
+
+	    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script type="text/javascript" src="/Scripts/jsapi.js?v=1.45"></script>
+        </div>
+</body>
+</html>
